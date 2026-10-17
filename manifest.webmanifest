@@ -1,1 +1,17 @@
-{"name":"UMITAN OS","short_name":"UMITAN","start_url":"./index.html","display":"standalone","background_color":"#071d32","theme_color":"#071d32","lang":"ja","icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}
+{
+  "name": "UMITAN LAB",
+  "short_name": "UMITAN LAB",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#081b32",
+  "theme_color": "#081b32",
+  "icons": [
+    {
+      "src": "./B3159323-0ED4-491D-A313-C1768EBE42BD.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
