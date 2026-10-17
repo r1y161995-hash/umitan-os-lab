@@ -88,7 +88,7 @@
 @media(max-height:680px){.umi-note-panel{max-height:52dvh}}
 
 /* UMITAN LAB v1.3: fixed notebook heading, compact controls and scrollable pages */
-.world-lab .character{top:21.5%} /* move only the overlaid girl, not the background */
+.world-lab .character{top:19.5%} /* move only the overlaid girl, not the background */
 .umi-note-panel{display:flex;flex-direction:column;overflow:hidden;box-sizing:border-box;padding:12px 13px 12px;isolation:isolate}
 .umi-note-panel::before{content:'✿';position:absolute;top:9px;left:8px;font-size:15px;letter-spacing:0;opacity:.55;z-index:-1}
 .umi-note-panel::after{content:'𓇼  ✿  🐚';position:absolute;right:10px;bottom:7px;font-size:12px;letter-spacing:1px;opacity:.42;z-index:-1;margin:0}
@@ -165,7 +165,7 @@
  function wx(code){if(code===0)return ['☀️','晴れ'];if(code<=3)return ['⛅','晴れ・くもり'];if(code<=48)return ['🌫️','霧'];if(code<=57)return ['🌦️','霧雨'];if(code<=67)return ['☔','雨'];if(code<=77)return ['❄️','雪'];if(code<=82)return ['🌧️','にわか雨'];if(code<=86)return ['🌨️','雪'];if(code>=95)return ['⛈️','雷雨'];return ['🌤️','変わりやすい天気']}
  function choice(list,now){return list[(now.getDate()+now.getHours()+now.getDay())%list.length]}
  async function load(){
-  btn.disabled=true;say('めいめい、これからのお天気も調べているよ… 🌊');
+  btn.disabled=true;say('めいめい、これからのお天気を調べているよ… 🌊');
   try{
    const res=await fetch(api,{cache:'no-store'});if(!res.ok)throw Error('HTTP '+res.status);
    const data=await res.json(),cur=data.current,h=data.hourly;if(!cur||!h)throw Error('予報データ不足');
@@ -175,17 +175,26 @@
    const risk=future.filter(x=>x.p>=40).sort((a,b)=>b.p-a.p)[0];
    const late=future.filter(x=>x.t.getTime()>=Date.now()+5*3600000),lowest=late.length?Math.min(...late.map(x=>x.temp)):temp;
    let greet,sign;
-   if(hour>=5&&hour<11){greet=choice(['おはよう、めいめい♡ 今日も会えてうれしいな。','めいめい、おはよう！今日も一緒にいい一日にしようね。','おはよう♡ お出かけ前にお天気をチェックしようね。'],now);sign='いってらっしゃい、めいめい！今日も応援してるよ♡';}
-   else if(hour<17){greet=choice(['めいめい、こんにちは！ひと息つけてる？','今日もお疲れさま、めいめい。お空の様子を見てみようね。'],now);sign='午後も無理しすぎないでね💙';}
-   else if(hour<22){greet=choice(['めいめい、お疲れさま！今日も頑張ったね。','おかえり、めいめい♡ 今日のお空はこんな感じだよ。'],now);sign='帰り道も気をつけてね♡';}
-   else{greet='めいめい、こんばんは🌙 今日も一日お疲れさま。';sign='あたたかくして、ゆっくり休んでね♡';}
+   if(hour>=5&&hour<11){
+    greet=choice(['おはよう、めいめい♡ 今日も会えてうれしいな。','めいめい、おはよう！今日も一緒にいい一日にしようね。','おはよう♡ 今日のお空を一緒に見てみようね。'],now);
+    sign=choice(['いってらっしゃい、めいめい♡ 今日も応援してるよ！','めいめいの今日が素敵な一日になりますように♡ いってらっしゃい！','今日もめいめいらしくね。いってらっしゃい♡'],now);
+   }else if(hour>=11&&hour<17){
+    greet=choice(['めいめい、こんにちは♡ 午後のお空を見てみようね。','おかえり、めいめい♡ 研究室でひと息ついてね。','めいめい、今日も会えてうれしいな。お天気をお知らせするね。'],now);
+    sign=choice(['午後もめいめいのペースでね♡ うみたんは応援してるよ！','たまには空を見上げて、ひと息ついてね♡','今日の残りの時間も、素敵なひとときになりますように♡','めいめいに元気をおすそ分け♡ 無理せず過ごしてね。'],now);
+   }else if(hour>=17&&hour<22){
+    greet=choice(['めいめい、お疲れさま♡ 今日のお空はこんな感じだよ。','おかえり、めいめい♡ 研究室でゆっくりしていってね。','こんばんは、めいめい♡ 夕方からのお天気をお知らせするね。'],now);
+    sign=choice(['このあとも、めいめいのペースで過ごしてね♡','今日もお疲れさま♡ ほっとできる時間がありますように。','夜は少しのんびりできるといいね♡'],now);
+   }else{
+    greet=choice(['めいめい、こんばんは🌙 今夜のお空を見てみようね。','おかえり、めいめい♡ 研究室でひと息ついてね。','こんばんは、めいめい♡ 今日も会えてうれしいな。'],now);
+    sign=choice(['今夜はゆっくりできる時間があるといいね♡','今日もお疲れさま♡ 心地よい夜を過ごしてね。','あたたかくして、穏やかな時間を過ごしてね♡'],now);
+   }
    let advice='';
    if(rain){const t=rain.t.toLocaleTimeString('ja-JP',{hour:'numeric',minute:'2-digit',timeZone:'Asia/Tokyo'});advice=`今は${condition}だけど、${t}ごろから雨の可能性があるよ。折りたたみ傘を持っていくと安心だね☂️`}
    else if(risk){advice=`この先、降水確率が${risk.p}%になる時間帯があるよ。念のため折りたたみ傘があると安心かも☂️`}
    else if(cur.weather_code>=51&&cur.weather_code<=67 || cur.weather_code>=80&&cur.weather_code<=82){advice='今は雨模様だよ。傘と足元に気をつけてね☔'}
    else{advice=choice(['今のところ、近い時間に強い雨の予報は目立たないよ。','この先しばらくは大きな雨の心配は少なそうだよ。'],now)}
    let clothing=temp<=9?'外はかなり冷えるから、暖かい上着を忘れないでね。':temp<=17?'少しひんやりするから、羽織るものがあると安心だよ。':temp>=29?'暑くなりそう！水分補給も忘れずにね。':'';
-   if(lowest<=temp-6)clothing+=' あとで気温が下がりそうだから、帰りの服装にも気をつけてね。';
+   if(lowest<=temp-6)clothing+=clothing.includes('羽織るもの')||clothing.includes('上着')?' このあとさらに冷えそうだから、気温の変化にも気をつけてね。':' このあと気温が下がりそうだから、羽織るものがあると安心だね。';
    const stamp=new Date().toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'});
    say(`${greet}\n\n${emoji} 東京はいま「${condition}」、${temp}℃だよ。\n\n${advice}${clothing?'\n'+clothing:''}\n\n${sign}\n\n📡 更新 ${stamp} ／ 東京の今後約14時間の予報を確認`);
   }catch(e){say('めいめい、ごめんね。今は天気予報につながらないみたい。通信状況を確認して、もう一度「予報を更新する」を押してみてね💙');}
