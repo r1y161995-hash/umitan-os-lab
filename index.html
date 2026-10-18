@@ -266,74 +266,94 @@
 
 <script></script>
 <script>
-/* UMITAN WEATHER LAB v1.9 — current conditions + seven-day forecast + two distinct comments. */
+/* UMITAN WEATHER LAB v1.9.1 — conversation-first weather and seven-day outlook. */
 (function(){
- const box=document.getElementById('umi-weather'), btn=document.getElementById('umi-weather-refresh');
+ const box=document.getElementById('umi-weather'),btn=document.getElementById('umi-weather-refresh');
+ if(!box||!btn)return;
  const api='https://api.open-meteo.com/v1/forecast?latitude=35.6762&longitude=139.6503&timezone=Asia%2FTokyo&current=temperature_2m,relative_humidity_2m,weather_code&hourly=precipitation_probability,temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&forecast_days=7';
  const css=document.createElement('style');css.textContent=`
  #modal-2 .card{max-height:82dvh;overflow-y:auto;overscroll-behavior:contain}
- .umi-wx-section{border:1px solid rgba(136,225,245,.38);border-radius:17px;padding:15px 12px;margin:12px 0;background:rgba(9,60,86,.37)}
- .umi-wx-heading{font-weight:700;font-size:16px;letter-spacing:.04em;margin:0 0 10px}
- .umi-wx-now{text-align:center;font-size:16px;line-height:1.7}.umi-wx-now .big{font-size:37px;line-height:1.4}.umi-wx-now .degree{font-size:32px;font-weight:700}
- .umi-wx-comment{border-radius:13px;background:rgba(180,232,245,.13);border-left:3px solid #7fe3f2;padding:12px 13px;margin:10px 0 16px;line-height:1.8;white-space:pre-line}
- .umi-wx-comment strong{display:block;font-size:13px;margin-bottom:5px;color:#b7f6ff}
- .umi-wx-days{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}.umi-wx-days th,.umi-wx-days td{padding:10px 2px;border-bottom:1px solid rgba(198,239,248,.2);text-align:center;white-space:nowrap}
- .umi-wx-days th{font-size:11px;opacity:.85}.umi-wx-days td:first-child,.umi-wx-days th:first-child{text-align:left;width:25%}.umi-wx-days td:nth-child(2){width:18%;font-size:18px}.umi-wx-days td:nth-child(3){width:34%}.umi-wx-days td:nth-child(4){width:23%}
- .umi-wx-rain{color:#9deaff;font-weight:700}.umi-wx-updated{text-align:right;font-size:11px;opacity:.7;margin-top:10px}
- @media(max-width:370px){.umi-wx-days{font-size:11px}.umi-wx-days th,.umi-wx-days td{padding:9px 1px}}
+ #umi-weather{font-size:14px;line-height:1.88}
+ .umi-wx-story{white-space:pre-line;line-height:1.95;margin:12px 1px 16px;font-size:14px}
+ .umi-wx-divider{margin:20px 0 15px;display:flex;align-items:center;gap:12px;opacity:.76;color:#b7f4fc;font-size:12px}
+ .umi-wx-divider:before,.umi-wx-divider:after{content:'';height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(164,236,247,.65),transparent)}
+ .umi-wx-heading{font-size:15px;font-weight:700;margin:0 0 10px;letter-spacing:.04em}
+ .umi-wx-days{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed;background:transparent}
+ .umi-wx-days th,.umi-wx-days td{padding:9px 2px;border-bottom:1px solid rgba(198,239,248,.22);text-align:center;white-space:nowrap;background:transparent}
+ .umi-wx-days th{font-size:11px;opacity:.82}
+ .umi-wx-days td:first-child,.umi-wx-days th:first-child{text-align:left;width:25%}
+ .umi-wx-days td:nth-child(2){width:18%;font-size:18px}
+ .umi-wx-days td:nth-child(3){width:34%}
+ .umi-wx-days td:nth-child(4){width:23%}
+ .umi-wx-rain{color:#a5efff;font-weight:700}
+ .umi-wx-updated{text-align:right;font-size:11px;opacity:.65;margin-top:15px}
+ @media(max-width:370px){.umi-wx-days{font-size:11px}.umi-wx-days th,.umi-wx-days td{padding:8px 1px}}
  `;document.head.appendChild(css);
  const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const round=v=>Math.round(v);
  function wx(code){if(code===0)return ['☀️','晴れ'];if(code<=3)return ['⛅','晴れ・くもり'];if(code<=48)return ['🌫️','霧'];if(code<=57)return ['🌦️','霧雨'];if(code<=67)return ['🌧️','雨'];if(code<=77)return ['❄️','雪'];if(code<=82)return ['🌧️','にわか雨'];if(code<=86)return ['🌨️','雪'];if(code>=95)return ['⛈️','雷雨'];return ['🌤️','変わりやすい天気']}
- function isWet(code){return (code>=51&&code<=67)||(code>=80&&code<=82)||code>=95}
- const select=(items,key)=>items[Math.abs(key)%items.length];
- function pick(items,kind){const day=new Date().toLocaleDateString('sv-SE',{timeZone:'Asia/Tokyo'});const key=kind+'-'+day;let n=0;for(const c of key)n=(n*31+c.charCodeAt(0))>>>0;let i=n%items.length;try{const old=JSON.parse(localStorage.getItem('umi-weather-last-'+kind)||'null');if(old&&old.index===i&&old.day!==day)i=(i+1)%items.length;localStorage.setItem('umi-weather-last-'+kind,JSON.stringify({day,index:i}))}catch(e){}return items[i]}
- function dailyWords(cur,daily,hour,forecast){
-  const temp=cur.temperature_2m,code=cur.weather_code,high=daily.temperature_2m_max[0],low=daily.temperature_2m_min[0];
-  const rain=forecast.find(x=>x.p>=55||isWet(x.code));
-  const opening=hour>=5&&hour<11?['おはよう、めいめい。','めいめい、おはよう！','おはよう♡ 今日のお空を見てみようね。']:hour>=11&&hour<17?['めいめい、こんにちは。','ちょっと空模様を見てみようか、めいめい。','めいめい、ひと息つきながらお天気を確認しよう。']:hour>=17&&hour<22?['めいめい、今日もお疲れさま。','こんばんは、めいめい。','めいめい、おかえり。今日のお空はどうだった？']:['めいめい、こんばんは。','今日もお疲れさま、めいめい。','夜の研究室へようこそ、めいめい。'];
-  let tips;
-  if(rain){tips=['この先は雨の可能性があるみたい。出かけるなら、折りたたみ傘があると心強いね☂️','雨の気配があるよ。帰り道も足元に気をつけてね。','少し空が不安定みたい。傘を一本、そばに置いておこうか。']}
-  else if(isWet(code)){tips=['今は雨模様だね。急がず、足元に気をつけてね。','雨音が聞こえてきそうなお天気。濡れないように過ごしてね☔','こんな日は、温かい飲み物でひと息つくのもいいね。']}
-  else if(temp>=30||high>=32){tips=['暑くなりそうだね。水分補給と休憩を忘れずに。','日差しと暑さには気をつけて。無理せず涼しい場所でひと休みしよう。','今日は暑さ対策が頼りになりそう。めいめい、頑張りすぎないでね。']}
-  else if(temp<=9||low<=5){tips=['冷え込みが気になるね。暖かい上着があると安心だよ。','今日はあたたかくして過ごそうね。手先も冷やさないように。','空気がひんやりしているよ。羽織るものを忘れずにね。']}
-  else if(code<=1){tips=['今日は空が明るそう。外の空気を吸うだけでも気分転換になりそうだね。','お日さまが顔を出しているね。少し空を見上げてみたくなるな♪','晴れ間がうれしいね。めいめいの一日にも、いいことがありますように。']}
-  else{tips=['今日は雲とお付き合いする空模様だね。めいめいのペースで過ごしてね。','空は少し落ち着いた表情。こういう日も、のんびり過ごすにはいいね。','変わりやすい空みたい。出かける前にもう一度、予報を見ておこうね。']}
-  const extra=hour>=20?['今夜はゆっくりできるといいな。','一日の終わりに、少しほっとできる時間をね。','あとは心地よい夜を過ごしてね♡']:hour<11?['今日もいい一日になりますように。','いってらっしゃい、めいめい♡','朝から無理しすぎないでね。']:['ときどき休憩も忘れずにね。','今日の残りも、心地よく過ごせますように。','めいめい、今日も応援しているよ。'];
-  return pick(opening,'daily-opening')+' '+pick(tips,'daily-tip')+' '+pick(extra,'daily-extra');
+ function wet(code){return (code>=51&&code<=67)||(code>=80&&code<=82)||code>=95}
+ function hourJST(){return Number(new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Tokyo',hour:'numeric',hourCycle:'h23'}).format(new Date()))}
+ function choose(arr,kind){const date=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());let n=0;for(const c of date+kind)n=(n*31+c.charCodeAt(0))>>>0;let i=n%arr.length;try{const key='umi-wx-191-'+kind,old=JSON.parse(localStorage.getItem(key)||'null');if(old&&old.day!==date&&old.index===i)i=(i+1)%arr.length;localStorage.setItem(key,JSON.stringify({day:date,index:i}))}catch(e){}return arr[i]}
+ function timePhrase(t){return new Intl.DateTimeFormat('ja-JP',{timeZone:'Asia/Tokyo',hour:'numeric'}).format(t)}
+ function story(cur,d,h,now){
+  const hour=hourJST(),temp=round(cur.temperature_2m),hi=round(d.temperature_2m_max[0]),lo=round(d.temperature_2m_min[0]),[icon,cond]=wx(cur.weather_code);
+  const start=hour>=5&&hour<11?['おはよう、めいめい♡ 今日も会えてうれしいな。','めいめい、おはよう！ 今日も一緒にお空を見てみようね。','おはよう、めいめい♡ 今日の天気をお届けするね。']:hour>=11&&hour<17?['めいめい、こんにちは♡ 今日のお空を一緒に見てみよう。','こんにちは、めいめい。ちょっとお天気を確認しようか。','めいめい、今日も会えてうれしいな♡ お天気をお知らせするね。']:hour>=17&&hour<22?['めいめい、今日もお疲れさま♡ 夕方のお空を見てみようね。','おかえり、めいめい♡ このあとのお天気を伝えるね。','こんばんは、めいめい。今日も一緒に空模様を見てみよう。']:['こんばんは、めいめい♡ 今日も会えてうれしいな。','めいめい、今日もお疲れさま。今夜のお天気を見てみようね。','夜の研究室へようこそ、めいめい♡'];
+  const greeting=choose(start,'hello');
+  const first=`${icon} 東京はいま「${cond}」、${temp}℃だよ。`;
+  const range=hour>=17?choose([`今日の最高気温は${hi}℃、最低気温は${lo}℃の予報だよ。`,`今日は最高${hi}℃、最低${lo}℃くらいの予報だったよ。`],'range-night'):`今日は最高${hi}℃、最低${lo}℃の予報なの。`;
+  const future=h.time.map((t,i)=>({t:new Date(t+'+09:00'),p:Number(h.precipitation_probability[i]),temp:Number(h.temperature_2m[i]),code:h.weather_code[i]})).filter(x=>x.t.getTime()>now.getTime()&&x.t.getTime()<=now.getTime()+14*3600000);
+  const early=future.slice(0,4),late=future.slice(4),rain=future.find(x=>x.p>=60),nextWet=future.find(x=>wet(x.code));
+  const later=late.length?late[Math.min(2,late.length-1)]:null;
+  const earlyCodes=early.filter(x=>Number.isFinite(x.code)).map(x=>x.code);
+  const laterCodes=late.filter(x=>Number.isFinite(x.code)).map(x=>x.code);
+  const earlyRain=earlyCodes.filter(wet).length,lateRain=laterCodes.filter(wet).length;
+  let change='';
+  if(rain&&!wet(cur.weather_code))change=choose([`${timePhrase(rain.t)}ごろは降水確率が${round(rain.p)}%になる予報。雨具を用意しておくと安心だね。`,`この先、${timePhrase(rain.t)}ごろに雨の可能性が高まりそう。折りたたみ傘があると心強いね☂️`],'change-rain');
+  else if(wet(cur.weather_code)&&laterCodes.length&&lateRain===0)change=choose(['今は雨模様だけど、この先は雨が落ち着く時間帯もありそうだよ。','雨はこのあと弱まる可能性があるみたい。足元には引き続き気をつけてね。'],'change-clear');
+  else if(wet(cur.weather_code))change=choose(['この先もしばらく雨に気をつけたい空模様だよ。出かけるなら足元に気をつけてね。','雨が続く時間もありそう。傘を忘れずにね☔'],'change-wet');
+  else if(nextWet)change=`${timePhrase(nextWet.t)}ごろは雨の予報が出ているよ。出かけるなら空模様をもう一度確認してね。`;
+  else if(later&&earlyCodes.length&&laterCodes.length&&earlyCodes.every(c=>c<=1)&&laterCodes.filter(c=>c>=2&&c<=3).length>=2)change=choose(['この先は少しずつ雲が広がる時間帯もありそう。','今は明るい空だけど、あとから雲が増えるかもしれないね。'],'change-cloud');
+  else if(later&&earlyCodes.length&&earlyCodes.every(c=>c>=2&&c<=3)&&laterCodes.filter(c=>c<=1).length>=2)change=choose(['このあと晴れ間が見える時間帯もありそうだよ。','雲の合間から、お日さまが顔を出すかもしれないね。'],'change-sun');
+  else change=choose(['この先しばらくは、大きな天気の変化は目立たなそうだよ。','このあとも、今と似た空模様が続きそうだね。','しばらくは落ち着いた空模様になりそうだよ。'],'change-steady');
+  let advice='';
+  const laterTemps=future.filter(x=>Number.isFinite(x.temp)).map(x=>x.temp),drop=laterTemps.length?temp-Math.min(...laterTemps):0;
+  if(temp>=29||hi>=32)advice=choose(['暑さには気をつけて、水分補給と休憩も忘れずにね。','暑くなりそうだから、涼しい場所でひと息つく時間も大切にしてね。'],'advice-hot');
+  else if(temp<=10||lo<=5)advice=choose(['冷え込みそうだから、暖かい上着があると安心だよ。','今日は暖かくして過ごそうね。手先も冷やさないように。'],'advice-cold');
+  else if(drop>=5)advice=choose(['このあと気温も下がりそう。羽織るものがあると安心だね。','夜にかけて少し冷えるかも。上着を一枚用意しておこうね。'],'advice-drop');
+  else if(temp<=17)advice=choose(['少しひんやりするから、羽織るものがあると安心だよ。','空気が涼しいね。無理せず、心地よい服装で過ごしてね。'],'advice-cool');
+  else if(hi-lo>=10)advice=choose(['朝晩と日中で気温差がありそう。服装で上手に調整してね。','気温差が大きめだね。脱ぎ着しやすい服が便利そう。'],'advice-swing');
+  else advice=choose(['めいめいも、心地よく過ごせるといいな。','ときどき空を見上げて、ひと息ついてね。','今日もめいめいのペースで過ごしてね。'],'advice-normal');
+  const endings=hour>=5&&hour<11?['いってらっしゃい、めいめい♡ 今日も応援してるよ！','今日もめいめいにとって、いい一日になりますように♡','めいめい、今日も自分のペースでね。いってらっしゃい♡']:hour>=11&&hour<17?['午後もめいめいのペースでね♡','今日の残りも、穏やかな時間になりますように。','めいめい、今日も応援しているよ♡']:['今日もお疲れさま♡ ゆっくりできるといいな。','今夜はほっとできる時間がありますように♡','めいめい、あたたかくして過ごしてね♡'];
+  return [greeting,first,range+'\n'+change,advice,choose(endings,'ending')].join('\n\n');
  }
- function weekWords(d){
-  const rain=d.precipitation_probability_max||[],max=d.temperature_2m_max,min=d.temperature_2m_min;
-  const rainy=rain.slice(1).filter(x=>x>=60).length;
-  const hot=Math.max(...max)-Math.min(...max),swing=Math.max(...max.map((x,i)=>x-min[i]));
-  const weekend=d.time.findIndex((x,i)=>i>0&&[0,6].includes(new Date(x+'T12:00:00+09:00').getDay()));
-  let lines;
-  if(rainy>=3)lines=['この先は雨の日が多そうだね。お出かけやお洗濯は、晴れ間を上手に使いたいな。','傘の出番が増えそうな一週間。めいめい、予定を立てるときは空模様も味方につけようね。','今週は雨と仲良くする日が多そう。晴れそうな日を見つけておくと安心だね。'];
-  else if(hot>=7||swing>=12)lines=['この先は気温の変化が大きそう。脱ぎ着しやすい服があると便利だね。','暖かい日と涼しい日が混ざりそうだよ。めいめい、体を冷やさないようにね。','気温が少し忙しい一週間だね。服装を調整しながら、心地よく過ごそう。'];
-  else if(weekend>=0&&rain[weekend]<=25&&d.weather_code[weekend]<=3)lines=['週末は比較的お天気に恵まれそう。何か楽しみな予定、ある？','週末に晴れ間が期待できそうだよ。お散歩にもよさそうだね♪','今週は週末の空が楽しみだね。めいめいはどんなふうに過ごしたい？'];
-  else if(rainy===0)lines=['今週は強い雨の予報が少なそう。予定を立てやすい一週間になるといいね。','比較的落ち着いた空模様になりそうだね。めいめいは今週、何を楽しみにしている？','大きな雨の心配は今のところ少なめ。ちょっと先の予定も考えたくなるね。'];
-  else lines=['今週は晴れの日も雨の日もありそう。予定に合わせて、上手に準備していこうね。','一週間の空模様は少し変化がありそう。めいめい、気になる日は前日にもう一度確認しよう。','この先の天気を眺めると、予定を考えるのも楽しくなるね。無理のない一週間にしよう♡'];
-  return pick(lines,'weekly');
+ function weekStory(d){
+  const rain=d.precipitation_probability_max.map(Number),high=d.temperature_2m_max.map(Number),low=d.temperature_2m_min.map(Number);
+  const rainy=rain.slice(1).filter(x=>x>=60).length,change=Math.max(...high)-Math.min(...high),swing=Math.max(...high.map((v,i)=>v-low[i]));
+  const dayNames=['日','月','火','水','木','金','土'];
+  const wetDays=d.time.map((t,i)=>({i,t,p:rain[i]})).filter(x=>x.i>0&&x.p>=60);
+  let sentences;
+  if(wetDays.length){const first=wetDays[0],dt=new Date(first.t+'T12:00:00+09:00'),day=dayNames[dt.getUTCDay()];sentences=[`めいめい、この先は${day}曜日あたりに雨の可能性が高そうだよ。予定があるなら、前日にもう一度確認しておこうね♡`,`一週間を見てみると、${day}曜日は降水確率が${round(first.p)}%の予報だよ。傘の準備をしておくと安心だね。`,`今週は${day}曜日あたりのお天気が少し気になるね。お出かけの予定があれば、空模様をチェックしておこう。`];}
+  else if(change>=7||swing>=12)sentences=['めいめい、今週は気温の変化が大きそう。羽織るものがあると心強いね。','一週間の中で暖かい日と涼しい日がありそうだよ。服装を調整しながら過ごそうね♡','今週は気温が少し忙しいみたい。めいめい、体を冷やさないようにね。'];
+  else if(rain.slice(1).every(x=>x<=25))sentences=['今週は大きな雨の心配が少なそうだね。めいめい、何か楽しみにしている予定はある？','この先は比較的穏やかな空模様になりそう。お散歩の予定も考えたくなるね♪','一週間の予報を見ると、予定を立てるのが少し楽しくなるね。めいめいは何をしたい？'];
+  else sentences=['今週は日によって空模様が変わりそう。気になる予定の前には、もう一度予報を確認しようね。','この先は晴れの日も曇りの日もありそう。めいめいの予定に合わせて、上手に準備しようね♡','一週間の空を見渡すと、少しずつ変化がありそうだね。無理なく過ごせるといいな。'];
+  return choose(sentences,'weekly');
  }
  async function load(){
   btn.disabled=true;box.textContent='めいめい、これからのお天気を調べているよ… 🌊';
   try{
-   const res=await fetch(api,{cache:'no-store'});if(!res.ok)throw Error('HTTP '+res.status);
-   const data=await res.json(),cur=data.current,d=data.daily,h=data.hourly;
+   const response=await fetch(api,{cache:'no-store'});if(!response.ok)throw Error('HTTP '+response.status);
+   const data=await response.json(),cur=data.current,d=data.daily,h=data.hourly;
    if(!cur||!d||!h||!d.time||d.time.length<7)throw Error('予報データ不足');
-   const now=new Date(),hour=Number(new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Tokyo',hour:'numeric',hourCycle:'h23'}).format(now));
-   const forecast=h.time.map((t,i)=>({t:new Date(t+'+09:00'),p:h.precipitation_probability[i],code:h.weather_code[i]})).filter(x=>x.t>now&&x.t.getTime()<now.getTime()+14*3600000);
-   const [icon,cond]=wx(cur.weather_code);
-   const fmt=x=>Math.round(x)+'°';
-   const days=d.time.map((date,i)=>{const dt=new Date(date+'T12:00:00+09:00'),label=i===0?'今日':new Intl.DateTimeFormat('ja-JP',{timeZone:'Asia/Tokyo',weekday:'short'}).format(dt),short=date.slice(5).replace('-','/'),w=wx(d.weather_code[i]),p=d.precipitation_probability_max[i];return `<tr><td>${esc(label)}<br><small>${esc(short)}</small></td><td title="${esc(w[1])}">${w[0]}</td><td>${fmt(d.temperature_2m_max[i])} / ${fmt(d.temperature_2m_min[i])}</td><td class="${p>=50?'umi-wx-rain':''}">${Number.isFinite(p)?p+'%':'—'}</td></tr>`}).join('');
+   const now=new Date(),days=d.time.map((date,i)=>{const dt=new Date(date+'T12:00:00+09:00'),label=i===0?'今日':new Intl.DateTimeFormat('ja-JP',{timeZone:'Asia/Tokyo',weekday:'short'}).format(dt),short=date.slice(5).replace('-','/'),w=wx(d.weather_code[i]),p=d.precipitation_probability_max[i];return `<tr><td>${esc(label)}<br><small>${esc(short)}</small></td><td title="${esc(w[1])}">${w[0]}</td><td>${round(d.temperature_2m_max[i])}° / ${round(d.temperature_2m_min[i])}°</td><td class="${p>=50?'umi-wx-rain':''}">${Number.isFinite(p)?p+'%':'—'}</td></tr>`}).join('');
    const stamp=new Intl.DateTimeFormat('ja-JP',{timeZone:'Asia/Tokyo',hour:'2-digit',minute:'2-digit'}).format(now);
-   box.innerHTML=`<section class="umi-wx-section"><h3 class="umi-wx-heading">☀️ 今日の天気｜東京</h3><div class="umi-wx-now"><div class="big">${icon}</div><div class="degree">${fmt(cur.temperature_2m)}</div><div>${esc(cond)}</div><div>最高 ${fmt(d.temperature_2m_max[0])}　最低 ${fmt(d.temperature_2m_min[0])}</div><div>降水確率 ${d.precipitation_probability_max[0]}%</div></div></section><div class="umi-wx-comment"><strong>💙 うみたんの今日のひとこと</strong>${esc(dailyWords(cur,d,hour,forecast))}</div><section class="umi-wx-section"><h3 class="umi-wx-heading">📅 これからの7日間</h3><table class="umi-wx-days" aria-label="東京の7日間の天気予報"><thead><tr><th>日付</th><th>天気</th><th>最高 / 最低</th><th>降水</th></tr></thead><tbody>${days}</tbody></table></section><div class="umi-wx-comment"><strong>💙 うみたんの週間ひとこと</strong>${esc(weekWords(d))}</div><div class="umi-wx-updated">📡 更新 ${stamp} ／ 東京の予報</div>`;
+   box.innerHTML=`<div class="umi-wx-story">${esc(story(cur,d,h,now))}</div><div class="umi-wx-divider">🌸</div><h3 class="umi-wx-heading">📅 これからの7日間</h3><table class="umi-wx-days" aria-label="東京の7日間の天気予報"><thead><tr><th>日付</th><th>天気</th><th>最高 / 最低</th><th>降水</th></tr></thead><tbody>${days}</tbody></table><div class="umi-wx-divider">🌸</div><div class="umi-wx-story">${esc(weekStory(d))}</div><div class="umi-wx-updated">📡 更新 ${stamp} ／ 東京の予報</div>`;
   }catch(e){box.textContent='めいめい、ごめんね。今は天気予報につながらないみたい。通信状況を確認して、もう一度「予報を更新する」を押してみてね💙';}
   finally{btn.disabled=false;}
  }
  btn.addEventListener('click',load);
  document.addEventListener('click',e=>{if(e.target.closest('a[href="#modal-2"]'))load()});
-})();;
-</script>
+})();</script>
 <script>
 /* UMITAN Research Note LAB v1.0: curated examples, safe offline fallback. */
 (function(){
@@ -346,7 +366,9 @@
  '02-29':[['うるう日','2月29日はうるう年にだけ登場する特別な日。暦と季節のずれを調整するために設けられているよ。','めいめい、4年に一度とは限らないって知ってた？ 100で割り切れる年は原則平年、400で割り切れる年はうるう年なんだよ♡']],
  '03-03':[['ひな祭り','3月3日は桃の節句。ひな人形を飾り、子どもの健やかな成長を願う風習があるよ。','めいめい、ひな人形の衣装には昔の宮廷文化の面影が残っているんだって。歴史が身近になるね♡']],
  '07-07':[['七夕','七夕には織姫と彦星の伝説が伝わり、短冊に願い事を書く風習があるよ。','夏の夜空を見上げたくなるね。めいめいなら短冊に何をお願いする？🌟']],
- "10-03":[["秋の散歩道","秋になると、木々の葉が少しずつ色づき始める地域もあるね。葉の色の変化には、気温や日照時間、葉に含まれる色素などが関わっているよ。","めいめい、いつもの道でも季節の小さな変化を見つけられそうだね♡"],["なぜ鏡は姿を映すの？","鏡の表面はとても滑らかで、光を一定の方向へ反射するよ。物から届いた光が鏡で反射して目に入ることで、鏡の奥に像があるように見えるんだ。","鏡の中にも光のふしぎが詰まっているんだね！"]],
+  "10-01":[["衣替えの季節","10月に入ると、秋冬の服に衣替えする人も増えるね。昔から衣替えの習慣はあるけれど、今は気温に合わせて柔軟に切り替えるのがよさそうだよ。","めいめい、朝晩は少し涼しくなる頃。お気に入りの上着の出番かな？♡"],["どうして落ち葉はカサカサするの？","落ち葉は枝から離れたあと、水分が抜けて乾燥していくよ。葉の細胞が水分を失うことで、踏むとカサカサした音が出やすくなるんだ。","秋の散歩道で聞こえる音にも、小さな科学があるんだね♪"]],
+ "10-02":[["秋の夜長","秋は夏に比べて日が短くなり、夜が長く感じられる季節。読書や音楽を楽しむ時間として『秋の夜長』という言葉が親しまれているよ。","めいめい、夜に温かい飲み物を飲みながら本を読むのもいいね♡"],["どうして月は形を変えるの？","月は自分で光っているのではなく、太陽の光を反射しているよ。地球から見える明るい部分の形が、月と地球と太陽の位置関係によって変わるんだ。","同じ月でも毎晩ちょっと違う表情。夜空を見る楽しみが増えるね🌙"]],
+"10-03":[["秋の散歩道","秋になると、木々の葉が少しずつ色づき始める地域もあるね。葉の色の変化には、気温や日照時間、葉に含まれる色素などが関わっているよ。","めいめい、いつもの道でも季節の小さな変化を見つけられそうだね♡"],["なぜ鏡は姿を映すの？","鏡の表面はとても滑らかで、光を一定の方向へ反射するよ。物から届いた光が鏡で反射して目に入ることで、鏡の奥に像があるように見えるんだ。","鏡の中にも光のふしぎが詰まっているんだね！"]],
  "10-04":[["秋の風","秋は夏から冬へ向かう季節。風が涼しく感じられる日が増えて、空気の変化から季節の進み具合を感じることがあるよ。","めいめい、心地よい風が吹いたら、ちょっと深呼吸したくなるね。"],["どうしてポストは赤いの？","日本の郵便ポストは赤いものが多いね。歴史の中で目立ちやすい色として赤色が採用され、今では郵便の目印として親しまれているんだ。","街で当たり前に見る色にも、歴史があるんだね♡"]],
  "10-05":[["秋の実り","秋はお米や果物など、いろいろな作物の収穫が話題になる季節。収穫の時期は品種や地域によっても違うんだ。","めいめい、旬のものを味わうと季節を感じられるね♡"],["なぜ冷蔵庫は冷えるの？","家庭用の冷蔵庫の多くは、冷媒という物質を循環させて庫内の熱を外へ運んでいるよ。冷たい空気を作るというより、熱を外へ逃がす仕組みなんだ。","毎日使う冷蔵庫も、熱を運ぶ装置なんだね。面白いなあ！"]],
  "10-06":[["秋の雲","秋の空には、うろこ雲やひつじ雲と呼ばれる雲が見られることがあるよ。どちらも上空にできる小さな雲の集まりだけれど、高さや形には違いがあるんだ。","めいめい、空を見上げるだけでも小さな発見がありそうだね♡"],["なぜ金属は冷たく感じるの？","同じ室温でも金属が冷たく感じやすいのは、手の熱をすばやく伝えるから。木や布より熱が移動しやすいので、触れた瞬間に冷たく感じるんだ。","触ったときの感覚にも、熱の科学が隠れているんだね！"]],
