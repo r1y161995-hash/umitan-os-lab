@@ -355,6 +355,41 @@
  document.addEventListener('click',e=>{if(e.target.closest('a[href="#modal-2"]'))load()});
 })();</script>
 <script>
+/* LAB v1.9.2: unified single-active-panel controller. */
+(function(){
+ const modals=()=>Array.from(document.querySelectorAll('section.modal[id^="modal-"]'));
+ const note=()=>document.getElementById('umi-note-overlay');
+ function resetPanels(){
+   modals().forEach(el=>el.classList.remove('is-open'));
+   if(/^#modal-\d+$/.test(location.hash))history.replaceState(null,'',location.pathname+location.search);
+ }
+ function cancelTalk(){if(typeof window.umiCancelTalkGreeting==='function')window.umiCancelTalkGreeting();}
+ window.umiResetPanels=resetPanels;
+ // Capture phase: before the TALK button's own handler, discard the old popup.
+ document.addEventListener('click',function(e){
+   const target=e.target.closest && e.target.closest('a[href^="#modal-"],a[href="#home"],#umi-note-trigger');
+   if(!target)return;
+   if(target.matches('a[href^="#modal-"]')){
+     resetPanels();
+     if(target.getAttribute('href')!=='#modal-0')cancelTalk();
+   }else if(target.id==='umi-note-trigger'){
+     cancelTalk();resetPanels();
+   }else if(target.matches('a[href="#home"]')){
+     cancelTalk();resetPanels();
+   }
+ },true);
+ document.addEventListener('keydown',function(e){
+   if((e.key==='Enter'||e.key===' ')&&e.target&&e.target.id==='umi-note-trigger'){
+     cancelTalk();resetPanels();
+   }
+ },true);
+ window.addEventListener('hashchange',()=>{
+   const active=/^#modal-\d+$/.test(location.hash)?location.hash.slice(1):null;
+   modals().forEach(m=>{if(m.id!==active)m.classList.remove('is-open')});
+ });
+})();
+</script>
+<script>
 /* UMITAN Research Note LAB v1.0: curated examples, safe offline fallback. */
 (function(){
  const trigger=document.getElementById('umi-note-trigger'),overlay=document.getElementById('umi-note-overlay');
@@ -407,7 +442,7 @@
  const bookStage=$('umi-book-stage');let bookTimer=null;let busy=false;
  const reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
  function animateBook(direction,done){clearTimeout(bookTimer);if(reduceMotion||!bookStage){done();return;}bookStage.hidden=false;bookStage.classList.remove('is-opening','is-closing');void bookStage.offsetWidth;bookStage.classList.add(direction==='open'?'is-opening':'is-closing');bookTimer=setTimeout(()=>{bookStage.hidden=true;bookStage.classList.remove('is-opening','is-closing');done();},direction==='open'?2520:2320)}
- function open(){if(busy||!overlay.hidden)return;busy=true;selected=new Date();selected.setHours(12,0,0,0);idx=0;lastFocus=document.activeElement;render();animateBook('open',()=>{overlay.hidden=false;document.body.style.setProperty('--umi-note-open','1');close.focus();busy=false})}
+ function open(){if(busy||!overlay.hidden)return;if(window.umiCancelTalkGreeting)window.umiCancelTalkGreeting();if(window.umiResetPanels)window.umiResetPanels();busy=true;selected=new Date();selected.setHours(12,0,0,0);idx=0;lastFocus=document.activeElement;render();animateBook('open',()=>{overlay.hidden=false;document.body.style.setProperty('--umi-note-open','1');close.focus();busy=false})}
  function hide(){if(busy||overlay.hidden)return;busy=true;overlay.hidden=true;document.body.style.removeProperty('--umi-note-open');animateBook('close',()=>{busy=false;if(lastFocus&&lastFocus.focus)lastFocus.focus()})}
  trigger.addEventListener('click',open);trigger.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});
  overlay.addEventListener('click',e=>{if(e.target===overlay)hide()});
@@ -437,7 +472,8 @@
   const arr=phrases[group];let i=Math.floor(Math.random()*arr.length);if(arr.length>1&&i===last)i=(i+1)%arr.length;last=i;return arr[i];
  }
  function clear(){clearTimeout(timer);clearTimeout(fadeTimer);timer=fadeTimer=null;}
- function openTalk(){clear();waiting=false;bubble.classList.remove('is-visible','is-leaving');bubble.textContent='';modal.classList.add('is-open');}
+ function openTalk(){if(window.umiResetPanels)window.umiResetPanels();clear();waiting=false;bubble.classList.remove('is-visible','is-leaving');bubble.textContent='';modal.classList.add('is-open');}
+ window.umiCancelTalkGreeting=function(){clear();waiting=false;bubble.classList.remove('is-visible','is-leaving');bubble.textContent='';};
  function fadeAndOpen(){bubble.classList.add('is-leaving');bubble.classList.remove('is-visible');fadeTimer=setTimeout(openTalk,260);}
  talk.addEventListener('click',function(e){
   e.preventDefault();e.stopImmediatePropagation();
