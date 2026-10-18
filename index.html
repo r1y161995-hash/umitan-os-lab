@@ -214,11 +214,10 @@
 @media(max-height:680px){.umi-talk-bubble{top:8%!important;padding:9px 10px;font-size:12px;width:min(46%,200px)}}
 @media(prefers-reduced-motion:reduce){.umi-talk-bubble{transition:none}}
 
-/* LAB v3.2.0: blink overlays align with each original character image */
+/* LAB v3.2.1: blink overlays align with each original character image */
 body[data-umi-mode="motion"] .world .character{animation:none!important;transform:none!important}
 .world .blink-eye{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;pointer-events:none;opacity:0;z-index:1;transition:none;}
-.world-lab .blink-eye{width:80%;height:77%;left:10%;top:23%}
-.world-sea .blink-eye,.world-night .blink-eye{width:88%;height:85%;left:6%;top:15%}
+.world .blink-eye{inset:auto;object-fit:contain;object-position:center bottom;}
 body[data-umi-mode="motion"] .world .blink-eye.blink-active{opacity:1}
 /* In classic and live, leave the original visuals untouched. */
 </style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap" rel="stylesheet"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#071d32"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="UMITAN OS"><link href="https://fonts.googleapis.com/css2?family=Yomogi&family=Zen+Kurenaido&display=swap" rel="stylesheet"><style id="umi-gallery-style">
@@ -837,8 +836,29 @@ body[data-umi-mode="live"] .scene .keys .key small{font-size:9px}
 }
 </style>
 
-<script>/* UMITAN LAB v3.2.0: MOTION blink only */
+<script>/* UMITAN LAB v3.2.1: MOTION blink geometry correction */
 (()=>{
+  // Derive overlay rectangles from the actual rendered character, not guessed percentages.
+  function alignBlink(){
+    document.querySelectorAll('.world').forEach(world=>{
+      const character=world.querySelector('.character');
+      if(!character)return;
+      const box=character.getBoundingClientRect();
+      const parent=world.getBoundingClientRect();
+      world.querySelectorAll('.blink-eye').forEach(eye=>{
+        eye.style.left=(box.left-parent.left)+'px';
+        eye.style.top=(box.top-parent.top)+'px';
+        eye.style.width=box.width+'px';
+        eye.style.height=box.height+'px';
+        eye.style.right='auto';eye.style.bottom='auto';
+      });
+    });
+  }
+  window.addEventListener('resize',alignBlink,{passive:true});
+  window.addEventListener('orientationchange',()=>setTimeout(alignBlink,200));
+  new MutationObserver(()=>requestAnimationFrame(alignBlink)).observe(document.body,{attributes:true,attributeFilter:['data-umi-mode']});
+  document.querySelectorAll('input[name="theme"]').forEach(el=>el.addEventListener('change',()=>requestAnimationFrame(alignBlink)));
+  requestAnimationFrame(alignBlink);
  const scenes=[...document.querySelectorAll('.world')];
  let timer=null,phase=[];
  function clearBlink(){if(timer){clearTimeout(timer);timer=null;}phase.forEach(clearTimeout);phase=[];document.querySelectorAll('.blink-eye').forEach(e=>e.classList.remove('blink-active'));}
