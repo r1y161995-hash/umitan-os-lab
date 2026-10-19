@@ -3,365 +3,323 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>UMITAN NEWS LAB04</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UMITAN NEWS LAB05</title>
 <style>
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont,
-    "Hiragino Kaku Gothic ProN", sans-serif;
-  background: linear-gradient(180deg,#dff4fa,#f5fbff);
-  color: #17394d;
-  min-height: 100vh;
+* { box-sizing:border-box; }
+html,body {
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  font-family:-apple-system,BlinkMacSystemFont,sans-serif;
 }
-header {
-  background: linear-gradient(130deg,#103e60,#167c9e);
-  color: white;
-  padding: 23px 18px 28px;
+body { background:#103d68; color:#173b5a; }
+
+#scene {
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  background:#103d68;
 }
-.wrap {
-  max-width: 720px;
-  margin: auto;
+#background {
+  position:absolute;
+  inset:0;
+  background-image:url("./news_bg.png");
+  background-repeat:no-repeat;
+  background-size:auto 100%;
+  background-position:50% 50%;
 }
-.brand {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
+#window {
+  position:absolute;
+  left:3%;
+  right:3%;
+  bottom:2%;
+  height:42%;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.8);
+  border-radius:20px;
+  background:rgba(238,248,255,.91);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  box-shadow:0 8px 35px #082b5370;
 }
-.brand h1 {
-  font-size: 23px;
-  margin: 0;
-  letter-spacing: 1px;
+
+#windowHeader {
+  padding:12px 14px;
+  background:rgba(255,255,255,.6);
+  border-bottom:1px solid #b8d5e6;
+  flex-shrink:0;
 }
-.subtitle {
-  font-size: 12px;
-  opacity: .8;
-  margin-top: 5px;
+#windowHeader strong {
+  font-size:15px;
+  color:#145a84;
 }
-.tag {
-  font-size: 10px;
-  background: #267e91;
-  padding: 7px 10px;
-  border-radius: 20px;
+#message {
+  font-size:12px;
+  line-height:1.5;
+  margin-top:5px;
 }
-.umitan {
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  margin-top: 24px;
+#status {
+  font-size:10px;
+  color:#58788b;
+  margin-top:5px;
 }
-.avatar {
-  width: 78px;
-  height: 78px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background: linear-gradient(140deg,#69d8e4,#207ab6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  border: 3px solid #ffffff80;
+
+#newsList {
+  flex:1;
+  overflow-y:auto;
+  padding:10px;
+  -webkit-overflow-scrolling:touch;
 }
-.avatar span { font-size: 23px; }
-.avatar small {
-  font-size: 12px;
-  font-weight: bold;
-}
-.bubble {
-  background: #ffffff1c;
-  border: 1px solid #ffffff30;
-  border-radius: 17px;
-  padding: 14px;
-  flex: 1;
-  font-size: 13px;
-  line-height: 1.8;
-}
-main {
-  max-width: 720px;
-  margin: auto;
-  padding: 18px 14px 50px;
-}
-.panel {
-  background: white;
-  padding: 16px;
-  border-radius: 17px;
-  margin-bottom: 15px;
-  box-shadow: 0 3px 15px #1656780d;
-}
-.section-title {
-  font-size: 17px;
-  font-weight: bold;
-  margin-bottom: 12px;
-}
-.status {
-  font-size: 12px;
-  color: #59798b;
-  line-height: 1.9;
-}
+
 .article {
-  display: block;
-  background: white;
-  color: inherit;
-  text-decoration: none;
-  padding: 17px;
-  border-radius: 17px;
-  margin-bottom: 12px;
-  box-shadow: 0 3px 15px #1656780d;
+  display:block;
+  background:rgba(255,255,255,.88);
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:9px;
+  color:#173b5a;
+  text-decoration:none;
 }
-.article:active { background: #e8f8fd; }
-.num {
-  color: #1393ad;
-  font-size: 11px;
-  font-weight: bold;
-  letter-spacing: 1px;
+.article:active { background:#d8efff; }
+.article .num {
+  font-size:10px;
+  color:#1386ae;
+  font-weight:bold;
 }
 .article h2 {
-  font-size: 15px;
-  line-height: 1.7;
-  margin: 8px 0;
+  font-size:13px;
+  line-height:1.5;
+  margin:5px 0;
 }
-.meta {
-  color: #758e9d;
-  font-size: 11px;
-  line-height: 1.7;
+.article .meta {
+  font-size:10px;
+  color:#73899a;
+  line-height:1.5;
 }
-.read {
-  font-size: 12px;
-  color: #087eab;
-  margin-top: 10px;
+.article .read {
+  font-size:11px;
+  color:#0783af;
+  margin-top:6px;
 }
-.controls {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+
+#controls {
+  position:absolute;
+  top:10px;
+  left:10px;
+  max-width:215px;
+  padding:10px;
+  border-radius:12px;
+  background:rgba(7,42,77,.78);
+  color:white;
+  font-size:11px;
+  z-index:5;
 }
-button {
-  border: none;
-  border-radius: 24px;
-  background: #117fa5;
-  color: white;
-  padding: 12px 24px;
-  font-size: 14px;
-  cursor: pointer;
+#controls label {
+  display:block;
+  margin:7px 0 3px;
 }
-button:disabled { opacity: .55; }
-footer {
-  text-align: center;
-  color: #7b9aa9;
-  font-size: 11px;
-  padding: 18px;
+#controls input {
+  width:100%;
+  accent-color:#63d3e8;
+}
+#controls button {
+  margin-top:8px;
+  border:0;
+  padding:7px 10px;
+  border-radius:9px;
+  background:#59b8d3;
+  color:#08304c;
+  font-weight:bold;
+}
+#toggle {
+  position:absolute;
+  top:10px;
+  left:10px;
+  z-index:6;
+  border:0;
+  border-radius:10px;
+  padding:8px 11px;
+  background:#0b3c67dd;
+  color:white;
+  font-size:11px;
+  display:none;
 }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="wrap">
-    <div class="brand">
-      <div>
-        <h1>🌊 UMITAN NEWS</h1>
-        <div class="subtitle">LAB04 · MARITIME NEWS</div>
-      </div>
-      <div class="tag">LIVE DATA</div>
-    </div>
+<div id="scene">
+  <div id="background"></div>
 
-    <div class="umitan">
-      <div class="avatar">
-        <span>🌊</span>
-        <small>うみたん</small>
+  <div id="window">
+    <div id="windowHeader">
+      <strong>📰 UMITAN NEWS · LAB05</strong>
+      <div id="message">
+        めいめい、今日のニュースを確認しているよ！💙
       </div>
-      <div class="bubble" id="message">
-        めいめい、今日のニュースを調べているよ！💙
-      </div>
+      <div id="status">読み込み中...</div>
     </div>
-  </div>
-</header>
-
-<main>
-  <div class="panel">
-    <div class="section-title">⚓ 海上保安庁関連ニュース</div>
-    <div class="status" id="status">
-      🔄 ニュースを読み込み中...
-    </div>
+    <div id="newsList"></div>
   </div>
 
-  <div id="articles"></div>
+  <div id="controls">
+    <strong>🔬 LAB05 表示調整</strong>
 
-  <div class="controls">
-    <button id="reload" onclick="loadNews()">
-      🔄 最新データを確認
-    </button>
+    <label>背景の左右位置</label>
+    <input id="posX" type="range" min="0" max="100" value="50">
+
+    <label>背景の上下位置</label>
+    <input id="posY" type="range" min="0" max="100" value="50">
+
+    <label>背景の拡大率</label>
+    <input id="zoom" type="range" min="100" max="180" value="100">
+
+    <label>ニュースウィンドウの高さ</label>
+    <input id="height" type="range" min="25" max="75" value="42">
+
+    <button id="hide">調整パネルを閉じる</button>
   </div>
 
-  <footer>
-    UMITAN NEWS LAB04<br>
-    情報は各ニュース提供元に帰属します
-  </footer>
-</main>
+  <button id="toggle">⚙️ 表示調整</button>
+</div>
 
 <script>
-const message = document.getElementById("message");
-const status = document.getElementById("status");
-const container = document.getElementById("articles");
-const reloadButton = document.getElementById("reload");
+const bg = document.getElementById("background");
+const win = document.getElementById("window");
 
-let loading = false;
-let lastUpdated = null;
+const posX = document.getElementById("posX");
+const posY = document.getElementById("posY");
+const zoom = document.getElementById("zoom");
+const height = document.getElementById("height");
+
+function updateLayout() {
+  bg.style.backgroundPosition =
+    posX.value + "% " + posY.value + "%";
+  bg.style.backgroundSize =
+    "auto " + zoom.value + "%";
+  win.style.height = height.value + "%";
+}
+
+[posX,posY,zoom,height].forEach(input => {
+  input.addEventListener("input",updateLayout);
+});
+
+updateLayout();
+
+const controls = document.getElementById("controls");
+const toggle = document.getElementById("toggle");
+
+document.getElementById("hide").onclick = () => {
+  controls.style.display = "none";
+  toggle.style.display = "block";
+};
+
+toggle.onclick = () => {
+  controls.style.display = "block";
+  toggle.style.display = "none";
+};
 
 function formatDate(value) {
-  if (!value) return "不明";
-  const date = new Date(value);
-  if (isNaN(date.getTime())) return String(value);
-
-  return date.toLocaleString("ja-JP", {
-    timeZone: "Asia/Tokyo",
-    year: "numeric",
-    month: "numeric",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit"
+  const d = new Date(value);
+  if (isNaN(d.getTime())) return value || "不明";
+  return d.toLocaleString("ja-JP",{
+    timeZone:"Asia/Tokyo",
+    month:"numeric",
+    day:"numeric",
+    hour:"2-digit",
+    minute:"2-digit"
   });
 }
 
 function safeUrl(value) {
   try {
-    const url = new URL(value);
-    if (url.protocol === "https:" ||
-        url.protocol === "http:") {
-      return url.href;
-    }
-  } catch (e) {}
+    const u = new URL(value);
+    if (u.protocol === "https:" ||
+        u.protocol === "http:") return u.href;
+  } catch(e) {}
   return null;
 }
 
-function makeArticle(article, index) {
-  const card = document.createElement("a");
-  card.className = "article";
-
-  const url = safeUrl(article.link);
-  if (url) {
-    card.href = url;
-    card.target = "_blank";
-    card.rel = "noopener noreferrer";
-  } else {
-    card.removeAttribute("href");
-  }
-
-  const num = document.createElement("div");
-  num.className = "num";
-  num.textContent = "NEWS " +
-    String(index + 1).padStart(2, "0");
-
-  const title = document.createElement("h2");
-  title.textContent = article.title || "タイトルなし";
-
-  const meta = document.createElement("div");
-  meta.className = "meta";
-  meta.textContent =
-    "📅 " + formatDate(article.date) +
-    " ｜ " + (article.source || "情報源不明");
-
-  const read = document.createElement("div");
-  read.className = "read";
-  read.textContent = url
-    ? "記事を詳しく読む →"
-    : "記事リンクなし";
-
-  card.append(num, title, meta, read);
-  return card;
-}
-
 async function loadNews() {
-  if (loading) return;
-  loading = true;
-  reloadButton.disabled = true;
-
-  status.textContent = "🔄 最新データを確認中...";
-  message.textContent =
-    "めいめい、海のニュースを確認してくるね！🌊";
+  const message = document.getElementById("message");
+  const status = document.getElementById("status");
+  const list = document.getElementById("newsList");
 
   try {
     const response = await fetch(
       "./news.json?t=" + Date.now(),
-      { cache: "no-store" }
+      {cache:"no-store"}
     );
-
-    if (!response.ok) {
-      throw new Error("HTTP " + response.status);
-    }
+    if (!response.ok) throw new Error("HTTP "+response.status);
 
     const data = await response.json();
     const news = data.topics?.["海上保安庁"];
 
     if (!Array.isArray(news)) {
-      throw new Error("ニュースデータが見つかりません");
+      throw new Error("ニュースデータがありません");
     }
 
-    const items = news.slice(0, 10);
+    const items = news.slice(0,10);
     const fragment = document.createDocumentFragment();
 
-    items.forEach((article, index) => {
-      fragment.appendChild(makeArticle(article, index));
+    items.forEach((article,index) => {
+      const card = document.createElement("a");
+      card.className = "article";
+
+      const url = safeUrl(article.link);
+      if (url) {
+        card.href = url;
+        card.target = "_blank";
+        card.rel = "noopener noreferrer";
+      }
+
+      const num = document.createElement("div");
+      num.className = "num";
+      num.textContent =
+        "NEWS "+String(index+1).padStart(2,"0");
+
+      const title = document.createElement("h2");
+      title.textContent = article.title || "タイトルなし";
+
+      const meta = document.createElement("div");
+      meta.className = "meta";
+      meta.textContent =
+        formatDate(article.date)+" ｜ "+
+        (article.source || "情報源不明");
+
+      const read = document.createElement("div");
+      read.className = "read";
+      read.textContent = url
+        ? "記事を読む →"
+        : "記事リンクなし";
+
+      card.append(num,title,meta,read);
+      fragment.appendChild(card);
     });
 
-    container.replaceChildren(fragment);
-
-    const changed =
-      lastUpdated !== null &&
-      lastUpdated !== data.updated_at;
-
-    lastUpdated = data.updated_at || null;
-
-    const checkedAt = formatDate(new Date());
-
-    status.textContent =
-      "📰 表示：" + items.length + "件\n" +
-      "📦 データ更新：" + formatDate(data.updated_at) +
-      "\n🔄 最終確認：" + checkedAt;
-
-    status.style.whiteSpace = "pre-line";
-
-    if (items.length === 0) {
-      message.textContent =
-        "めいめい、今は表示できるニュースがないみたい。";
-    } else if (changed) {
-      message.textContent =
-        "めいめい、新しいニュースデータが届いたよ！💙 " +
-        items.length + "件を紹介するね。";
-    } else {
-      message.textContent =
-        "めいめい、海上保安庁関連のニュースを" +
-        items.length + "件見つけたよ！⚓ " +
-        "気になる記事を一緒にチェックしようね。";
-    }
-
-  } catch (error) {
-    status.textContent =
-      "⚠️ ニュースの確認に失敗しました：" +
-      error.message;
+    list.replaceChildren(fragment);
 
     message.textContent =
-      "めいめい、ごめんね。ニュースを確認できなかったよ。 " +
-      "少し時間をおいて、もう一度試してみてね。💙";
-  } finally {
-    loading = false;
-    reloadButton.disabled = false;
+      "めいめい、ニュースを"+items.length+
+      "件お届けするね！💙";
+
+    status.textContent =
+      "データ更新："+formatDate(data.updated_at);
+
+  } catch(error) {
+    message.textContent =
+      "めいめい、ごめんね。ニュースを確認できなかったよ。";
+    status.textContent = "⚠️ "+error.message;
   }
 }
 
-// 初回読み込み
 loadNews();
-
-// 15分ごとに公開済みJSONを再確認
-setInterval(() => {
-  if (!document.hidden) loadNews();
-}, 15 * 60 * 1000);
-
-// 画面に戻った際も再確認
-document.addEventListener("visibilitychange", () => {
-  if (!document.hidden) loadNews();
-});
+setInterval(loadNews,15*60*1000);
 </script>
 </body>
 </html>
