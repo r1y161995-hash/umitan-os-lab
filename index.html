@@ -609,7 +609,7 @@ body[data-umi-mode="live"] .scene .keys .key small{font-size:9px}
 }
 #modal-1 .news-drag{-webkit-touch-callout:none!important}
 </style>
-<meta name="umitan-build-news" content="LAB07-4 - NEWS tap isolation and category tabs"/>
+<meta name="umitan-build-news" content="LAB07-5 - prevent global scenery click from closing NEWS"/>
 <style id="news-lab07-3-tabs">
 /* LAB07-3: category tabs; preserve the LAB06.1 drag handle and scene alignment. */
 #modal-1 .news-tabs{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:9px 12px 8px;flex-shrink:0;border-bottom:1px solid #ffffff20}
@@ -1050,7 +1050,7 @@ body[data-umi-mode="live"] .scene .keys .key small{font-size:9px}
 (function(){
  document.addEventListener('click',function(e){
    const t=e.target;
-   if(t.closest&&t.closest('#umi-note-trigger,#umi-note-clock-hit,.umi-note-panel,.modal .card,.keys,a[href^="#modal-"],a[href="#home"],.umi-gallery-viewer,.gallery-close,.gallery-prev,.gallery-next'))return;
+   if(t.closest&&t.closest('#umi-note-trigger,#umi-note-clock-hit,.umi-note-panel,.modal .card,#modal-1,.keys,a[href^="#modal-"],a[href="#home"],.umi-gallery-viewer,.gallery-close,.gallery-prev,.gallery-next'))return;
    const active=document.querySelector('.modal.is-open,.modal:target');
    const bubble=document.getElementById('umi-talk-bubble');
    const viewer=document.getElementById('umi-gallery-viewer');
