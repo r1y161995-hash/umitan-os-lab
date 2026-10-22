@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-22T17:57:26.910770+00:00",
+  "updated_at": "2026-10-22T18:30:58.021354+00:00",
   "topics": {
     "海上保安庁": [
       {
@@ -45,6 +45,12 @@
         "source": "読売新聞"
       },
       {
+        "title": "３イベント同時開催 巡視船「しきね」一般公開 特別車両公開・試乗など 来月１日に熱海港周辺―熱海 - 伊豆新聞デジタル",
+        "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9FdVRvc1BhZmR5R3F3NUZUMUFVNHdwSkVydkNxcnBWRThlUWt0czJRckJfbklBT0JvTzRLWHUyYjl0aTlTbzVWSDBDaWkxVTRSVHRWT0dlTGZpWGdI?oc=5",
+        "date": "Thu, 22 Oct 2026 18:02:18 GMT",
+        "source": "伊豆新聞デジタル"
+      },
+      {
         "title": "【動画】巡視船「いまり」で120人が唐津湾を航海体験 配属後初の一般公開 「海上保安の仕事、知ってほしい」 - 佐賀新聞",
         "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBVTXpJSklXWlhuQ1RLbjdGNjBENTlIblhESTdOdWp3UU1odU12amt2N19rZ1FFSVFuaVZTV1hSWi12emNSczgwZHJIanhGUmxIcFFMSVNn?oc=5",
         "date": "Wed, 21 Oct 2026 11:00:00 GMT",
@@ -55,20 +61,14 @@
         "link": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1CeW9UaGFFcWk1MXlpU3RkZF9BaFVpNHpFZEpmYlJyTnJnaE9ERGtMTGRBX2JjR0FHVjVtLVZCLTdWQTNFQ0dJOVFSTDRfWlVfWE1yNUJSRQ?oc=5",
         "date": "Tue, 20 Oct 2026 20:00:00 GMT",
         "source": "北國新聞"
-      },
-      {
-        "title": "「船の構造などの情報収集が特に大事」苫小牧海保、フェリー内で火が出たという想定で消防と初の合同訓練 - HTB 北海道テレビ",
-        "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1rZjNUTG9nb20tSE9ZZndIVG0zbTUzMlkySWZzcWRoZWktZWo2c2xZbDkwaXRJSm1MQTg1M3EtbExURzBwQTVwMzVzckNyTzVKMVl2cHJ5VkRjQQ?oc=5",
-        "date": "Mon, 19 Oct 2026 09:22:00 GMT",
-        "source": "HTB 北海道テレビ"
       }
     ],
     "尖閣諸島": [
       {
-        "title": "中国船の連続航行74日で途切れる 沖縄・尖閣諸島周辺、台風30号の接近で退避か - 産経ニュース",
-        "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1FdHlOZ0kzQ2hYdVlrRVRtaHR2aGREOUpfWkRJOFFNUWxNc0lJRFNxdjdfZDFLeUZaSFJ6VWFDMWhvZUVGU1E1RjU5bTVPRHZhdmVSOGlEVllVUS1tTDNnZmExcDNHQ3dZRU00dGkzUkYwU2JKZmc?oc=5",
-        "date": "Thu, 22 Oct 2026 15:43:25 GMT",
-        "source": "産経ニュース"
+        "title": "【速報】尖閣周辺で中国船の連続航行途切れる - 47NEWS",
+        "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBrMGIyY1Y5SXZudUJwRVgyMkJqMm9TWVdBbXc5YkFfRmxyQnVVenJTOXlfVGV4Yng0SXY5Nzk3QmUzNXdnOFFORU80WQ?oc=5",
+        "date": "Thu, 22 Oct 2026 15:12:55 GMT",
+        "source": "47NEWS"
       },
       {
         "title": "北方領土で中ロが連携、10年前にロシア政府関係者が漏らした「3段階の警告」が現実に…次は尖閣諸島なのか - JBpress",
@@ -113,15 +113,15 @@
         "source": "日本経済新聞"
       },
       {
-        "title": "中国船が接続水域出る 尖閣、台風接近で退避か（共同通信） - Yahoo!ニュース",
-        "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5zTFhjR1NGYklDRjJYemVrT2lBNGZaZ2R3M3YtYmN6MUJRb1BTaDVJWG1zemkwbk8zQWRyOEk4TGhZQ2RZZlFQa2pFb3FWUVZJU2lUczZsajByOVE2OXdDMDhfVDAzc1AtODRZZnJEWTQ1SDYyQ2VpZVF1Y3lxSEE?oc=5",
-        "date": "Thu, 22 Oct 2026 02:21:42 GMT",
-        "source": "Yahoo!ニュース"
-      },
-      {
         "title": "尖閣沖に出現した貨物船「くたばれ日本」 昨年末、中国「軍港」周辺から偽装信号を発信か - 産経ニュース",
         "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBSOGN3cE05WTBFV095OWcyS0U1clIxRjhJaVJiUWJFRWZCTldZcFZWRk9KWHBKM25DU1Fic0xFU2l5WUo3LVJsMFpqa2xyOURwY2dyVEhDX2ZEaDBCbHdXWG8yNktfVVZycVZFYzlOYU9sTmJrR1E?oc=5",
         "date": "Thu, 15 Oct 2026 22:00:00 GMT",
+        "source": "産経ニュース"
+      },
+      {
+        "title": "尖閣周辺に中国船 海警局の船2隻 71日連続 いずれも機関砲搭載 - 産経ニュース",
+        "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5UakNqSV8xbmxJUUM1RG5jMlY1X1o2eVpJY2FCU2RWUFJYYm9fN0c5N3RxNFB0MzcwY0xIbUJQU0ppSTYxTjJzb0FKQjNyako2eTlJQm5FVVB1NTJheUxHcDY0YjZFM0cwdnFYSWhDNWdsQnZfVlE?oc=5",
+        "date": "Sun, 18 Oct 2026 02:08:50 GMT",
         "source": "産経ニュース"
       }
     ]
