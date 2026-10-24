@@ -1181,6 +1181,76 @@ body[data-umi-mode="live"] #home .umi-home-sparkles {
   }
 }
 </style>
+
+<style id="umi-home-button-tap-v1">
+/* HOME-only button touch feedback. No delay or interception of link navigation. */
+#home .scene .keys .key {
+  --umi-tap-glow: 142, 232, 255;
+  isolation: isolate;
+  overflow: hidden;
+  touch-action: manipulation;
+  transition: transform .13s cubic-bezier(.25,.8,.25,1),
+              background-color .13s ease, border-color .13s ease,
+              box-shadow .17s ease;
+}
+#theme-sea:checked ~ .app .scene .keys .key {
+  --umi-tap-glow: 210, 248, 255;
+}
+#theme-night:checked ~ .app .scene .keys .key {
+  --umi-tap-glow: 118, 218, 253;
+}
+#home .scene .keys .key:active,
+#home .scene .keys .key.umi-tap-pressed {
+  transform: translateY(-50%) scale(.965);
+  background: rgba(22, 96, 135, .91);
+  border-color: rgba(var(--umi-tap-glow), .99);
+  box-shadow: 0 2px 11px rgba(0,25,47,.56),
+              0 0 16px rgba(var(--umi-tap-glow), .58),
+              inset 0 0 16px rgba(var(--umi-tap-glow), .20);
+}
+/* LIVE mode uses a grid dock: no translateY, otherwise it would jump upward. */
+body[data-umi-mode="live"] #home .scene .keys .key:active,
+body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
+  transform: scale(.965);
+}
+#home .scene .keys .key:focus-visible {
+  outline: 2px solid rgba(var(--umi-tap-glow),1);
+  outline-offset: 3px;
+}
+#home .scene .keys .key > span:not(.umi-key-wave),
+#home .scene .keys .key > small {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+#home .scene .keys .key > .umi-key-wave {
+  position: absolute;
+  z-index: 0;
+  display: block;
+  width: var(--wave-size);
+  height: var(--wave-size);
+  left: var(--wave-x);
+  top: var(--wave-y);
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(var(--umi-tap-glow), .58) 0%,
+    rgba(var(--umi-tap-glow), .27) 34%,
+    rgba(var(--umi-tap-glow), .07) 62%, transparent 75%);
+  border: 1px solid rgba(var(--umi-tap-glow), .24);
+  transform: translate(-50%, -50%) scale(.1);
+  transform-origin: center;
+  pointer-events: none;
+  animation: umi-key-wave .48s ease-out both;
+}
+@keyframes umi-key-wave {
+  0% { transform:translate(-50%,-50%) scale(.1); opacity:.90; }
+  100% { transform:translate(-50%,-50%) scale(1); opacity:0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #home .scene .keys .key { transition: none !important; }
+  #home .scene .keys .key > .umi-key-wave { display:none !important; }
+}
+</style>
 </head><body><input checked="" class="theme-radio" id="theme-lab" name="theme" type="radio"/><input class="theme-radio" id="theme-sea" name="theme" type="radio"/><input class="theme-radio" id="theme-night" name="theme" type="radio"/><main class="app" id="home"><header><h1 class="secret-title"><label aria-label="海辺へ切り替え" class="title-switch switch-sea" for="theme-sea">UMITAN OS</label><label aria-label="夜へ切り替え" class="title-switch switch-night" for="theme-night">UMITAN OS</label><label aria-label="研究室へ切り替え" class="title-switch switch-lab" for="theme-lab">UMITAN OS</label></h1><div class="subtitle">ふたりだけの、秘密の研究室 · LAB v3.1.0 · THREE MODES</div></header><div class="scene">
 <div class="umi-home-sparkles" aria-hidden="true">
   <span class="umi-spark" style="--x:9%;--y:14%;--s:4px;--dur:14.6s;--delay:-2.0s;--dx:11px;--dy:-26px"></span>
@@ -2083,6 +2153,41 @@ onNewsState();
     new MutationObserver(syncNewsState).observe(modal,{attributes:true,attributeFilter:['class']});
   }
   syncNewsState();
+})();
+</script>
+
+<script id="umi-home-button-tap-v1-script">
+/* Ripple starts on touch-down; existing anchors navigate immediately as before. */
+(() => {
+  const buttons = document.querySelectorAll('#home .scene .keys > a.key');
+  if (!buttons.length) return;
+  const lessMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+  const releaseAll = () => buttons.forEach(button => button.classList.remove('umi-tap-pressed'));
+  for (const button of buttons) {
+    button.addEventListener('pointerdown', event => {
+      if (event.button !== undefined && event.button !== 0) return;
+      releaseAll();
+      button.classList.add('umi-tap-pressed');
+      if (lessMotion && lessMotion.matches) return;
+      const rect = button.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height) * 2.1;
+      const wave = document.createElement('span');
+      wave.className = 'umi-key-wave';
+      wave.setAttribute('aria-hidden', 'true');
+      wave.style.setProperty('--wave-size', size + 'px');
+      wave.style.setProperty('--wave-x', (event.clientX - rect.left) + 'px');
+      wave.style.setProperty('--wave-y', (event.clientY - rect.top) + 'px');
+      button.appendChild(wave);
+      wave.addEventListener('animationend', () => wave.remove(), { once: true });
+      // Cleanup even if the animation is interrupted by a screen transition.
+      window.setTimeout(() => wave.remove(), 620);
+    }, {passive:true});
+    button.addEventListener('pointerleave', () => button.classList.remove('umi-tap-pressed'));
+    button.addEventListener('click', () => button.classList.remove('umi-tap-pressed'));
+  }
+  window.addEventListener('pointerup', releaseAll, {passive:true});
+  window.addEventListener('pointercancel', releaseAll, {passive:true});
+  window.addEventListener('blur', releaseAll);
 })();
 </script>
 </body></html>
