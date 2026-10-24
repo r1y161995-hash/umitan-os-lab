@@ -1056,14 +1056,14 @@ body[data-umi-mode="live"] .scene .keys .key small{font-size:9px}
 #modal-1 > .news-bubble {
   position: absolute;
   z-index: 2; /* background z=1; news window z=3; close button z=5 */
-  top: 24%;
-  right: 3.4%;
+  top: 19.2%;
+  right: 2.8%;
   width: 39%;
   max-width: 235px;
   box-sizing: border-box;
   padding: 11px 11px 12px;
   border: 1px solid rgba(255,255,255,.92);
-  border-radius: 17px 17px 17px 5px;
+  border-radius: 17px;
   background: rgba(239,251,255,.95);
   color: #24546d;
   box-shadow: 0 7px 24px rgba(6,35,66,.24), inset 0 1px rgba(255,255,255,.95);
@@ -1083,15 +1083,15 @@ body[data-umi-mode="live"] .scene .keys .key small{font-size:9px}
 #modal-1 > .news-bubble::after {
   content: '';
   position: absolute;
-  left: 11px;
-  bottom: -8px;
+  left: -8px;
+  top: 54%;
   width: 14px;
   height: 14px;
-  transform: rotate(45deg);
+  transform: translateY(-50%) rotate(45deg);
   background: rgba(239,251,255,.95);
-  border-right: 1px solid rgba(255,255,255,.92);
+  border-left: 1px solid rgba(255,255,255,.92);
   border-bottom: 1px solid rgba(255,255,255,.92);
-  border-radius: 0 0 3px 0;
+  border-radius: 0 0 0 3px;
 }
 #modal-1 > .news-bubble.is-visible {
   opacity: 1;
@@ -1099,9 +1099,16 @@ body[data-umi-mode="live"] .scene .keys .key small{font-size:9px}
 }
 @media (max-width: 370px) {
   #modal-1 > .news-bubble {
-    right: 2.5%; width: 40%;
+    top: 18.2%;
+    right: 2.2%; width: 40%;
     padding: 9px 7px 10px;
     font-size: 11px;
+  }
+  #modal-1 > .news-bubble::after {
+    left: -7px;
+    top: 53%;
+    width: 13px;
+    height: 13px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
