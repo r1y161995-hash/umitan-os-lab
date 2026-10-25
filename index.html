@@ -1485,8 +1485,8 @@ body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
 /* Compact, left-aligned typhoon details: keep the character's face clear. */
 #modal-2 .wx25-typhoon-card {
   left:3.7%;
-  width:52.5%;
-  max-width:214px;
+  width:49.5%;
+  max-width:204px;
   bottom:calc(5.9% + 44px);
   max-height:43%;
   padding:9px 10px 10px;
@@ -1501,15 +1501,18 @@ body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
   bottom:1.4%;
   width:136px;
   text-align:center;
-  color:rgba(255,255,255,.74);
+  color:rgba(255,255,255,.98);
   font:700 10px/1.1 Georgia, 'Times New Roman', serif;
   letter-spacing:.28em;
   text-transform:uppercase;
-  text-shadow:0 1px 4px rgba(22,67,95,.28), 0 0 10px rgba(255,255,255,.18);
+  text-shadow:0 1px 3px rgba(5,30,54,.90), 0 0 9px rgba(9,63,97,.75), 0 0 5px rgba(255,255,255,.28);
+  padding:3px 0 4px;
+  border-radius:12px;
+  background:linear-gradient(90deg, transparent, rgba(13,61,95,.28) 28%, rgba(13,61,95,.35) 50%, rgba(13,61,95,.28) 72%, transparent);
   pointer-events:none;
   user-select:none;
   -webkit-user-select:none;
-  opacity:.92;
+  opacity:.98;
 }
 #modal-2 .wx25-weather-signature::before {
   content:'';
@@ -1521,7 +1524,7 @@ body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
   box-shadow:0 0 6px rgba(255,255,255,.18);
 }
 #modal-2.wx25-typhoon-open .wx25-weather-signature {
-  opacity:.72;
+  opacity:.88;
 }
 #modal-2 .wx25-typhoon-top { gap:4px; margin-bottom:6px; }
 #modal-2 .wx25-typhoon-top strong { font-size:12px; white-space:nowrap; }
@@ -1561,10 +1564,35 @@ body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
 #modal-2 .wx25-typhoon-official { padding:8px 5px; font-size:10px; border-radius:8px; }
 #modal-2.wx25-typhoon-open .wx24-bubble { visibility:hidden; }
 @media (max-width:370px) {
-  #modal-2 .wx25-typhoon-card { left:3.4%; width:55%; max-width:214px; padding:8px; }
+  #modal-2 .wx25-typhoon-card { left:3.4%; width:52%; max-width:204px; padding:8px; }
   #modal-2 .wx25-typhoon-badge { font-size:8px; }
   #modal-2 .wx25-weather-signature { left:3.8%; width:126px; font-size:9px; }
 }
+/* WEATHER typhoon UI v4: compact multi-storm selection, live source statuses. */
+#modal-2 .wx25-typhoon-picker {
+  display:flex;
+  align-items:center;
+  gap:5px;
+  margin:-2px 0 6px;
+  font-size:10px;
+  color:#477b98;
+}
+#modal-2 .wx25-typhoon-picker[hidden] { display:none!important; }
+#modal-2 .wx25-typhoon-picker select {
+  flex:1;
+  min-width:0;
+  max-width:100%;
+  padding:4px 3px;
+  border:1px solid #cce3f1;
+  border-radius:7px;
+  background:#fff;
+  color:#255879;
+  font-size:10px;
+}
+#modal-2 .wx25-typhoon-facts dd {
+  overflow-wrap:anywhere;
+}
+
 </style>
 </head><body><input checked="" class="theme-radio" id="theme-lab" name="theme" type="radio"/><input class="theme-radio" id="theme-sea" name="theme" type="radio"/><input class="theme-radio" id="theme-night" name="theme" type="radio"/><main class="app" id="home"><header><h1 class="secret-title"><label aria-label="海辺へ切り替え" class="title-switch switch-sea" for="theme-sea">UMITAN OS</label><label aria-label="夜へ切り替え" class="title-switch switch-night" for="theme-night">UMITAN OS</label><label aria-label="研究室へ切り替え" class="title-switch switch-lab" for="theme-lab">UMITAN OS</label></h1><div class="subtitle">ふたりだけの、秘密の研究室 · LAB v3.1.0 · THREE MODES</div></header><div class="scene">
 <div class="umi-home-sparkles" aria-hidden="true">
@@ -1622,14 +1650,18 @@ body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
       <strong id="wx25-typhoon-title">🌀 台風情報</strong><span class="wx25-typhoon-badge">試作版</span>
       <button class="wx25-typhoon-close" id="wx25-typhoon-close" type="button" aria-label="台風情報を閉じる">×</button>
     </div>
-    <p class="wx25-typhoon-info">画面デザインの試作です。<br>台風データは未連携です。</p>
+    <p class="wx25-typhoon-info" id="wx25-typhoon-info" aria-live="polite">台風情報はボタンを開いたときに取得します。</p>
+    <div class="wx25-typhoon-picker" id="wx25-typhoon-picker" hidden>
+      <label for="wx25-typhoon-select">対象</label>
+      <select id="wx25-typhoon-select" aria-label="表示する台風を選択"></select>
+    </div>
     <dl class="wx25-typhoon-facts">
-      <div><dt>台風の号数</dt><dd>未取得</dd></div>
-      <div><dt>中心位置</dt><dd>未取得</dd></div>
-      <div><dt>中心気圧</dt><dd>— hPa</dd></div>
-      <div><dt>最大風速</dt><dd>— m/s</dd></div>
+      <div><dt>台風の号数</dt><dd id="wx25-typhoon-number">未取得</dd></div>
+      <div><dt>中心位置</dt><dd id="wx25-typhoon-location">未取得</dd></div>
+      <div><dt>中心気圧</dt><dd id="wx25-typhoon-pressure">— hPa</dd></div>
+      <div><dt>最大風速</dt><dd id="wx25-typhoon-wind">— m/s</dd></div>
     </dl>
-    <p class="wx25-typhoon-issued">気象庁発表日時：未取得</p>
+    <p class="wx25-typhoon-issued" id="wx25-typhoon-issued">気象庁発表日時：未取得</p>
     <a class="wx25-typhoon-official" href="https://www.jma.go.jp/bosai/map.html#contents=typhoon" target="_blank" rel="noopener noreferrer">気象庁で詳しく見る ↗</a>
   </section>
 
@@ -2585,27 +2617,148 @@ onNewsState();
 </script>
 
 <script id="wx25-typhoon-prototype-js">
-/* Independent UI-only prototype. No weather or typhoon data is modified. */
+/* WEATHER 台風情報 v4: experimental live fetch from JMA's public web JSON.
+   Fetch ONLY on user opening the panel; no background polling or external library. */
 (function(){'use strict';
   const modal=document.getElementById('modal-2');
   const toggle=document.getElementById('wx25-typhoon-toggle');
   const card=document.getElementById('wx25-typhoon-card');
   const close=document.getElementById('wx25-typhoon-close');
   const bubble=document.getElementById('wx24-bubble');
-  if(!modal||!toggle||!card||!close)return;
+  const info=document.getElementById('wx25-typhoon-info');
+  const picker=document.getElementById('wx25-typhoon-picker');
+  const select=document.getElementById('wx25-typhoon-select');
+  const el={
+    number:document.getElementById('wx25-typhoon-number'),
+    location:document.getElementById('wx25-typhoon-location'),
+    pressure:document.getElementById('wx25-typhoon-pressure'),
+    wind:document.getElementById('wx25-typhoon-wind'),
+    issued:document.getElementById('wx25-typhoon-issued')
+  };
+  if(!modal||!toggle||!card||!close||!info||!picker||!select||Object.values(el).some(v=>!v))return;
+  const base='https://www.jma.go.jp/bosai/typhoon/data';
+  let targets=[];
+  let token=0;
+  let abort=null;
+  function resetFields(){
+    el.number.textContent='未取得';
+    el.location.textContent='未取得';
+    el.pressure.textContent='— hPa';
+    el.wind.textContent='— m/s';
+    el.issued.textContent='気象庁発表日時：未取得';
+  }
   function setOpen(open){
     card.hidden=!open;
     toggle.setAttribute('aria-expanded',String(open));
     modal.classList.toggle('wx25-typhoon-open',open);
     if(bubble)bubble.setAttribute('aria-hidden',String(open));
+    if(!open){token++;if(abort){abort.abort();abort=null;}}
+    if(open)load();
+  }
+  async function getJSON(url,signal){
+    const res=await fetch(url,{signal,cache:'no-store'});
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    return res.json();
+  }
+  function label(tc){
+    const value=String(tc.typhoonNumber||'');
+    const code=tc.category==='TD'?'熱帯低気圧':(/^\d{4}$/.test(value)?'台風第'+Number(value.slice(-2))+'号':'熱帯低気圧');
+    return code;
+  }
+  function displayTime(iso){
+    if(!iso || Number.isNaN(Date.parse(iso)))return '未取得';
+    return new Date(iso).toLocaleString('ja-JP',{
+      timeZone:'Asia/Tokyo',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
+  }
+  function numeric(v,unit){
+    const n=Number(v);
+    return v!==undefined && v!==null && v!=='' && Number.isFinite(n)?String(n)+' '+unit:'— '+unit;
+  }
+  function showEmpty(){
+    info.textContent='現在、気象庁の台風情報に掲載中の対象はありません。';
+    el.number.textContent='発表なし';
+    el.location.textContent='—';
+    el.pressure.textContent='— hPa';
+    el.wind.textContent='— m/s';
+    el.issued.textContent='確認時刻：'+displayTime(new Date().toISOString());
+  }
+  function showError(){
+    info.textContent='台風情報を取得できませんでした。通信状況を確認するか、気象庁の公式ページをご覧ください。';
+    resetFields();
+  }
+  async function load(){
+    const current=++token;
+    if(abort)abort.abort();
+    abort=new AbortController();
+    const signal=abort.signal;
+    const timer=setTimeout(()=>abort.abort(),10000);
+    targets=[];
+    picker.hidden=true;
+    select.replaceChildren();
+    resetFields();
+    info.textContent='気象庁の台風情報を確認中…';
+    try{
+      const list=await getJSON(base+'/targetTc.json',signal);
+      if(!Array.isArray(list))throw new Error('Invalid target list');
+      if(current!==token)return;
+      targets=list.filter(t=>t&&typeof t.tropicalCyclone==='string'&&/^TC\d{4,8}$/.test(t.tropicalCyclone));
+      if(list.length&&!targets.length)throw new Error('Unexpected target format');
+      if(!targets.length){showEmpty();return;}
+      if(targets.length>1){
+        targets.forEach((t,i)=>{
+          const option=document.createElement('option');
+          option.value=String(i);
+          option.textContent=label(t);
+          select.appendChild(option);
+        });
+        picker.hidden=false;
+      }
+      await showStorm(0,current,signal);
+    }catch(e){
+      if(current===token)showError();
+    }finally{
+      clearTimeout(timer);
+      if(current===token)abort=null;
+    }
+  }
+  async function showStorm(i,current,signal){
+    const target=targets[i];
+    if(!target)return;
+    info.textContent='台風の実況情報を取得中…';
+    resetFields();
+    const spec=await getJSON(base+'/'+encodeURIComponent(target.tropicalCyclone)+'/specifications.json',signal);
+    if(current!==token)return;
+    if(!Array.isArray(spec))throw new Error('Invalid storm data');
+    const title=spec.find(x=>x && x.part==='title')||{};
+    const analysis=spec.find(x=>x && x.part && x.part.en==='Analysis');
+    if(!analysis)throw new Error('No analysis data');
+    const displayName=title.name?.jp || title.name?.en || '';
+    info.textContent=label(target)+(displayName?'（'+displayName+'）':'')+'の実況です。';
+    el.number.textContent=label(target);
+    const latlon=analysis.position?.deg;
+    el.location.textContent=typeof analysis.location==='string' && analysis.location.trim()
+      ? analysis.location : (Array.isArray(latlon)&&latlon.length===2?latlon[0]+'°N '+latlon[1]+'°E':'未取得');
+    el.pressure.textContent=numeric(analysis.pressure,'hPa');
+    el.wind.textContent=numeric(analysis.maximumWind?.sustained?.['m/s'],'m/s');
+    el.issued.textContent='気象庁発表：'+displayTime(title.issue?.JST||target.issue);
   }
   toggle.addEventListener('click',()=>setOpen(card.hidden));
   close.addEventListener('click',()=>{setOpen(false);toggle.focus({preventScroll:true});});
+  select.addEventListener('change',async()=>{
+    const i=Number(select.value);
+    const current=++token;
+    if(abort)abort.abort();
+    abort=new AbortController();
+    const signal=abort.signal;
+    const timer=setTimeout(()=>abort.abort(),10000);
+    try{await showStorm(i,current,signal);}catch(e){if(current===token)showError();}
+    finally{clearTimeout(timer);if(current===token)abort=null;}
+  });
   modal.addEventListener('keydown',e=>{
     if(e.key==='Escape'&&!card.hidden){e.preventDefault();setOpen(false);toggle.focus({preventScroll:true});}
   });
   new MutationObserver(()=>{
-    if(!modal.classList.contains('is-open')&&location.hash!=='#modal-2')setOpen(false);
+    if(!modal.classList.contains('is-open')&&location.hash!=='#modal-2'&&!card.hidden)setOpen(false);
   }).observe(modal,{attributes:true,attributeFilter:['class']});
 })();
 </script>
