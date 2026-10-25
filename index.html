@@ -1261,15 +1261,20 @@ body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
   position: absolute;
   pointer-events: none;
   left: 50%;
-  bottom: 1px;
-  width: min(76%, 345px);
+  bottom: 9px;
+  width: min(42%, 182px);
   height: 1px;
   transform: translateX(-50%);
   background: linear-gradient(90deg, transparent,
-    rgba(var(--umi-chrome-line), .35) 20%,
-    rgba(var(--umi-chrome-shine), .76) 50%,
-    rgba(var(--umi-chrome-line), .35) 80%, transparent);
-  box-shadow: 0 0 7px 1px rgba(var(--umi-chrome-line), .13);
+    rgba(var(--umi-chrome-line), .18) 0%,
+    rgba(var(--umi-chrome-line), .48) 23%,
+    rgba(var(--umi-chrome-shine), .92) 50%,
+    rgba(var(--umi-chrome-line), .48) 77%,
+    rgba(var(--umi-chrome-line), .18) 100%, transparent 100%);
+  box-shadow: 0 0 8px 1px rgba(var(--umi-chrome-line), .18);
+}
+.app > header::after {
+  border-radius: 999px;
 }
 .app > header .secret-title {
   text-shadow: 0 0 15px rgba(var(--umi-chrome-shine), .18);
