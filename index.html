@@ -1309,6 +1309,166 @@ body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
   filter: drop-shadow(0 0 3px rgba(var(--umi-chrome-shine), .22));
 }
 </style>
+
+<style id="wx25-typhoon-prototype-css">
+/* WEATHER 台風情報 UI prototype v1: presentation only, no data request.
+   Existing scene/card/bubble dimensions and all other OS sections are untouched. */
+#modal-2 .wx25-typhoon-toggle {
+  position:absolute;
+  z-index:8;
+  left:3.7%;
+  bottom:5.9%;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  min-height:34px;
+  padding:7px 12px;
+  border:1px solid rgba(255,255,255,.9);
+  border-radius:999px;
+  background:rgba(242,251,255,.89);
+  color:#2b6483;
+  font:700 12px/1.25 -apple-system,BlinkMacSystemFont,'Hiragino Maru Gothic ProN',sans-serif;
+  box-shadow:0 4px 16px rgba(32,88,121,.2),inset 0 1px rgba(255,255,255,.86);
+  backdrop-filter:blur(9px);
+  -webkit-backdrop-filter:blur(9px);
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+#modal-2 .wx25-typhoon-toggle:active {
+  transform:scale(.97);
+  background:rgba(220,246,255,.98);
+}
+#modal-2 .wx25-typhoon-toggle[aria-expanded="true"] {
+  background:rgba(36,106,146,.96);
+  color:#fff;
+  border-color:rgba(196,238,252,.85);
+}
+#modal-2 .wx25-typhoon-card {
+  position:absolute;
+  z-index:9;
+  left:3.7%;
+  bottom:calc(5.9% + 44px);
+  width:min(85%,315px);
+  max-height:55%;
+  overflow:auto;
+  overscroll-behavior:contain;
+  box-sizing:border-box;
+  padding:12px 13px 11px;
+  border:1px solid rgba(255,255,255,.93);
+  border-radius:18px;
+  background:rgba(244,251,255,.97);
+  color:#2b5873;
+  box-shadow:0 12px 30px rgba(18,55,85,.27),inset 0 1px rgba(255,255,255,.9);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  font:500 12px/1.45 -apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN',sans-serif;
+  -webkit-overflow-scrolling:touch;
+}
+#modal-2 .wx25-typhoon-card[hidden] { display:none!important; }
+#modal-2 .wx25-typhoon-top {
+  display:flex;
+  align-items:center;
+  gap:7px;
+  margin-bottom:8px;
+}
+#modal-2 .wx25-typhoon-top strong {
+  font-size:14px;
+  color:#205574;
+}
+#modal-2 .wx25-typhoon-badge {
+  padding:2px 6px;
+  border-radius:6px;
+  background:#dbeefa;
+  color:#477894;
+  font-size:10px;
+  font-weight:700;
+}
+#modal-2 .wx25-typhoon-close {
+  margin-left:auto;
+  width:27px;
+  height:27px;
+  flex:0 0 27px;
+  border:0;
+  border-radius:50%;
+  background:#dceff9;
+  color:#376d89;
+  font:500 21px/1 sans-serif;
+  cursor:pointer;
+}
+#modal-2 .wx25-typhoon-info {
+  margin:0 0 10px;
+  padding:8px 9px;
+  border-radius:10px;
+  background:#e7f3fa;
+  color:#396e89;
+  font-size:11px;
+  line-height:1.5;
+}
+#modal-2 .wx25-typhoon-facts {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:7px;
+  margin:0 0 9px;
+}
+#modal-2 .wx25-typhoon-facts > div {
+  border:1px solid #e2f0f7;
+  background:rgba(255,255,255,.76);
+  border-radius:10px;
+  padding:7px 8px;
+  min-width:0;
+}
+#modal-2 .wx25-typhoon-facts dt {
+  margin-bottom:2px;
+  color:#678ca1;
+  font-size:10px;
+}
+#modal-2 .wx25-typhoon-facts dd {
+  margin:0;
+  color:#255879;
+  font-size:12px;
+  font-weight:700;
+}
+#modal-2 .wx25-typhoon-issued {
+  margin:0 0 9px;
+  color:#678a9f;
+  font-size:10px;
+}
+#modal-2 .wx25-typhoon-official {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:9px 10px;
+  border-radius:10px;
+  background:#2779a6;
+  color:white;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:700;
+}
+#modal-2 .wx25-typhoon-official:active { background:#1e638d; }
+#modal-2.wx25-typhoon-open .wx24-bubble {
+  opacity:0;
+  pointer-events:none;
+}
+#modal-2 .wx25-typhoon-toggle:focus-visible,
+#modal-2 .wx25-typhoon-close:focus-visible,
+#modal-2 .wx25-typhoon-official:focus-visible {
+  outline:2px solid #258abc;
+  outline-offset:3px;
+}
+@media(max-width:370px) {
+  #modal-2 .wx25-typhoon-toggle { left:3.4%; font-size:11px; padding:6px 10px; }
+  #modal-2 .wx25-typhoon-card {left:3.4%;width:90%;padding:10px 11px;}
+}
+@media(max-height:730px) {
+  #modal-2 .wx25-typhoon-card {max-height:58%;}
+}
+@media(prefers-reduced-motion:reduce) {
+  #modal-2 .wx25-typhoon-toggle { transition:none; }
+}
+</style>
 </head><body><input checked="" class="theme-radio" id="theme-lab" name="theme" type="radio"/><input class="theme-radio" id="theme-sea" name="theme" type="radio"/><input class="theme-radio" id="theme-night" name="theme" type="radio"/><main class="app" id="home"><header><h1 class="secret-title"><label aria-label="海辺へ切り替え" class="title-switch switch-sea" for="theme-sea">UMITAN OS</label><label aria-label="夜へ切り替え" class="title-switch switch-night" for="theme-night">UMITAN OS</label><label aria-label="研究室へ切り替え" class="title-switch switch-lab" for="theme-lab">UMITAN OS</label></h1><div class="subtitle">ふたりだけの、秘密の研究室 · LAB v3.1.0 · THREE MODES</div></header><div class="scene">
 <div class="umi-home-sparkles" aria-hidden="true">
   <span class="umi-spark" style="--x:9%;--y:14%;--s:4px;--dur:14.6s;--delay:-2.0s;--dx:11px;--dy:-26px"></span>
@@ -1356,6 +1516,25 @@ body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
     <div class="wx24-source">天気データ：Open-Meteo ・ 予報は変わることがあるよ</div>
   </div>
   <button class="wx24-bubble" id="wx24-bubble" type="button" aria-label="うみたんの次のコメントを聞く"><span id="wx24-bubble-text" aria-live="polite">めいめい、いまのお天気を調べているよ♪</span></button>
+
+  <!-- 台風情報 UI試作：実データ連携はまだ行わない -->
+  <button class="wx25-typhoon-toggle" id="wx25-typhoon-toggle" type="button" aria-expanded="false" aria-controls="wx25-typhoon-card">🌀 <span>台風情報</span></button>
+  <section class="wx25-typhoon-card" id="wx25-typhoon-card" aria-labelledby="wx25-typhoon-title" hidden>
+    <div class="wx25-typhoon-top">
+      <strong id="wx25-typhoon-title">🌀 台風情報</strong><span class="wx25-typhoon-badge">試作版</span>
+      <button class="wx25-typhoon-close" id="wx25-typhoon-close" type="button" aria-label="台風情報を閉じる">×</button>
+    </div>
+    <p class="wx25-typhoon-info">現在は画面デザインの確認用です。<br>台風の実データはまだ取得していません。</p>
+    <dl class="wx25-typhoon-facts">
+      <div><dt>台風の号数</dt><dd>未取得</dd></div>
+      <div><dt>中心位置</dt><dd>未取得</dd></div>
+      <div><dt>中心気圧</dt><dd>— hPa</dd></div>
+      <div><dt>最大風速</dt><dd>— m/s</dd></div>
+    </dl>
+    <p class="wx25-typhoon-issued">気象庁発表日時：未取得</p>
+    <a class="wx25-typhoon-official" href="https://www.jma.go.jp/bosai/map.html#contents=typhoon" target="_blank" rel="noopener noreferrer">気象庁の台風情報を見る ↗</a>
+  </section>
+
   <div class="wx24-location-layer" id="wx24-location-layer" hidden>
      <div class="wx24-location-dialog" role="dialog" aria-modal="true" aria-label="地点を選ぶ">
        <div class="wx24-location-top"><strong>🗾 地点を選ぶ</strong><button class="wx24-location-x" id="wx24-location-close" type="button" aria-label="地点選択を閉じる">×</button></div>
@@ -1379,7 +1558,7 @@ body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
     // window work normally; taps on scenery or the underlying home do nothing.
     if(active.id==='modal-2'){
       if(t.closest&&t.closest('#modal-2 > .wx24-close'))return;
-      if(t.closest&&t.closest('#modal-2 .wx24-card,#modal-2 .wx24-bubble,#modal-2 .wx24-location-layer'))return;
+      if(t.closest&&t.closest('#modal-2 .wx24-card,#modal-2 .wx24-bubble,#modal-2 .wx24-location-layer,#modal-2 .wx25-typhoon-toggle,#modal-2 .wx25-typhoon-card'))return;
       e.preventDefault();
       e.stopImmediatePropagation();
       return;
@@ -2304,6 +2483,30 @@ onNewsState();
   window.addEventListener('pointerup', releaseAll, {passive:true});
   window.addEventListener('pointercancel', releaseAll, {passive:true});
   window.addEventListener('blur', releaseAll);
+})();
+</script>
+
+<script id="wx25-typhoon-prototype-js">
+/* Independent UI-only prototype. No weather or typhoon data is modified. */
+(function(){'use strict';
+  const modal=document.getElementById('modal-2');
+  const toggle=document.getElementById('wx25-typhoon-toggle');
+  const card=document.getElementById('wx25-typhoon-card');
+  const close=document.getElementById('wx25-typhoon-close');
+  if(!modal||!toggle||!card||!close)return;
+  function setOpen(open){
+    card.hidden=!open;
+    toggle.setAttribute('aria-expanded',String(open));
+    modal.classList.toggle('wx25-typhoon-open',open);
+  }
+  toggle.addEventListener('click',()=>setOpen(card.hidden));
+  close.addEventListener('click',()=>{setOpen(false);toggle.focus({preventScroll:true});});
+  modal.addEventListener('keydown',e=>{
+    if(e.key==='Escape'&&!card.hidden){e.preventDefault();setOpen(false);toggle.focus({preventScroll:true});}
+  });
+  new MutationObserver(()=>{
+    if(!modal.classList.contains('is-open')&&location.hash!=='#modal-2')setOpen(false);
+  }).observe(modal,{attributes:true,attributeFilter:['class']});
 })();
 </script>
 </body></html>
