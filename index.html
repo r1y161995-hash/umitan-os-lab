@@ -1482,12 +1482,38 @@ function futureHours(hourly){if(!hourly||!Array.isArray(hourly.time))return[];co
 // Local dates are in Asia/Tokyo (the API requests the same time zone).
 function localJSTDate(date){return new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(date)}
 function nextJSTDate(dateString){return localJSTDate(new Date(Date.parse(dateString+'T12:00:00+09:00')+86400000))}
+// WEATHER COMMENT NATURAL v1: coherent sentences, timed transitions, and selective advice.
+// Keep the existing local weather data, rendering, API requests and UI events unchanged.
+function weatherTimePhrase(date){
+ const h=new Date(date.getTime()+9*3600000).getUTCHours();
+ const tomorrow=localJSTDate(date)!==localJSTDate(new Date());
+ const slot=h<5?'明け方':h<10?'朝':h<12?'午前中':h<15?'昼ごろ':h<17?'午後':h<19?'夕方ごろ':h<22?'夜':'夜遅く';
+ if(tomorrow)return '明日の'+slot;
+ if(h>=19)return '今夜'+(h>=22?'遅く':'');
+ return slot;
+}
+function weatherNowDescription(code){
+ if(storm(code))return '雷雨になっている';
+ if(snowy(code))return '雪が降っている';
+ if(rainy(code))return '雨が降っている';
+ if(code===0||code===1)return '晴れている';
+ if(code===2)return '晴れ間も見えている';
+ if(code===3)return '雲が広がっている';
+ if(code===45||code===48)return '霧が出ている';
+ return '変わりやすい空模様になっている';
+}
+function weatherRemember(text){
+ seen.push(text);if(seen.length>12)seen.shift();return text;
+}
+function weatherPickComment(makeVariant,count=30){
+ const options=[];for(let n=0;n<count;n++)options.push(makeVariant());
+ return weatherRemember(choose(options,seen.slice(-6)));
+}
 function nightComment(){
  const c=data.current,d=data.daily,city=place[1],hour=hourJST(),afterMidnight=hour<5;
- // Dangerous conditions occurring now take precedence over the next-day outlook.
  if(storm(c.weather_code)){
   const warnings=[`いまの${city}は雷雨だよ。安全な場所で過ごして、雷が落ち着くまで無理しないでね。`,`今は${city}で雷を伴う天気になっているよ。屋外は避けて、安全に過ごそうね。`,`めいめい、${city}は現在雷雨だよ。まずは安全を優先してね。`];
-  const pick=choose(warnings,seen.slice(-3));seen.push(pick);if(seen.length>12)seen.shift();return pick;
+  return weatherRemember(choose(warnings,seen.slice(-3)));
  }
  const targetLabel=afterMidnight?'今日':'明日';
  const today=localJSTDate(new Date());
@@ -1502,84 +1528,130 @@ function nightComment(){
   'めいめい、明日のお天気を見てみようか。','今夜はゆっくりできているかな？',
   '夜のうちに明日の空模様を確認しておこうね。'
  ];
- const endings=afterMidnight?[
-  '無理せず、休めるときに休んでね♡','今夜も穏やかに過ごせますように♪',
-  'あたたかくして過ごしてね。','めいめい、ゆっくりできるといいな♡',
-  '少しでも心地よい時間になりますように。','眠くなったら、ちゃんと休もうね♪'
+ const gentle=afterMidnight?[
+  '無理せず、休めるときに休んでね♡','少しでも心地よい時間になりますように。',
+  '眠くなったら、ちゃんと休もうね♪'
  ]:[
-  '今夜はゆっくり過ごしてね♡','明日もめいめいのペースでね♪',
-  '休めるときには、のんびりしてね。','穏やかな夜になりますように♡',
-  'あたたかい飲み物でひと息つくのもいいね。','明日も無理なく過ごせますように。'
+  '明日もめいめいのペースでね♪','休めるときには、のんびりしてね。',
+  '明日も無理なく過ごせますように。'
  ];
- if(i<0)return [choose(intros),`${targetLabel}の${city}の予報はまだ確認できないみたい。`,choose(endings)].join(' ');
+ if(i<0)return weatherPickComment(()=>[choose([...intros,'']),`${targetLabel}の${city}の予報はまだ確認できないみたい。`,choose([...gentle,''])].filter(Boolean).join(' '));
  const w=Number(d.weather_code?.[i]),hi=d.temperature_2m_max?.[i],lo=d.temperature_2m_min?.[i],prob=d.precipitation_probability_max?.[i];
- const rainRisk=number(prob)&&prob>=60;
- const conditions=wx(w)[1];
+ const rainRisk=number(prob)&&prob>=60,conditions=wx(w)[1];
  let facts=[];
- if(storm(w))facts=[`${targetLabel}の${city}は雷雨になる予報だよ。`,`${city}の${targetLabel}は雷を伴う天気になりそう。`,`${targetLabel}は${city}で雷雨の予報が出ているよ。`];
- else if(snowy(w))facts=[`${targetLabel}の${city}は雪の予報だよ。`,`${city}では${targetLabel}、雪になりそうだよ。`,`${targetLabel}は雪の降る空模様になりそう。`];
- else if(rainy(w))facts=[`${targetLabel}の${city}は雨の予報だよ。`,`${city}は${targetLabel}、雨が降る見込みだよ。`,`${targetLabel}は雨模様になりそうだね。`];
- else if(rainRisk)facts=[`${targetLabel}の${city}は${conditions}の予報だけど、雨の可能性もあるよ。`,`${city}は${targetLabel}、${conditions}の予報で雨の可能性もあるみたい。`,`${targetLabel}の予報は${conditions}。ただ、雨が降る可能性もあるよ。`];
- else facts=[`${targetLabel}の${city}は${conditions}の予報だよ。`,`${city}の${targetLabel}は${conditions}になりそうだね。`,`${targetLabel}は${city}で${conditions}の予報が出ているよ。`];
- let tips=[];
- if(storm(w))tips=['雷の予報があるから、安全に過ごせるよう気をつけてね。','雷を伴う天気には十分気をつけようね。','空模様が急に変わる場合もあるから、最新の情報を確認してね。'];
- else if(snowy(w))tips=['冷え込みと雪の影響に気をつけてね。','足元の凍結などにも気をつけようね。','暖かい服を用意しておくと安心だよ。'];
- else if(rainy(w)||rainRisk)tips=['傘の準備をしておくと安心だね。','雨の時間帯がありそうだから、空模様を気にしておこうね。','予定があるなら、雨の降る時間を確認しておくといいね。','天気が変わるかもしれないから、最新の予報も見ておこうね。'];
- else if(number(hi)&&hi>=35)tips=['厳しい暑さの予報だから、こまめな水分補給を意識してね。','暑さ対策を忘れずに、無理せず過ごそうね。','暑さが心配だから、涼しく過ごす工夫をしてね。'];
- else if(number(lo)&&lo<=5)tips=['冷え込みそうだから、暖かくして過ごせるといいね。','寒さに備えて、厚手の上着があると安心だよ。','気温が低そうだから、防寒の準備をしておこうね。'];
- else if(number(hi)&&hi>=30)tips=['気温が高くなりそう。水分補給を忘れずにね。','暑さに気をつけて過ごそうね。','無理しないで、涼しく過ごせるといいな。'];
- else if(number(hi)&&number(lo)&&hi-lo>=10)tips=['気温差がありそうだから、服装で調整できると安心だよ。','朝晩と日中の気温差には気をつけようね。','脱ぎ着しやすい服装だと過ごしやすそう♪'];
- else tips=['落ち着いた一日になるといいね♡','心地よく過ごせるといいな♪','めいめいにとって穏やかな一日になりますように。','無理なく、自分のペースで過ごそうね♡'];
- if(number(hi)&&number(lo)){
-  const temps=[`最高${rounded(hi)}℃、最低${rounded(lo)}℃の予報だよ。`,`予想気温は最高${rounded(hi)}℃、最低${rounded(lo)}℃だよ。`];
-  // Only some variations use a numeric summary: avoid sounding like a data dump.
-  if(Math.random()<0.28)tips.push(...temps);
+ if(storm(w))facts=[`${targetLabel}の${city}は雷雨になる予報だよ。`,`${city}の${targetLabel}は雷を伴う天気になりそう。`];
+ else if(snowy(w))facts=[`${targetLabel}の${city}は雪の予報だよ。`,`${city}では${targetLabel}、雪になりそうだよ。`];
+ else if(rainy(w))facts=[`${targetLabel}の${city}は雨の予報だよ。`,`${city}は${targetLabel}、雨が降る見込みだよ。`];
+ else if(rainRisk)facts=[`${targetLabel}の${city}は${conditions}の予報だけど、雨の可能性もあるよ。`,`${city}は${targetLabel}、${conditions}の予報で雨の可能性もあるみたい。`];
+ else facts=[`${targetLabel}の${city}は${conditions}の予報だよ。`,`${city}の${targetLabel}は${conditions}になりそうだね。`];
+ let tips=[],essential=false;
+ if(storm(w)){essential=true;tips=['雷の予報があるから、屋外の予定には十分気をつけてね。','雷を伴う天気に備えて、最新の情報も確認してね。'];}
+ else if(snowy(w)){essential=true;tips=['防寒と足元の備えをしておくと安心だよ。','雪の影響や路面の凍結には気をつけてね。'];}
+ else if(rainy(w)||rainRisk){essential=true;tips=['傘を準備しておくと安心だね。','出かける予定があれば、雨具を忘れないでね。'];}
+ else if(number(hi)&&hi>=35){essential=true;tips=['暑さ対策とこまめな水分補給を忘れずにね。','無理せず、涼しい場所で休めるようにしてね。'];}
+ else if(number(lo)&&lo<=5){essential=true;tips=['冷え込みに備えて、暖かい服を用意しておこうね。','防寒の準備をしておくと安心だよ。'];}
+ else if(number(hi)&&hi>=30){essential=true;tips=['暑さに気をつけて、水分補給を忘れずにね。','無理なく、涼しく過ごせるといいな。'];}
+ else if(number(hi)&&number(lo)&&hi-lo>=10){tips=['気温差がありそうだから、脱ぎ着しやすい服だと安心だよ。','朝晩と日中の気温差には気をつけてね。'];}
+ return weatherPickComment(()=>{
+  const intro=choose([...intros,'','']);
+  const fact=choose(facts);
+  let extra='';
+  if(essential)extra=choose(tips);
+  else if(tips.length&&Math.random()<.6)extra=choose(tips);
+  else if(Math.random()<.48)extra=choose(gentle);
+  // Numeric temperatures are an optional aside on otherwise calm forecast days,
+  // never a substitute for severe-weather advice.
+  if(!essential&&number(hi)&&number(lo)&&Math.random()<.13)extra=`最高${rounded(hi)}℃、最低${rounded(lo)}℃の予報だよ。`;
+  let result=[intro,fact,extra].filter(Boolean).join(' ');
+  if(result.length>118)result=[fact,extra].filter(Boolean).join(' ');
+  return result;
+ });
+}
+function makeComment(){
+ if(!data)return 'お天気の情報を確認中だよ。少し待っていてね♡';
+ const nowHour=hourJST();if(nowHour>=18||nowHour<5)return nightComment();
+ const {current:c,daily:d,hourly:h}=data,city=place[1];
+ const code=Number(c.weather_code),temp=c.temperature_2m,rh=c.relative_humidity_2m;
+ const hi=d.temperature_2m_max?.[0],lo=d.temperature_2m_min?.[0],p=period();
+ const season=Number(new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Tokyo',month:'numeric'}).format(new Date()));
+ // Never describe past hourly samples as something that will happen 'later'.
+ const horizon=futureHours(h).filter(x=>x.time.getTime()>Date.now());
+ const rainSoon=horizon.find(x=>x.prob>=65||rainy(x.code));
+ const snowSoon=horizon.find(x=>snowy(x.code));
+ const thunderSoon=horizon.find(x=>storm(x.code));
+ const observation=storm(code)?[`いまの${city}は雷雨だよ。`,`いま${city}は雷を伴う天気になっているよ。`]:
+  rainy(code)?[`いま${city}では雨が降っているよ。`,`いまの${city}は雨模様だね。`]:
+  snowy(code)?[`いま${city}は雪が降っているよ。`,`いまの${city}は雪模様だね。`]:
+  code===0||code===1?[`いまの${city}はよく晴れているよ。`,`今、${city}には晴れ空が広がっているね♪`]:
+  code===2?[`いまの${city}は晴れ間もある空模様だよ。`,`雲の切れ間もある${city}の空だね。`]:
+  code===3?[`いまの${city}は雲が広がっているよ。`,`いまの${city}はくもり空だよ。`]:
+  code===45||code===48?[`いまの${city}は霧が出ているみたい。`,`${city}では霧がかかっているよ。`]:
+  [`いまの${city}は「${wx(code)[1]}」だよ。`,`現在の${city}は${wx(code)[1]}みたい。`];
+ let priority='mild',tips=[],essential=false,change=null;
+ if(storm(code)){
+  priority='storm';essential=true;
+  tips=['雷が落ち着くまでは、安全な建物で過ごしてね。','屋外にいるなら、まず安全な場所に移動してね。'];
+ }else if(thunderSoon){
+  priority='storm-soon';essential=true;change={kind:'雷雨',time:thunderSoon.time};
+  tips=['空模様が急に変わる可能性もあるから、屋外の予定には気をつけてね。','外出するなら、最新の雷の情報も確認してね。'];
+ }else if((number(temp)&&temp>=35)||(number(c.apparent_temperature)&&c.apparent_temperature>=36)){
+  priority='heat';essential=true;
+  tips=['こまめに水分と休憩をとって、涼しい場所で過ごしてね。','厳しい暑さだから、無理せず体を冷やしてね。'];
+ }else if(snowy(code)||snowSoon){
+  priority='snow';essential=true;
+  if(!snowy(code)&&snowSoon)change={kind:'雪',time:snowSoon.time};
+  tips=['雪への備えや防寒を忘れないでね。','移動するときは、足元の状態にも気をつけてね。'];
+ }else if(rainy(code)){
+  priority='rain';essential=true;
+  tips=['傘を忘れずに、濡れた道にも気をつけてね。','お出かけなら、雨具があると安心だよ。'];
+ }else if(rainSoon){
+  priority='rain-soon';essential=true;change={kind:'雨',time:rainSoon.time};
+  tips=['お出かけするなら、折りたたみ傘があると安心だね。','外出の予定があるなら、雨具を用意しておこうね。'];
+ }else if(number(c.wind_speed_10m)&&c.wind_speed_10m>=36){
+  priority='wind';essential=true;
+  tips=['飛ばされやすいものに注意してね。','外では風の影響に気をつけてね。'];
+ }else if(number(temp)&&temp<=5){
+  priority='cold';essential=true;
+  tips=['しっかり暖かくして過ごしてね。','外に出るなら、厚手の上着があると安心だよ。'];
+ }else if(number(temp)&&temp<=15){
+  priority='cool';tips=['羽織るものが一枚あると安心だね。','冷えないように、服装でうまく調整してね。'];
+ }else if(number(temp)&&temp>=30){
+  priority='hot';essential=true;
+  tips=['水分補給を忘れずに、無理せず過ごしてね。','暑いときは涼しいところでひと息ついてね。'];
+ }else if(number(temp)&&temp>=26&&number(rh)&&rh>=75){
+  priority='muggy';tips=['少し蒸し暑そうだから、こまめに水分をとってね。','風通しのよい服装だと過ごしやすそう。'];
+ }else if(number(hi)&&number(lo)&&hi-lo>=11){
+  priority='swing';tips=['気温差に合わせて、脱ぎ着できる服装だと便利だよ。','朝晩の冷え込みには気をつけようね。'];
+ }else{
+  tips=['今日もめいめいらしく過ごせますように♡','ふっとひと息つく時間も大切にしてね。','のんびり空を眺めるのも楽しそうだね。'];
+  if((season===3||season===4||season===5)&&number(temp)&&temp>=17&&temp<=24)tips.push('春らしい、過ごしやすい気温だね♪');
+  if((season===9||season===10||season===11)&&number(temp)&&temp>=16&&temp<=23)tips.push('秋らしい穏やかな空気を感じられそうだね♪');
  }
- const chosen=[];
- for(let n=0;n<40;n++){
-  const intro=choose([...intros,'','']),fact=choose(facts),tip=choose(tips);
-  let result=[intro,fact,tip].filter(Boolean).join(' ');
-  if(result.length>118)result=[fact,tip].join(' ');
-  if(result.length>118)result=fact;
-  chosen.push(result);
- }
- const result=choose(chosen,seen.slice(-6));seen.push(result);if(seen.length>12)seen.shift();return result;
+ const greetings=GREET[p].filter(t=>!/[、，]$/.test(t));
+ return weatherPickComment(()=>{
+  const intro=choose([...greetings,'','']);
+  let fact=choose(observation);
+  if(change){
+   const when=weatherTimePhrase(change.time);
+   const now=weatherNowDescription(code);
+   const forecast=change.kind==='雷雨'?'雷雨になる可能性がある':change.kind==='雪'?'雪になる可能性がある':'雨が降る可能性がある';
+   fact=choose([
+    `いまの${city}は${now}けれど、${when}は${forecast}よ。`,
+    `いま${city}は${now}ね。でも、${when}は${forecast}みたい。`
+   ]);
+  }
+  let extra='';
+  // Safety-critical advice is always included; calm days may simply be a friendly weather chat.
+  if(essential)extra=choose(tips);
+  else if(priority==='mild')extra=Math.random()<.54?choose(tips):'';
+  else extra=Math.random()<.7?choose(tips):'';
+  if(!extra&&priority==='mild'&&Math.random()<.28)extra=choose(CLOSINGS[p]);
+  let result=[intro,fact,extra].filter(Boolean).join(' ');
+  if(result.length>118)result=[fact,extra].filter(Boolean).join(' ');
+  return result;
+ });
 }
 
-function makeComment(){if(!data)return 'お天気の情報を確認中だよ。少し待っていてね♡';
- // At night, focus on the next day's outlook (or today's after midnight).
- const hNow=hourJST();if(hNow>=18||hNow<5)return nightComment();
- const {current:c,daily:d,hourly:h}=data,city=place[1],horizon=futureHours(h),temp=c.temperature_2m,hi=d.temperature_2m_max[0],lo=d.temperature_2m_min[0],p=period(),season=Number(new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Tokyo',month:'numeric'}).format(new Date())),code=Number(c.weather_code),rh=c.relative_humidity_2m;
- const rainSoon=horizon.find(x=>x.prob>=65||rainy(x.code)),snowSoon=horizon.find(x=>snowy(x.code)),thunderSoon=horizon.find(x=>storm(x.code));
- const observation=storm(code)?[`いまの${city}は雷雨みたい。`,`いま${city}は雷を伴う空模様だよ。`,`雷雨になっているみたい。${city}の空は要注意だね。`]:rainy(code)?[`いま${city}では雨が降っているよ。`,`いまの${city}は雨模様だね。`,`${city}は雨が降っているみたい。`]:snowy(code)?[`いま${city}は雪が降っているよ。`,`いまの${city}は雪模様だよ。`,`${city}には雪が舞っているみたい。`]:code===0||code===1?[`いまの${city}はよく晴れているよ。`,`今、${city}には晴れ空が広がっているね♪`,`いいお天気だね。${city}は晴れだよ。`]:code===2?[`いまの${city}は晴れ間もある空模様だよ。`,`雲の切れ間もある${city}の空だね。`,`いまの${city}は晴れたり曇ったりしているよ。`]:code===3?[`いまの${city}は雲が広がっているよ。`,`今日は${city}の空に雲が多いね。`,`${city}はいま、くもり空だよ。`]:code===45||code===48?[`いまの${city}は霧が出ているみたい。`,`${city}では霧がかかっているよ。`]:[`いまの${city}は「${wx(code)[1]}」だよ。`,`現在の${city}は${wx(code)[1]}みたい。`];
- let priority='normal',advice=[];
- if(storm(code)){priority='storm';advice=['雷の間は屋外での活動を控えて、安全な建物で過ごしてね。','雷が近くで発生しているかもしれないから、屋外では無理しないでね。','雷雨が続く間は、安全な場所で過ごしてね。'];}
- else if(thunderSoon){priority='storm-soon';advice=['この先、雷を伴う天気になる予報があるよ。外出中は空の変化に気をつけてね。','あとから雷雨になる可能性があるよ。出かけるなら最新の予報を確認してね。','これから雷の予報が出ているよ。屋外の予定には注意してね。'];}
- else if(number(temp)&&temp>=35||number(c.apparent_temperature)&&c.apparent_temperature>=36){priority='heat';advice=['かなり暑いから、涼しい場所で休みながら水分をとってね。','無理は禁物だよ。こまめに水分と休憩をとろうね。','暑さが厳しいね。体を冷やせる場所を確保してね。'];}
- else if(snowy(code)||snowSoon){priority='snow';advice=['雪や路面の凍結に気をつけて、移動するときは足元をよく見てね。','外に出るなら、足元と防寒の準備をしてね。','雪の影響があるかもしれないから、無理のない移動を心がけようね。'];}
- else if(rainy(code)){priority='rain';advice=['傘を忘れずに、濡れた道にも気をつけてね。','お出かけなら雨具を準備しておくと安心だよ。','外に出るなら、足元が滑らないように気をつけてね。'];}
- else if(rainSoon){priority='rain-soon';advice=[`このあと雨の可能性があるから、傘を持っておくと安心だよ。`,`この先は雨の予報もあるよ。お出かけ前にもう一度確認してね。`,`あとで雨が降るかもしれないから、折りたたみ傘があると心強いね。`];}
- else if(number(c.wind_speed_10m)&&c.wind_speed_10m>=36){priority='wind';advice=['風が強いから、飛ばされやすいものには気をつけてね。','風が強めだよ。外では周りの様子に気をつけてね。','風の影響を受けやすい場所では無理しないでね。'];}
- else if(number(temp)&&temp<=5){priority='cold';advice=['冷え込んでいるから、しっかり暖かくしてね。','寒さが厳しいね。手袋や上着で防寒しようね。','外に出るなら厚手の上着があると安心だよ。'];}
- else if(number(temp)&&temp<=15){priority='cool';advice=['少し肌寒そう。羽織るものがあると安心だね。','ひんやりする気温だね。服装でうまく調整してね。','冷えないように、上着を一枚用意しておこうね。'];}
- else if(number(temp)&&temp>=30){priority='hot';advice=['暑さに気をつけて、水分補給を忘れずにね。','気温が高いね。無理せず涼しいところで休んでね。','こまめに水分をとって、暑さをため込まないようにね。'];}
- else if(number(temp)&&temp>=26&&number(rh)&&rh>=75){priority='muggy';advice=['湿気も多そうだから、風通しのいい服で過ごしてね。','少し蒸し暑そう。水分補給を忘れないでね。','むしっと感じるかも。涼しくできる時間を作ってね。'];}
- else if(number(hi)&&number(lo)&&hi-lo>=11){priority='swing';advice=['今日は寒暖差が大きそう。脱ぎ着できる服が便利だよ。','朝晩と日中で気温が変わりやすいね。上着で調整してね。','気温差がありそうだから、服装でうまく調整しようね。'];}
- else {priority='mild';advice=['無理なく、気持ちよく過ごせるといいな♡','今日もめいめいらしく過ごせますように♪','こんな日こそ、ふっとひと息つくのもいいね。','のんびり空を眺めるのも楽しそうだね。','めいめいの今日が穏やかになりますように♡'];}
- // Seasonal color stays subordinate to measured weather: never assert warmth from the calendar alone.
- if(priority==='mild'&&(season===3||season===4||season===5)&&temp>=17&&temp<=24)advice.push('春らしい穏やかさを感じる気温だね。心地よく過ごせそう♪');
- if(priority==='mild'&&(season===9||season===10||season===11)&&temp>=16&&temp<=23)advice.push('秋の空気を感じる気温だね。ゆったり過ごせるといいな♪');
- const recent=seen.slice(-5),greetings=GREET[p];const candidates=[];
- for(let n=0;n<36;n++){
-  const intro=choose([...greetings,'']),fact=choose(observation),tip=choose(advice),end=choose([...CLOSINGS[p],'','']);
-  // Put a safety message in every high-priority variation, but keep language brief.
-  let text=[intro,fact,tip].filter(Boolean).join(' ');
-  if(priority==='mild'&&end&&Math.random()<.5)text=[intro,fact,end].filter(Boolean).join(' ');
-  if(text.length>112){text=[fact,tip].join(' ')}
-  candidates.push(text);
- }
- const selected=choose(candidates,recent);seen.push(selected);if(seen.length>12)seen.shift();return selected;
-}
 function say(animate=false){const text=makeComment();if(bubbleTimer){clearTimeout(bubbleTimer);bubbleTimer=null}if(animate){e.bubble.classList.add('is-switching');bubbleTimer=setTimeout(()=>{e.bubbleText.textContent=text;e.bubble.classList.remove('is-switching');bubbleTimer=null},150)}else{e.bubbleText.textContent=text;e.bubble.classList.remove('is-switching')}e.bubble.scrollTop=0;}
 function setLocationDisplay(){e.locText.textContent=place[0]+' · '+place[1]}
 function formatDay(s){const d=offsetDate(s+'T12:00:00');return new Intl.DateTimeFormat('ja-JP',{timeZone:'Asia/Tokyo',weekday:'short'}).format(d)}
