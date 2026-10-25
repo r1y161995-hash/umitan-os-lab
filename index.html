@@ -1485,14 +1485,43 @@ body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
 /* Compact, left-aligned typhoon details: keep the character's face clear. */
 #modal-2 .wx25-typhoon-card {
   left:3.7%;
-  width:56%;
-  max-width:230px;
+  width:52.5%;
+  max-width:214px;
   bottom:calc(5.9% + 44px);
   max-height:43%;
   padding:9px 10px 10px;
   border-radius:15px;
   font-size:11px;
   line-height:1.4;
+}
+#modal-2 .wx25-weather-signature {
+  position:absolute;
+  z-index:4;
+  left:4.2%;
+  bottom:1.4%;
+  width:136px;
+  text-align:center;
+  color:rgba(255,255,255,.74);
+  font:700 10px/1.1 Georgia, 'Times New Roman', serif;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  text-shadow:0 1px 4px rgba(22,67,95,.28), 0 0 10px rgba(255,255,255,.18);
+  pointer-events:none;
+  user-select:none;
+  -webkit-user-select:none;
+  opacity:.92;
+}
+#modal-2 .wx25-weather-signature::before {
+  content:'';
+  display:block;
+  width:74%;
+  height:1px;
+  margin:0 auto 5px;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.58), transparent);
+  box-shadow:0 0 6px rgba(255,255,255,.18);
+}
+#modal-2.wx25-typhoon-open .wx25-weather-signature {
+  opacity:.72;
 }
 #modal-2 .wx25-typhoon-top { gap:4px; margin-bottom:6px; }
 #modal-2 .wx25-typhoon-top strong { font-size:12px; white-space:nowrap; }
@@ -1532,8 +1561,9 @@ body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
 #modal-2 .wx25-typhoon-official { padding:8px 5px; font-size:10px; border-radius:8px; }
 #modal-2.wx25-typhoon-open .wx24-bubble { visibility:hidden; }
 @media (max-width:370px) {
-  #modal-2 .wx25-typhoon-card { left:3.4%; width:58%; max-width:230px; padding:8px; }
+  #modal-2 .wx25-typhoon-card { left:3.4%; width:55%; max-width:214px; padding:8px; }
   #modal-2 .wx25-typhoon-badge { font-size:8px; }
+  #modal-2 .wx25-weather-signature { left:3.8%; width:126px; font-size:9px; }
 }
 </style>
 </head><body><input checked="" class="theme-radio" id="theme-lab" name="theme" type="radio"/><input class="theme-radio" id="theme-sea" name="theme" type="radio"/><input class="theme-radio" id="theme-night" name="theme" type="radio"/><main class="app" id="home"><header><h1 class="secret-title"><label aria-label="海辺へ切り替え" class="title-switch switch-sea" for="theme-sea">UMITAN OS</label><label aria-label="夜へ切り替え" class="title-switch switch-night" for="theme-night">UMITAN OS</label><label aria-label="研究室へ切り替え" class="title-switch switch-lab" for="theme-lab">UMITAN OS</label></h1><div class="subtitle">ふたりだけの、秘密の研究室 · LAB v3.1.0 · THREE MODES</div></header><div class="scene">
@@ -1586,6 +1616,7 @@ body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
 
   <!-- 台風情報 UI試作：実データ連携はまだ行わない -->
   <button class="wx25-typhoon-toggle" id="wx25-typhoon-toggle" type="button" aria-expanded="false" aria-controls="wx25-typhoon-card">🌀 <span>台風情報</span></button>
+  <div class="wx25-weather-signature" aria-hidden="true">WEATHER</div>
   <section class="wx25-typhoon-card" id="wx25-typhoon-card" aria-labelledby="wx25-typhoon-title" hidden>
     <div class="wx25-typhoon-top">
       <strong id="wx25-typhoon-title">🌀 台風情報</strong><span class="wx25-typhoon-badge">試作版</span>
