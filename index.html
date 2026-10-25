@@ -1182,12 +1182,11 @@ body[data-umi-mode="live"] #home .umi-home-sparkles {
 }
 </style>
 
-<style id="umi-home-button-tap-v1">
-/* HOME-only button touch feedback. No delay or interception of link navigation. */
+<style id="umi-home-button-tap-v2">
+/* HOME-only button touch feedback: keep the approved glow and press;
+   the invisible ripple effect and its CSS were removed entirely. */
 #home .scene .keys .key {
   --umi-tap-glow: 142, 232, 255;
-  isolation: isolate;
-  overflow: hidden;
   touch-action: manipulation;
   transition: transform .13s cubic-bezier(.25,.8,.25,1),
               background-color .13s ease, border-color .13s ease,
@@ -1208,7 +1207,7 @@ body[data-umi-mode="live"] #home .umi-home-sparkles {
               0 0 16px rgba(var(--umi-tap-glow), .58),
               inset 0 0 16px rgba(var(--umi-tap-glow), .20);
 }
-/* LIVE mode uses a grid dock: no translateY, otherwise it would jump upward. */
+/* LIVE mode uses a grid dock: no translateY. */
 body[data-umi-mode="live"] #home .scene .keys .key:active,
 body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
   transform: scale(.965);
@@ -1217,38 +1216,92 @@ body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
   outline: 2px solid rgba(var(--umi-tap-glow),1);
   outline-offset: 3px;
 }
-#home .scene .keys .key > span:not(.umi-key-wave),
-#home .scene .keys .key > small {
-  position: relative;
-  z-index: 1;
-  pointer-events: none;
-}
-#home .scene .keys .key > .umi-key-wave {
-  position: absolute;
-  z-index: 0;
-  display: block;
-  width: var(--wave-size);
-  height: var(--wave-size);
-  left: var(--wave-x);
-  top: var(--wave-y);
-  border-radius: 50%;
-  background: radial-gradient(circle,
-    rgba(var(--umi-tap-glow), .58) 0%,
-    rgba(var(--umi-tap-glow), .27) 34%,
-    rgba(var(--umi-tap-glow), .07) 62%, transparent 75%);
-  border: 1px solid rgba(var(--umi-tap-glow), .24);
-  transform: translate(-50%, -50%) scale(.1);
-  transform-origin: center;
-  pointer-events: none;
-  animation: umi-key-wave .48s ease-out both;
-}
-@keyframes umi-key-wave {
-  0% { transform:translate(-50%,-50%) scale(.1); opacity:.90; }
-  100% { transform:translate(-50%,-50%) scale(1); opacity:0; }
-}
 @media (prefers-reduced-motion: reduce) {
   #home .scene .keys .key { transition: none !important; }
-  #home .scene .keys .key > .umi-key-wave { display:none !important; }
+}
+</style>
+
+<style id="umitan-home-header-footer-v1">
+/* HOME header/footer decorative light. CSS-only, no layout changes.
+   Theme colors follow the LAB / SEA / NIGHT switches. */
+.app {
+  --umi-chrome-line: 139, 219, 245;
+  --umi-chrome-shine: 198, 247, 255;
+}
+#theme-sea:checked ~ .app {
+  --umi-chrome-line: 146, 230, 230;
+  --umi-chrome-shine: 224, 254, 249;
+}
+#theme-night:checked ~ .app {
+  --umi-chrome-line: 125, 168, 244;
+  --umi-chrome-shine: 185, 217, 255;
+}
+/* Decorative layers are confined to the existing header box. */
+.app > header {
+  position: relative;
+  isolation: isolate;
+}
+.app > header::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  left: 50%;
+  top: -12px;
+  width: min(88%, 410px);
+  height: 66px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center,
+    rgba(var(--umi-chrome-line), .115) 0%,
+    rgba(var(--umi-chrome-line), .045) 43%,
+    transparent 78%);
+}
+.app > header::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  left: 50%;
+  bottom: 1px;
+  width: min(76%, 345px);
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent,
+    rgba(var(--umi-chrome-line), .35) 20%,
+    rgba(var(--umi-chrome-shine), .76) 50%,
+    rgba(var(--umi-chrome-line), .35) 80%, transparent);
+  box-shadow: 0 0 7px 1px rgba(var(--umi-chrome-line), .13);
+}
+.app > header .secret-title {
+  text-shadow: 0 0 15px rgba(var(--umi-chrome-shine), .18);
+}
+/* Side ornaments frame the existing glass-bottle home icon. */
+.app > footer.bottom::before {
+  content: '';
+  position: absolute;
+  left: 2%;
+  right: 2%;
+  top: 47%;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg,
+    transparent 0%, rgba(var(--umi-chrome-line), .40) 13%,
+    rgba(var(--umi-chrome-shine), .23) 30%, transparent 38%,
+    transparent 62%, rgba(var(--umi-chrome-shine), .23) 70%,
+    rgba(var(--umi-chrome-line), .40) 87%, transparent 100%);
+  box-shadow: 0 0 5px rgba(var(--umi-chrome-line), .12);
+}
+.app > footer.bottom::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(47% - 2px);
+  height: 5px;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 14% 50%, rgba(var(--umi-chrome-shine), .7) 0 1px, transparent 2px),
+    radial-gradient(circle at 86% 50%, rgba(var(--umi-chrome-shine), .7) 0 1px, transparent 2px);
+  filter: drop-shadow(0 0 3px rgba(var(--umi-chrome-shine), .22));
 }
 </style>
 </head><body><input checked="" class="theme-radio" id="theme-lab" name="theme" type="radio"/><input class="theme-radio" id="theme-sea" name="theme" type="radio"/><input class="theme-radio" id="theme-night" name="theme" type="radio"/><main class="app" id="home"><header><h1 class="secret-title"><label aria-label="海辺へ切り替え" class="title-switch switch-sea" for="theme-sea">UMITAN OS</label><label aria-label="夜へ切り替え" class="title-switch switch-night" for="theme-night">UMITAN OS</label><label aria-label="研究室へ切り替え" class="title-switch switch-lab" for="theme-lab">UMITAN OS</label></h1><div class="subtitle">ふたりだけの、秘密の研究室 · LAB v3.1.0 · THREE MODES</div></header><div class="scene">
@@ -2156,31 +2209,17 @@ onNewsState();
 })();
 </script>
 
-<script id="umi-home-button-tap-v1-script">
-/* Ripple starts on touch-down; existing anchors navigate immediately as before. */
+<script id="umi-home-button-tap-v2-script">
+/* Keep pressed state on pointerdown; no waves, timers or injected nodes. */
 (() => {
   const buttons = document.querySelectorAll('#home .scene .keys > a.key');
   if (!buttons.length) return;
-  const lessMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
   const releaseAll = () => buttons.forEach(button => button.classList.remove('umi-tap-pressed'));
   for (const button of buttons) {
     button.addEventListener('pointerdown', event => {
       if (event.button !== undefined && event.button !== 0) return;
       releaseAll();
       button.classList.add('umi-tap-pressed');
-      if (lessMotion && lessMotion.matches) return;
-      const rect = button.getBoundingClientRect();
-      const size = Math.max(rect.width, rect.height) * 2.1;
-      const wave = document.createElement('span');
-      wave.className = 'umi-key-wave';
-      wave.setAttribute('aria-hidden', 'true');
-      wave.style.setProperty('--wave-size', size + 'px');
-      wave.style.setProperty('--wave-x', (event.clientX - rect.left) + 'px');
-      wave.style.setProperty('--wave-y', (event.clientY - rect.top) + 'px');
-      button.appendChild(wave);
-      wave.addEventListener('animationend', () => wave.remove(), { once: true });
-      // Cleanup even if the animation is interrupted by a screen transition.
-      window.setTimeout(() => wave.remove(), 620);
     }, {passive:true});
     button.addEventListener('pointerleave', () => button.classList.remove('umi-tap-pressed'));
     button.addEventListener('click', () => button.classList.remove('umi-tap-pressed'));
