@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-26T09:13:54.318535+00:00",
+  "updated_at": "2026-10-26T10:13:47.845131+00:00",
   "topics": {
     "海上保安庁": [
       {
@@ -7,6 +7,18 @@
         "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5IRHQ0bndiMTRWVk80ZEZRVlZSUUlLR29SWEp3NkcteWcxNy0zR0o4UE8tSnVGclBYd3pHeVZlYVBjamFUZ3Z5QTFhVExVZ1lQU3RXdXBoQjdTVEJ6dlAwdXQwYnVLSUpGV0pBLXpjb0ZycjFnWFhKNHA4SGFONXc?oc=5",
         "date": "Mon, 26 Oct 2026 06:09:53 GMT",
         "source": "Yahoo!ニュース"
+      },
+      {
+        "title": "越前がに漁の解禁11月6日に迫る 越前町で海保が底引き網漁船を点検 雌のセイコガニは年内、雄のズワイガニは来年3月20日まで - 福井テレビ",
+        "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9vN1JoVnhRckxhd1JsbGE5X2RTU3NuZWh5S3E3U0NxZl8yZ19YT2w0UldVYjBUcWl0LWxWQlBDSlpyMExKbF9CYldacFI5b3hWSWZXUVFBSzJUT0dFTnlKT0NFLTEyMU5W?oc=5",
+        "date": "Mon, 26 Oct 2026 09:35:27 GMT",
+        "source": "福井テレビ"
+      },
+      {
+        "title": "水族館で海保の謎解きイベント＝第九管区海上保安本部〔地域〕 - ｄメニューニュース",
+        "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTE9IY1ZhNkRfcEkwNFRsaFNOZnlfMmcwdS1EWTJwT2c2NEhlNTM0ZHRGaUY5aVFJQlM2WGVSUXJpNi1Yc1ZHX0ZURm9aTm5UMFVLd21nektoVks5NkJHS1h3a2VMZDdwVmRYRk94Q0lmenpNam0yZEdWMmlB0gF_QVVfeXFMUG8tbVZSVC11cFkwamxQRUxWZGNCQmxzNE1BS1FsTmJDNlVJbW5waXBRa3lGWGpwbXVoeUJILXhOTUZUQUJaOFNyWGFDUmVFSDB1NHZOeERQQU1Rdk5BSHBhUTlFbUpsS29VVFptVW5iR1VKbkxyOE5ydmg0ZFhJWQ?oc=5",
+        "date": "Mon, 26 Oct 2026 09:11:00 GMT",
+        "source": "ｄメニューニュース"
       },
       {
         "title": "尖閣周辺に中国船、2日連続 機関砲を搭載した4隻、海保の巡視船が警告 - 産経ニュース",
@@ -39,28 +51,16 @@
         "source": "NHKニュース"
       },
       {
-        "title": "タグボートとタンカーが衝突 けが人なし 岡山・倉敷市玉島沖 - KSBニュース",
-        "link": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE12Y3NjcWxKaXlKdDhsWWF5V1g2d0V3WTVnTGM5dVNacVI3WDNKVmdQYTJSZm9EQjMxd2t4ZHI4NGhoZ3RLRXVYODdHcTItYm5t?oc=5",
-        "date": "Sat, 24 Oct 2026 06:08:00 GMT",
-        "source": "KSBニュース"
-      },
-      {
-        "title": "長崎海保２等海上保安士（20）が酒気帯び運転で懲戒処分「再発防止を図り信頼回復に努める」 - NCC長崎文化放送",
-        "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9xbnE3Ylk1dzhHT1poaE5kblY5Vi13Y0lOeUFwaUlZV1N3RS1CRjVBeEpDS1QyZWRFakU5Nkt2bEM2dWFEaU80bklkSG1UR0U4Zm43ZGRmdWs?oc=5",
-        "date": "Fri, 23 Oct 2026 09:36:00 GMT",
-        "source": "NCC長崎文化放送"
-      },
-      {
-        "title": "長崎海上保安部が酒気帯び運転容疑の職員を停職処分 - 西日本新聞me",
-        "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBXQmlmVjJlaEZPZnZ6Y0l4SDljbkVDb25pOXgwV0lqSmJmbW5oQUdNaF9FVDFTNjJ2R1pXX252bk9qR3NYQWh5QzhsMlhVS2g1Vm93aDV3?oc=5",
-        "date": "Fri, 23 Oct 2026 21:00:00 GMT",
-        "source": "西日本新聞me"
-      },
-      {
         "title": "タグボートと漁船が衝突 漁船に微量の浸水も差し迫った危険はなし 水島海上保安部【岡山・倉敷市】 - TBS NEWS DIG",
         "link": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFBQOGM3UHh4U0JObGliMWozY09jNkg1aldycXVSaWl5SVpnVFRLMkJfSFhhVU84VjBGY3F3eVl2bEY2WnZnQlM0aVcxcEVfajlvVVdORUI3dw?oc=5",
         "date": "Fri, 23 Oct 2026 02:48:00 GMT",
         "source": "TBS NEWS DIG"
+      },
+      {
+        "title": "水族館で海保の謎解きイベント＝第九管区海上保安本部〔地域〕 - Excite エキサイト",
+        "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE0yUlF4U3FiMzM5cGFhekFQbWluWDdSTFpuMUNFdGhoTDlLV3NfM0FjQXhZSHhlYWREMHp1b2dUc2h0TTZGOFU5MVZyY3g3ZUtJTjBxNEh6N2VFTmp3VzZR?oc=5",
+        "date": "Mon, 26 Oct 2026 09:11:00 GMT",
+        "source": "Excite エキサイト"
       }
     ],
     "尖閣諸島": [
