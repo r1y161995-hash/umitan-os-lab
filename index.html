@@ -1595,36 +1595,48 @@ body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
 
 </style>
 
-<style id="umi-gallery-thumb-preserve-v1">
-/* GALLERY thumbnail experiment v1: natural aspect ratios, no clipping.
-   CSS-only; original category filtering, ordering, viewer and controls remain intact. */
+<style id="umi-gallery-uniform-thumbnails-v2">
+/* GALLERY v2: aligned two-column rows, full-image letterboxing.
+   Gallery filtering, viewer and other OS functions are unchanged. */
 #modal-4 .umi-gallery-grid {
-  display: block;
-  column-count: 2;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   column-gap: 12px;
+  row-gap: 12px;
   width: 100%;
+  align-items: stretch;
 }
 #modal-4 .umi-gallery-tile {
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
-  vertical-align: top;
+  min-width: 0;
   width: 100%;
-  margin: 0 0 12px;
-  break-inside: avoid;
-  -webkit-column-break-inside: avoid;
+  height: 100%;
+  margin: 0;
+  break-inside: auto;
+  -webkit-column-break-inside: auto;
   box-shadow: 0 5px 15px rgba(0, 22, 39, .16);
 }
 #modal-4 .umi-gallery-tile img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 148px;
   max-height: none;
+  flex: 0 0 148px;
   object-fit: contain;
-  background: radial-gradient(ellipse at 50% 38%, #265c76, #0b2b42 80%);
+  object-position: center center;
+  background: #08111c;
 }
-#modal-4 .umi-gallery-tile .umi-gallery-title,
-#modal-4 .umi-gallery-tile .umi-gallery-date {
+#modal-4 .umi-gallery-tile .umi-gallery-title {
+  display: block;
   width: 100%;
+  min-height: 42px;
+  overflow-wrap: anywhere;
+}
+#modal-4 .umi-gallery-tile .umi-gallery-date {
+  display: block;
+  width: 100%;
+  margin-top: auto;
   overflow-wrap: anywhere;
 }
 #modal-4 .umi-gallery-tile:focus-visible {
@@ -1633,8 +1645,7 @@ body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
 }
 #modal-4 .umi-gallery-empty { display: block; margin: 12px 0; }
 @media (max-width: 355px) {
-  #modal-4 .umi-gallery-grid { column-gap: 9px; }
-  #modal-4 .umi-gallery-tile { margin-bottom: 9px; }
+  #modal-4 .umi-gallery-grid { column-gap: 9px; row-gap: 9px; }
 }
 </style>
 </head><body><input checked="" class="theme-radio" id="theme-lab" name="theme" type="radio"/><input class="theme-radio" id="theme-sea" name="theme" type="radio"/><input class="theme-radio" id="theme-night" name="theme" type="radio"/><main class="app" id="home"><header><h1 class="secret-title"><label aria-label="海辺へ切り替え" class="title-switch switch-sea" for="theme-sea">UMITAN OS</label><label aria-label="夜へ切り替え" class="title-switch switch-night" for="theme-night">UMITAN OS</label><label aria-label="研究室へ切り替え" class="title-switch switch-lab" for="theme-lab">UMITAN OS</label></h1><div class="subtitle">ふたりだけの、秘密の研究室 · LAB v3.1.0 · THREE MODES</div></header><div class="scene">
