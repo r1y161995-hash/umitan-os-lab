@@ -1594,6 +1594,49 @@ body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
 }
 
 </style>
+
+<style id="umi-gallery-thumb-preserve-v1">
+/* GALLERY thumbnail experiment v1: natural aspect ratios, no clipping.
+   CSS-only; original category filtering, ordering, viewer and controls remain intact. */
+#modal-4 .umi-gallery-grid {
+  display: block;
+  column-count: 2;
+  column-gap: 12px;
+  width: 100%;
+}
+#modal-4 .umi-gallery-tile {
+  display: inline-flex;
+  flex-direction: column;
+  vertical-align: top;
+  width: 100%;
+  margin: 0 0 12px;
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  box-shadow: 0 5px 15px rgba(0, 22, 39, .16);
+}
+#modal-4 .umi-gallery-tile img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  background: radial-gradient(ellipse at 50% 38%, #265c76, #0b2b42 80%);
+}
+#modal-4 .umi-gallery-tile .umi-gallery-title,
+#modal-4 .umi-gallery-tile .umi-gallery-date {
+  width: 100%;
+  overflow-wrap: anywhere;
+}
+#modal-4 .umi-gallery-tile:focus-visible {
+  outline: 2px solid #a5edff;
+  outline-offset: 3px;
+}
+#modal-4 .umi-gallery-empty { display: block; margin: 12px 0; }
+@media (max-width: 355px) {
+  #modal-4 .umi-gallery-grid { column-gap: 9px; }
+  #modal-4 .umi-gallery-tile { margin-bottom: 9px; }
+}
+</style>
 </head><body><input checked="" class="theme-radio" id="theme-lab" name="theme" type="radio"/><input class="theme-radio" id="theme-sea" name="theme" type="radio"/><input class="theme-radio" id="theme-night" name="theme" type="radio"/><main class="app" id="home"><header><h1 class="secret-title"><label aria-label="海辺へ切り替え" class="title-switch switch-sea" for="theme-sea">UMITAN OS</label><label aria-label="夜へ切り替え" class="title-switch switch-night" for="theme-night">UMITAN OS</label><label aria-label="研究室へ切り替え" class="title-switch switch-lab" for="theme-lab">UMITAN OS</label></h1><div class="subtitle">ふたりだけの、秘密の研究室 · LAB v3.1.0 · THREE MODES</div></header><div class="scene">
 <div class="umi-home-sparkles" aria-hidden="true">
   <span class="umi-spark" style="--x:9%;--y:14%;--s:4px;--dur:14.6s;--delay:-2.0s;--dx:11px;--dy:-26px"></span>
