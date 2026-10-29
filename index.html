@@ -1748,7 +1748,7 @@ body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
   height:var(--gallery-album-height)!important;
   min-height:0!important;max-height:none!important;
   padding:0!important;overflow:hidden!important;
-  background:rgba(7,36,60,.95)!important;
+  background:#092b43!important;
   color:#f4fbff!important;
   border:1px solid rgba(150,213,233,.78)!important;
   border-radius:17px!important;
@@ -1789,12 +1789,19 @@ body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
   display:block;flex:1 1 auto;min-height:0;overflow-y:auto;
   overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
   padding:11px 15px 15px;
+  background:#092b43;
+  position:relative;
+  isolation:isolate;
 }
 #modal-4 .umi-gallery-body > .badge {display:none}
 #modal-4 .umi-gallery-body .gallery-intro {margin:0 0 10px!important;font-size:11px!important;color:#d2e8f6}
 #modal-4 .umi-gallery-filters {
-  position:sticky;top:0;z-index:2;padding:5px 0 11px;
-  background:linear-gradient(180deg,rgba(7,36,60,.98),rgba(7,36,60,.95));
+  /* Fixed toolbar is outside the scroll container: thumbnails never pass behind it. */
+  position:relative;top:auto;z-index:3;
+  flex:0 0 auto;box-sizing:border-box;
+  padding:11px 14px 12px;
+  background:#0b304b;
+  border-bottom:1px solid rgba(181,226,241,.18);
 }
 #modal-4 .umi-gallery-tile {background:rgba(9,39,62,.97)}
 #modal-4 .umi-gallery-tile img {object-fit:contain;background:#08111c}
@@ -1808,6 +1815,7 @@ body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
   #modal-4 .umi-gallery-greeting {width:44%;font-size:11px;right:4%;top:14%;padding:9px 8px}
   #modal-4 .umi-gallery-open-btn {right:3.2%;font-size:11px;padding:10px 12px}
   #modal-4 .umi-gallery-body {padding:9px 10px 12px}
+  #modal-4 .umi-gallery-filters {padding:9px 10px 11px}
 }
 @media (prefers-reduced-motion: reduce) {
   #modal-4 > .umi-gallery-card {transition:none!important}
@@ -1907,10 +1915,10 @@ body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
       <span class="umi-gallery-drag-title">🖼️ 思い出のアルバム</span>
       <button class="umi-gallery-album-close" id="umi-gallery-album-close" type="button" aria-label="アルバムを閉じる">×</button>
     </div>
+    <div aria-label="作品の分類" class="umi-gallery-filters" id="umi-gallery-filters" role="group"></div>
     <div class="umi-gallery-body">
       <div class="badge">🖼️ GALLERY — 思い出のアルバム</div>
       <p class="gallery-intro">めいめいと一緒に集めた、大切な一枚ずつ。♡</p>
-      <div aria-label="作品の分類" class="umi-gallery-filters" id="umi-gallery-filters" role="group"></div>
       <div aria-live="polite" class="umi-gallery-grid" id="umi-gallery-grid"><p>アルバムを開いているよ…</p></div>
     </div>
   </div>
@@ -3038,7 +3046,10 @@ onNewsState();
     const moved=tracking.moved;
     tracking=null;
     album.classList.remove('gallery-drag-moving');
-    if(moved){suppressClickUntil=Date.now()+550;}
+    if(moved){
+      suppressClickUntil=Date.now()+650;
+      if(e.cancelable)e.preventDefault();
+    }
     else if(!cancelled){
       const now=Date.now();
       if(now-lastTap<340){setHeight(DEFAULT);lastTap=0;}
@@ -3052,20 +3063,28 @@ onNewsState();
     tracking={id:e.pointerId,startY:e.clientY,startPct:pct,moved:false};
     album.classList.add('gallery-drag-moving');
     try{drag.setPointerCapture(e.pointerId)}catch(err){}
+    // iOS Safari: prevent native compatibility clicks after a drag gesture.
+    if(e.cancelable)e.preventDefault();
   });
   drag.addEventListener('pointermove',e=>{
     if(!tracking||tracking.id!==e.pointerId)return;
     const dy=e.clientY-tracking.startY;
     if(Math.abs(dy)<3&&!tracking.moved)return;
     tracking.moved=true;
-    setHeight(tracking.startPct-dy/Math.max(1,gallery.getBoundingClientRect().height)*100);
+    suppressClickUntil=Date.now()+650;
     if(e.cancelable)e.preventDefault();
+    setHeight(tracking.startPct-dy/Math.max(1,gallery.getBoundingClientRect().height)*100);
   });
   drag.addEventListener('pointerup',e=>endDrag(e,false));
   drag.addEventListener('pointercancel',e=>endDrag(e,true));
   drag.addEventListener('lostpointercapture',e=>endDrag(e,true));
-  drag.addEventListener('click',e=>{
-    if(Date.now()<suppressClickUntil&&e.target!==closer){e.preventDefault();e.stopPropagation();}
+  // Capture before the album tiles, buttons or underlying home controls see
+  // the compatibility click retargeted by iOS after the drawer has moved.
+  document.addEventListener('click',e=>{
+    if(Date.now()>=suppressClickUntil||e.detail===0)return;
+    suppressClickUntil=0;
+    e.preventDefault();
+    e.stopImmediatePropagation();
   },true);
   drag.addEventListener('contextmenu',e=>e.preventDefault());
   document.addEventListener('keydown',e=>{
