@@ -1,7 +1,13 @@
 {
-  "updated_at": "2026-10-30T13:31:14.554855+00:00",
+  "updated_at": "2026-10-30T14:47:56.566757+00:00",
   "topics": {
     "海上保安庁": [
+      {
+        "title": "中国の海洋調査船 沖縄 波照間島沖EEZ内で活動 海保中止求める - NHKニュース",
+        "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5qaFpaMWNua3RtYjkyMzFfMUpOUW41OWwxemhwQ3kxYVVodGNxQjV3ZlhpNWVjeUtsQXA1aEVZYnJGVGhwRjVrTmZZNll4WTczaXhCalJTUWNTYjJ6LUFr?oc=5",
+        "date": "Fri, 30 Oct 2026 12:35:25 GMT",
+        "source": "NHKニュース"
+      },
       {
         "title": "紋別港で油流出対策の訓練 海保など20団体が参加 - 北海道新聞デジタル",
         "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9SVVFVODkxTUh2M2ZpSHNJYlJ4WGw1SFhmOW9oVDFnNk9sbWd5aGc3ZkVKYWVBNzJBN1NYQmJHS1JBcDYyOHBYcmNxTmxSNXNLLXAySDNfRFNlUQ?oc=5",
@@ -33,16 +39,16 @@
         "source": "電気新聞ウェブサイト"
       },
       {
-        "title": "船底に衝撃受けエンジン停止…能登の沖合125キロでイカ釣り漁船が航行不能 巡視船が金沢港へ曳航 乗組員は2人無事 - Yahoo!ニュース",
-        "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9UTjQ0eDU1MG5jcHZYNm1SaFZ3ZGZMMzJjQ2l1dEp4eF96b0VSclN4U2lPTnR2MzFqejFSc2pxa08yWl9fMkpuOXN6V3BUc0kwdEYyUVl6Zl9kYVdEUk8tZXRDdGFKWk9ReGJZN0ZBU19aSjBBTVdwNm9Sb2hLaGs?oc=5",
-        "date": "Fri, 30 Oct 2026 07:37:13 GMT",
-        "source": "Yahoo!ニュース"
-      },
-      {
         "title": "バングラデシュ向け無償資金協力贈与契約の締結：巡視艇の供与を通して、海上保安能力向上を支援 ｜ ニュース・広報 - JICA - 国際協力機構",
         "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5hSEs2NlAzT0NFT1NocmJxcUNmWHFPRHFyZG0wUnZEdmxieXEyd25qNlRaNW1PdzFzTTlBR3lYWE9vd3BqdEtabWkxRmpnWGwtakJBc21URTBLOERhS3k1N2dEOVItOF9VNFVxcFJfaw?oc=5",
         "date": "Wed, 28 Oct 2026 02:25:47 GMT",
         "source": "JICA - 国際協力機構"
+      },
+      {
+        "title": "船底に衝撃受けエンジン停止…能登の沖合125キロでイカ釣り漁船が航行不能 巡視船が金沢港へ曳航 乗組員は2人無事 - Yahoo!ニュース",
+        "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9UTjQ0eDU1MG5jcHZYNm1SaFZ3ZGZMMzJjQ2l1dEp4eF96b0VSclN4U2lPTnR2MzFqejFSc2pxa08yWl9fMkpuOXN6V3BUc0kwdEYyUVl6Zl9kYVdEUk8tZXRDdGFKWk9ReGJZN0ZBU19aSjBBTVdwNm9Sb2hLaGs?oc=5",
+        "date": "Fri, 30 Oct 2026 07:37:13 GMT",
+        "source": "Yahoo!ニュース"
       },
       {
         "title": "【速報】沖縄・宮古島沖で航行中のタグボートが火災 日本人5人救助1人捜索中 海保 - khb東日本放送",
@@ -55,12 +61,6 @@
         "link": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBpZU44Rl9ZRE44clVQQ3E0Ukczc3pUdTduSE9MLW1kRnM5MGpqMjdCZ083THd4U0RNTjJTcjFySXBQajBOaVFrVjl5dHkxdDhtNG9uaDc1S2pnQks0T1p1Qm1lbw?oc=5",
         "date": "Thu, 29 Oct 2026 06:20:00 GMT",
         "source": "福岡TNCニュース"
-      },
-      {
-        "title": "紋別港で油流出対策の訓練 海保など20団体が参加 - 47NEWS",
-        "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE05bVllTUU0Ulpjd0luSWpQMDJKdVA4YldFcFNBNF9teld1b1d1U1cyNUNTZTl4VVl5LUVqZTl6WFZ0LTdPeU1fX3VFQQ?oc=5",
-        "date": "Fri, 30 Oct 2026 07:16:51 GMT",
-        "source": "47NEWS"
       }
     ],
     "尖閣諸島": [
@@ -113,10 +113,10 @@
         "source": "産経ニュース"
       },
       {
-        "title": "児童生徒向け石垣市尖閣諸島地域教材資料（R8.7 関連ページを追加） - 石垣市",
-        "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQQjBzTTJsZ1U1RXR2Q3hpMGhOS0R2R0Zpbkd0c1ZiMTFqQkhvdTdWb0NQSnllOF85OVpYTkc5bVBUbFE1OUsxcHd6NWVORzJwenVkd1N2VVdKVm5NSjJMLVllMWZmV0VwR3NzREJoTXVxOFRKa3V6ejlwWHA5dTQ4cml5QWZOS245Y2loUzQ4ZHU5T25rSGc?oc=5",
-        "date": "Wed, 08 Jul 2026 07:00:00 GMT",
-        "source": "石垣市"
+        "title": "沖縄県石垣市：尖閣諸島・魚釣島沖の領海に中国海警局の船４隻が一時侵入…海上保安庁が退去を求める - 読売新聞",
+        "link": "https://news.google.com/rss/articles/CBMickFVX3lxTE1FbnhIa0NvNGMxbGNmUHdfZWduMDF5ak5aUzBDaDRxdUNtMGozOWl1OE0yZkRDOUEtSnM2UklRTmFXcFFRV1BibGNqNEFJbW9IdzBaTHFFSkdmT3pUOE5HaTdOMjRJcFNiNmVnVXNORE5HZw?oc=5",
+        "date": "Sun, 11 Oct 2026 07:00:00 GMT",
+        "source": "読売新聞"
       },
       {
         "title": "中国船、21日以来の尖閣諸島周辺で航行 台風30号接近影響か 海上保安庁巡視船が確認 - 産経ニュース",
