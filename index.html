@@ -3255,7 +3255,11 @@ onNewsState();
     if(!target)return;
     tabs.forEach(b=>b.setAttribute('aria-current',String(b===btn)));
     // Scroll the drawer body only, never the OS page behind the gallery.
-    profileBody.scrollTo({top:target.offsetTop-profileBody.offsetTop,behavior:'smooth'});
+    const bodyRect=profileBody.getBoundingClientRect();
+    const targetRect=target.getBoundingClientRect();
+    // Both rectangles use viewport coordinates; preserve the body's current scroll.
+    const top=profileBody.scrollTop+(targetRect.top-bodyRect.top)-10;
+    profileBody.scrollTo({top:Math.max(0,top),behavior:'smooth'});
   }));
   document.addEventListener('keydown',e=>{
     if(e.key!=='Escape'||(!gallery.classList.contains('is-open')&&location.hash!=='#modal-4'))return;
