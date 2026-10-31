@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-31T12:01:53.397905+00:00",
+  "updated_at": "2026-10-31T13:20:53.651357+00:00",
   "topics": {
     "海上保安庁": [
       {
@@ -7,6 +7,12 @@
         "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBIUlNTTHEyUTFxZURXaUlTZFdZRF9nOXhUWEJqbERHZjdIMERsd1NlYkpWZHhkT216UjVRMWZKNTZEMmdCZ3czdHVkZ3JVMXJoMWJOendYNUpXU0JZQV90clZqT3hYRERsRWpZa2JkbmVlQkJ1a2JFbFhaZEVCakE?oc=5",
         "date": "Sat, 31 Oct 2026 05:43:55 GMT",
         "source": "Yahoo!ニュース"
+      },
+      {
+        "title": "32年の労に「深甚なる敬意」 対馬海保、長崎・対馬市で巡視船らいざん解役式 - 西日本新聞me",
+        "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9TdEFIQXpiTzYzTmdGV1ZhOVczd0xxTjl6TGdWTGlyeFE4Qnd4Y25zNjRXcm9ZaFlCT205TUR6WV9WU0hqSHFPSUxmRjl4aE9WUkRRWFRB?oc=5",
+        "date": "Fri, 30 Oct 2026 21:00:00 GMT",
+        "source": "西日本新聞me"
       },
       {
         "title": "「あの波じゃすぐに行かなきゃ見つからなかった」釣り糸が絡まり漂流していた男性を\"とっさの判断\"で救助 海保が漁師2人に表彰状＝静岡 - TBS NEWS DIG",
@@ -27,10 +33,10 @@
         "source": "47NEWS"
       },
       {
-        "title": "［長崎県］32年の労に「深甚なる敬意」 対馬海保 巡視船らいざん解役式（西日本新聞me） - ｄメニューニュース",
-        "link": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPQXVtUGN6Q2NMY0pUcHVRTXU4SUVwc2NSbjdfb2pLWnlGUE83eFhCbFhfMEZoRGg3Z3RVQWdfUnJnRTZwS2NMeEl4Y3czTFN0XzFvejl0SkUtWlk4eVpLTU9CbkxpSloxLTYwd2J2bDFHR1ZZaDdVWHNVQlFkSFU4aDd5U2hHNFJ0SnpfaVlxa2p3Mm1nNFA5Ums2Z2xTVF9Ba1BRWUpPQlNMMGhVVS13aG5UYzVQYjJsT3RjRUlfOEZDVDVzYWhEbWFQMXoyeUdSZVB1LXM0bUhBLWdiTWc?oc=5",
-        "date": "Fri, 30 Oct 2026 22:11:53 GMT",
-        "source": "ｄメニューニュース"
+        "title": "海上保安庁の測量船「光洋」、11月15日に名古屋港ガーデンふ頭で一般公開 名古屋港初入港 - Funeco",
+        "link": "https://news.google.com/rss/articles/CBMiSkFVX3lxTFBNX2pYRjJXYzV6ZE5vVmVGQW96VWUxVDlBdjI0ZnJtWDJDNWtiY0R6dmQ4N0xZVEl5STZ6bzNmenFRbHhMVGo0SWhB?oc=5",
+        "date": "Sat, 31 Oct 2026 00:18:07 GMT",
+        "source": "Funeco"
       },
       {
         "title": "海上保安庁の大型測量船「拓洋」が進水 広い範囲の海底地形を一度に調査 最新機器を搭載 山口 - 福岡TNCニュース",
@@ -39,15 +45,9 @@
         "source": "福岡TNCニュース"
       },
       {
-        "title": "海上保安庁の測量船「光洋」、11月15日に名古屋港ガーデンふ頭で一般公開 名古屋港初入港 - Funeco",
-        "link": "https://news.google.com/rss/articles/CBMiSkFVX3lxTFBNX2pYRjJXYzV6ZE5vVmVGQW96VWUxVDlBdjI0ZnJtWDJDNWtiY0R6dmQ4N0xZVEl5STZ6bzNmenFRbHhMVGo0SWhB?oc=5",
-        "date": "Sat, 31 Oct 2026 00:18:07 GMT",
-        "source": "Funeco"
-      },
-      {
-        "title": "中国の海洋調査船 沖縄 波照間島沖EEZ内で活動 海保中止求める - NHKニュース",
-        "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5qaFpaMWNua3RtYjkyMzFfMUpOUW41OWwxemhwQ3kxYVVodGNxQjV3ZlhpNWVjeUtsQXA1aEVZYnJGVGhwRjVrTmZZNll4WTczaXhCalJTUWNTYjJ6LUFr?oc=5",
-        "date": "Fri, 30 Oct 2026 12:35:25 GMT",
+        "title": "「漁業の安全月間」 福島 いわきで海保が安全な航行呼びかけ - NHKニュース",
+        "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE8xOVpFRDJURENpRHh6VE01ZmstZk56MndhdFdpRkUwejRXNmRqN0l4LU1yNVQ0b0RjanhzMWhuMmg2TmpoSHNkd08zTU4zZHRnNnE0WjBzUlpQRkxWMnFZ?oc=5",
+        "date": "Thu, 29 Oct 2026 03:26:00 GMT",
         "source": "NHKニュース"
       },
       {
@@ -57,10 +57,10 @@
         "source": "J ディフェンス ニュース"
       },
       {
-        "title": "対馬市の厳原港で行われた巡視船「らいざん」の解役式 - ［長崎県］32年の労に「深甚なる敬意」 対馬海保 巡視船らいざん解役式 - 写真・画像(1/2) - 西日本新聞me",
-        "link": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5fdFMyZi1pNlhZOUM0VTF3dkZPTDBrR2tKXzJ4ZWVTZG94MS05eHpkMGZOM0p2dk10TXFpU1BKQVc4d2hRcXpHOGpDekZJdTNsenE1a1JJUQ?oc=5",
-        "date": "Fri, 30 Oct 2026 21:35:09 GMT",
-        "source": "西日本新聞me"
+        "title": "北陸電力・北陸送配電、海保と災害対応訓練／船上からドローンで被害確認 – - 電気新聞ウェブサイト",
+        "link": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1ab2RDSVZ4VmNDaEtVY2RkNmQ1bTJWblUxSTdZaTJmV0c5OTRqTzVReHhDSEhYWDl1YUFPZjloVmxxdkl1N2VwOVlSbFFQYjJaOVJlM01XNA?oc=5",
+        "date": "Thu, 29 Oct 2026 21:00:37 GMT",
+        "source": "電気新聞ウェブサイト"
       }
     ],
     "尖閣諸島": [
@@ -71,16 +71,22 @@
         "source": "読売新聞"
       },
       {
+        "title": "尖閣諸島周辺に中国海警局船4隻 3日連続で航行確認、海保が領海に近づかないよう警告 - 産経ニュース",
+        "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5KVTJVRXVuUDl6clA1enJxTlpienByVURXUUJEX1VUcVdBZFdtT19acjJrcU1jZXNwSkpwSnUycFY0OXNKTjRjVGlOZk5JY2ZINzd6bkIzenFmMm56aFFYeEdtSTF5ODlZRWFMQXlFekNWTVpuZ2c?oc=5",
+        "date": "Tue, 27 Oct 2026 02:13:14 GMT",
+        "source": "産経ニュース"
+      },
+      {
         "title": "尖閣上陸調査を要請 中山市長、外務省などに - 沖縄八重山日報",
         "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1SRUcwY1RFdVc5U1JOZk5OSlFIYVk0SG1kRnR0X0xUQXpRdDgtUXZwOGJhQjcxb19IRG44OFZnc1ZGSF9fcHZyTGhHNVMtdU5YWndVeFA4Wi0?oc=5",
         "date": "Fri, 30 Oct 2026 21:30:00 GMT",
         "source": "沖縄八重山日報"
       },
       {
-        "title": "尖閣諸島周辺に中国海警局船4隻 3日連続で航行確認、海保が領海に近づかないよう警告 - 産経ニュース",
-        "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5KVTJVRXVuUDl6clA1enJxTlpienByVURXUUJEX1VUcVdBZFdtT19acjJrcU1jZXNwSkpwSnUycFY0OXNKTjRjVGlOZk5JY2ZINzd6bkIzenFmMm56aFFYeEdtSTF5ODlZRWFMQXlFekNWTVpuZ2c?oc=5",
-        "date": "Tue, 27 Oct 2026 02:13:14 GMT",
-        "source": "産経ニュース"
+        "title": "北方領土で中ロが連携、10年前にロシア政府関係者が漏らした「3段階の警告」が現実に…次は尖閣諸島なのか - JBpress",
+        "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9VMDRpd1ZmcmZ3dG5FZ0FfYk9ydDFLWHBDV0RLcFpTeE43aHhVN210Y2QxcmhrMENvU1ZCYjNhWi1SZS0ycnpZYjdEQnQxMy01WUxNNmhn?oc=5",
+        "date": "Tue, 20 Oct 2026 07:00:00 GMT",
+        "source": "JBpress"
       },
       {
         "title": "「中国、台湾の次は尖閣狙う」 現地シンクタンクが分析（沖縄八重山日報） - Yahoo!ニュース",
@@ -101,21 +107,9 @@
         "source": "沖縄タイムス社"
       },
       {
-        "title": "児童生徒向け石垣市尖閣諸島地域教材資料（R8.7 関連ページを追加） - 石垣市",
-        "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQQjBzTTJsZ1U1RXR2Q3hpMGhOS0R2R0Zpbkd0c1ZiMTFqQkhvdTdWb0NQSnllOF85OVpYTkc5bVBUbFE1OUsxcHd6NWVORzJwenVkd1N2VVdKVm5NSjJMLVllMWZmV0VwR3NzREJoTXVxOFRKa3V6ejlwWHA5dTQ4cml5QWZOS245Y2loUzQ4ZHU5T25rSGc?oc=5",
-        "date": "Wed, 08 Jul 2026 07:00:00 GMT",
-        "source": "石垣市"
-      },
-      {
-        "title": "中国漁船 尖閣で日本巡視艇に衝突 - NHK",
-        "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE02LXJTX2xTb0h2ZzFsVWZtaWtWZUVia09CdDVTMl8yMm5YT29reUdtYkNOMDZ5OXI2VHFSVldyRjZFSGJJM2N3OTE4LTZfenY2SEYzRVFOaEd4ZTNMVnhGcVV2cFQ0LU9HVE1tSw?oc=5",
-        "date": "Mon, 07 Sep 2026 07:00:00 GMT",
-        "source": "NHK"
-      },
-      {
-        "title": "中国船、21日以来の尖閣諸島周辺で航行 台風30号接近影響か 海上保安庁巡視船が確認 - 産経ニュース",
-        "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBCbFI1R3U1aVNqaU9HT1VQM1JDbDJKODlQbE9scmVUTWxOVkhpa0FCd2pveEhjbkpZMjU5bV83Um1CMDg5cGQ5dThFU3FqMDFycmp3YTUxb2FVUUUtYXVQdkZlWDIwWThFWS1WblZaVHU5NFhFQXc?oc=5",
-        "date": "Sun, 25 Oct 2026 10:05:51 GMT",
+        "title": "尖閣沖に出現した貨物船「くたばれ日本」 昨年末、中国「軍港」周辺から偽装信号を発信か - 産経ニュース",
+        "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBSOGN3cE05WTBFV095OWcyS0U1clIxRjhJaVJiUWJFRWZCTldZcFZWRk9KWHBKM25DU1Fic0xFU2l5WUo3LVJsMFpqa2xyOURwY2dyVEhDX2ZEaDBCbHdXWG8yNktfVVZycVZFYzlOYU9sTmJrR1E?oc=5",
+        "date": "Fri, 16 Oct 2026 07:00:00 GMT",
         "source": "産経ニュース"
       },
       {
@@ -123,6 +117,12 @@
         "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTFByR3pHWHVVcC1haGtXQUpIdHBXN1VZZjJDd3ZPeF9BLVlRSjJiaFJOeExCQjF5aURWLXRKcl9MZGgwZ1R4VjRZX3BUWXNJa01NZFJuQnlaT0hTcldmN2Z2YkRfNDkxZUk4WERpMVBIYVN1MDJ2TlVFMGN0UmxJR1E?oc=5",
         "date": "Tue, 27 Oct 2026 04:21:17 GMT",
         "source": "Yahoo!ニュース"
+      },
+      {
+        "title": "沖縄県石垣市：尖閣諸島・魚釣島沖の領海に中国海警局の船４隻が一時侵入…海上保安庁が退去を求める - 読売新聞",
+        "link": "https://news.google.com/rss/articles/CBMickFVX3lxTE1FbnhIa0NvNGMxbGNmUHdfZWduMDF5ak5aUzBDaDRxdUNtMGozOWl1OE0yZkRDOUEtSnM2UklRTmFXcFFRV1BibGNqNEFJbW9IdzBaTHFFSkdmT3pUOE5HaTdOMjRJcFNiNmVnVXNORE5HZw?oc=5",
+        "date": "Sun, 11 Oct 2026 07:00:00 GMT",
+        "source": "読売新聞"
       }
     ]
   }
