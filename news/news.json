@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-02T04:52:15.785171+00:00",
+  "updated_at": "2026-11-02T05:53:04.323520+00:00",
   "topics": {
     "海上保安庁": [
       {
@@ -51,16 +51,16 @@
         "source": "時事ドットコム"
       },
       {
-        "title": "米海上保安巡視船がホーチミン市を訪問 - Vietnam.vn",
-        "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPdkprRDdjZHBYVU4yRGRKVkRHeFhDejN6NjAwUDdJQ3ZVZ1p3N0NfREF5MHliMFlRUXZTdWVHTWdnWTVPX3U2V2c2S0k1S3R2M3ZrQ1dJMjVZQy14YnN5VTd5ZkNQWVE1LTFhWmVSU01ON3ppUGtweDFTZXk3Nk51Z3hNOHBSX2hReEt2bkc5eWdPWm8?oc=5",
-        "date": "Sun, 01 Nov 2026 12:52:00 GMT",
-        "source": "Vietnam.vn"
-      },
-      {
         "title": "「漁業の安全月間」 福島 いわきで海保が安全な航行呼びかけ - NHKニュース",
         "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE8xOVpFRDJURENpRHh6VE01ZmstZk56MndhdFdpRkUwejRXNmRqN0l4LU1yNVQ0b0RjanhzMWhuMmg2TmpoSHNkd08zTU4zZHRnNnE0WjBzUlpQRkxWMnFZ?oc=5",
         "date": "Thu, 29 Oct 2026 03:26:00 GMT",
         "source": "NHKニュース"
+      },
+      {
+        "title": "米海上保安巡視船がホーチミン市を訪問 - Vietnam.vn",
+        "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPdkprRDdjZHBYVU4yRGRKVkRHeFhDejN6NjAwUDdJQ3ZVZ1p3N0NfREF5MHliMFlRUXZTdWVHTWdnWTVPX3U2V2c2S0k1S3R2M3ZrQ1dJMjVZQy14YnN5VTd5ZkNQWVE1LTFhWmVSU01ON3ppUGtweDFTZXk3Nk51Z3hNOHBSX2hReEt2bkc5eWdPWm8?oc=5",
+        "date": "Sun, 01 Nov 2026 12:52:00 GMT",
+        "source": "Vietnam.vn"
       }
     ],
     "尖閣諸島": [
@@ -89,28 +89,16 @@
         "source": "JBpress"
       },
       {
-        "title": "中国も｢尖閣諸島は日本領｣と認めていたのに…｢突然の手のひら返し｣を助長させた4人の首相の\"大失態\" - PRESIDENT Online（プレジデントオンライン）",
-        "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE8tZnhDUmpteHJHNkNkREVkUGdLdXdKT1Z0TlJWLVZXS0U0S2JCSklVTTFiZ3NmWWRhZU1tNGtjeHYwUnVGTm9MRHB6em1ROW5pMjBCenBwUko?oc=5",
-        "date": "Wed, 07 Oct 2026 07:00:00 GMT",
-        "source": "PRESIDENT Online（プレジデントオンライン）"
-      },
-      {
-        "title": "「中国、台湾の次は尖閣狙う」 現地シンクタンクが分析（沖縄八重山日報） - Yahoo!ニュース",
-        "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1YcGpxaGk0WTlXQnF3OEVQYTdicndfczdxa2dWSU93OWlMZGlISjl0R29SVmk3cV9ybGxqSWpJdE1OOS1IWE5VMGtOUU43aHdIazJHS2taZ0NBbklfMG1PbXc0b3VONUlWQ0dnOTRJb2JUalQ0STdFTEVCMEh4Vzg?oc=5",
-        "date": "Tue, 27 Oct 2026 04:14:13 GMT",
-        "source": "Yahoo!ニュース"
-      },
-      {
-        "title": "尖閣周辺に中国船4隻 - 沖縄タイムス社",
-        "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9kSlRxT3ItTzVTYTJvMGt0OU9vcHJsVXdYTXBQX0dsSjVGX3owZDBmc3pBbkcyV0ZVVkFrSFM2MXhRVzVRbTYweUxjVWtjaDRUUTFYdXVxaDVRQXdFT0E?oc=5",
-        "date": "Thu, 29 Oct 2026 18:57:00 GMT",
-        "source": "沖縄タイムス社"
-      },
-      {
         "title": "『尖閣1945』映画化プロジェクト（石垣市特別試写会を開催！） - 石垣市",
         "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPdms4Um5ySFdLZGRpblJuOUZMUE1veHZWeExOY2VhalR6bG42TlhmMnhqcWZQUkZhRE9tM1h5N0pjaHZpVS15bXRkNXVGeENNTGZMbnk5WXFqU2pYakExSGNyNjhwOUIydnFvSDFqM3M1TWxtc2RrbVd1djZKWUpvTVFyNUxoNnl3N0JWSjBoM3hPMXE1OUVB?oc=5",
         "date": "Mon, 17 Aug 2026 07:00:00 GMT",
         "source": "石垣市"
+      },
+      {
+        "title": "中国も｢尖閣諸島は日本領｣と認めていたのに…｢突然の手のひら返し｣を助長させた4人の首相の\"大失態\" - PRESIDENT Online（プレジデントオンライン）",
+        "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE8tZnhDUmpteHJHNkNkREVkUGdLdXdKT1Z0TlJWLVZXS0U0S2JCSklVTTFiZ3NmWWRhZU1tNGtjeHYwUnVGTm9MRHB6em1ROW5pMjBCenBwUko?oc=5",
+        "date": "Wed, 07 Oct 2026 07:00:00 GMT",
+        "source": "PRESIDENT Online（プレジデントオンライン）"
       },
       {
         "title": "尖閣諸島周辺に中国船、50日連続 海上保安庁の巡視船が確認 - 日本経済新聞",
@@ -119,10 +107,22 @@
         "source": "日本経済新聞"
       },
       {
-        "title": "尖閣諸島周辺に中国海警局船4隻 3日連続で航行確認、海保が領海に近づかないよう警告 - 産経ニュース",
-        "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5KVTJVRXVuUDl6clA1enJxTlpienByVURXUUJEX1VUcVdBZFdtT19acjJrcU1jZXNwSkpwSnUycFY0OXNKTjRjVGlOZk5JY2ZINzd6bkIzenFmMm56aFFYeEdtSTF5ODlZRWFMQXlFekNWTVpuZ2c?oc=5",
-        "date": "Tue, 27 Oct 2026 02:13:14 GMT",
-        "source": "産経ニュース"
+        "title": "尖閣周辺に中国船4隻 - 沖縄タイムス社",
+        "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9kSlRxT3ItTzVTYTJvMGt0OU9vcHJsVXdYTXBQX0dsSjVGX3owZDBmc3pBbkcyV0ZVVkFrSFM2MXhRVzVRbTYweUxjVWtjaDRUUTFYdXVxaDVRQXdFT0E?oc=5",
+        "date": "Thu, 29 Oct 2026 18:57:00 GMT",
+        "source": "沖縄タイムス社"
+      },
+      {
+        "title": "「中国、台湾の次は尖閣狙う」 現地シンクタンクが分析（沖縄八重山日報） - Yahoo!ニュース",
+        "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1YcGpxaGk0WTlXQnF3OEVQYTdicndfczdxa2dWSU93OWlMZGlISjl0R29SVmk3cV9ybGxqSWpJdE1OOS1IWE5VMGtOUU43aHdIazJHS2taZ0NBbklfMG1PbXc0b3VONUlWQ0dnOTRJb2JUalQ0STdFTEVCMEh4Vzg?oc=5",
+        "date": "Tue, 27 Oct 2026 04:14:13 GMT",
+        "source": "Yahoo!ニュース"
+      },
+      {
+        "title": "児童生徒向け石垣市尖閣諸島地域教材資料（R8.7 関連ページを追加） - 石垣市",
+        "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQQjBzTTJsZ1U1RXR2Q3hpMGhOS0R2R0Zpbkd0c1ZiMTFqQkhvdTdWb0NQSnllOF85OVpYTkc5bVBUbFE1OUsxcHd6NWVORzJwenVkd1N2VVdKVm5NSjJMLVllMWZmV0VwR3NzREJoTXVxOFRKa3V6ejlwWHA5dTQ4cml5QWZOS245Y2loUzQ4ZHU5T25rSGc?oc=5",
+        "date": "Wed, 08 Jul 2026 07:00:00 GMT",
+        "source": "石垣市"
       }
     ]
   }
