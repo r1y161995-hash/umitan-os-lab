@@ -2020,6 +2020,75 @@ body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
   top:19%!important;left:43%!important;width:46%!important;
 }
 </style>
+
+<style id="umi-lab-v10-unified-dialogues">
+/* Ver.10: NEWS speech-bubble design is the shared reference. */
+#modal-3 .umi-lab-welcome,
+#modal-4 .umi-gallery-greeting {
+  box-sizing:border-box!important;
+  border:1px solid rgba(255,255,255,.92)!important;
+  border-radius:17px!important;
+  background:rgba(239,251,255,.95)!important;
+  color:#24546d!important;
+  box-shadow:0 7px 24px rgba(6,35,66,.24),inset 0 1px rgba(255,255,255,.95)!important;
+  font-family:'Yomogi','Hiragino Maru Gothic ProN',-apple-system,sans-serif!important;
+  font-size:clamp(11px,2.9vw,14px)!important;
+  font-weight:600!important;
+  line-height:1.55!important;
+  text-align:center!important;
+  padding:11px 11px 12px!important;
+  pointer-events:none!important;
+}
+/* Bring the speech tails toward each character's face. */
+#modal-3 .umi-lab-welcome {
+  top:15.8%!important;left:36%!important;right:auto!important;
+  width:49%!important;max-width:245px!important;z-index:6!important;
+}
+#modal-3 .umi-lab-welcome::after {
+  content:''!important;position:absolute!important;bottom:-8px!important;left:14%!important;top:auto!important;
+  width:14px!important;height:14px!important;border:0!important;
+  background:rgba(239,251,255,.95)!important;
+  border-right:1px solid rgba(255,255,255,.92)!important;
+  border-bottom:1px solid rgba(255,255,255,.92)!important;
+  transform:rotate(45deg)!important;
+}
+#modal-4 .umi-gallery-greeting {
+  top:10.5%!important;right:10%!important;left:auto!important;
+  width:46%!important;max-width:230px!important;
+}
+#modal-4 .umi-gallery-greeting::after {
+  left:-8px!important;top:64%!important;bottom:auto!important;
+  width:14px!important;height:14px!important;
+  background:rgba(239,251,255,.95)!important;
+  border-left:1px solid rgba(255,255,255,.92)!important;
+  border-bottom:1px solid rgba(255,255,255,.92)!important;
+  border-right:0!important;border-top:0!important;
+  transform:translateY(-50%) rotate(45deg)!important;
+}
+/* Mask only the legacy image-baked label and starfish. These are not interactive. */
+#modal-3 .umi-lab-legacy-label-mask,
+#modal-3 .umi-lab-starfish-mask {position:absolute;pointer-events:none;z-index:2;}
+#modal-3 .umi-lab-legacy-label-mask {
+  left:73%;top:43.6%;width:25%;height:5.8%;border-radius:7px;
+  background:linear-gradient(180deg,#193655 0%,#142d4c 50%,#102846 100%);
+  box-shadow:inset 0 2px 6px #081c36aa;
+}
+#modal-3 .umi-lab-starfish-mask {
+  left:70.5%;top:65.1%;width:17%;height:7.4%;border-radius:6px;
+  background:linear-gradient(100deg,#193650,#213c5b 52%,#182e4b);
+  box-shadow:inset 0 1px 6px #0a1a31a8;
+}
+/* The glass itself is the only experiment entry point. */
+#modal-3 .umi-lab-flask {
+  left:54.5%!important;top:38.5%!important;width:18%!important;height:15%!important;
+  border-radius:46%!important;z-index:7!important;touch-action:manipulation;
+}
+#modal-3 .umi-lab-flask:focus-visible {outline:2px solid #a4fff2!important;outline-offset:2px!important;}
+@media(max-width:390px){
+ #modal-3 .umi-lab-welcome {left:35%!important;top:15.4%!important;width:52%!important;}
+ #modal-4 .umi-gallery-greeting {right:8%!important;top:10.3%!important;width:49%!important;}
+}
+</style>
 </head><body><input checked="" class="theme-radio" id="theme-lab" name="theme" type="radio"/><input class="theme-radio" id="theme-sea" name="theme" type="radio"/><input class="theme-radio" id="theme-night" name="theme" type="radio"/><main class="app" id="home"><header><h1 class="secret-title"><label aria-label="海辺へ切り替え" class="title-switch switch-sea" for="theme-sea">UMITAN OS</label><label aria-label="夜へ切り替え" class="title-switch switch-night" for="theme-night">UMITAN OS</label><label aria-label="研究室へ切り替え" class="title-switch switch-lab" for="theme-lab">UMITAN OS</label></h1><div class="subtitle">ふたりだけの、秘密の研究室 · LAB v3.1.0 · THREE MODES</div></header><div class="scene">
 <div class="umi-home-sparkles" aria-hidden="true">
   <span class="umi-spark" style="--x:9%;--y:14%;--s:4px;--dur:14.6s;--delay:-2.0s;--dx:11px;--dy:-26px"></span>
@@ -2102,6 +2171,7 @@ body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
 </section>
 <section aria-label="LAB" class="modal umi-lab-screen" id="modal-3" role="dialog">
   <div class="umi-lab-stage" aria-label="UMITAN LAB 研究室">
+    <div class="umi-lab-legacy-label-mask" aria-hidden="true"></div><div class="umi-lab-starfish-mask" aria-hidden="true"></div>
     <a class="umi-lab-close" href="#home" aria-label="LABを閉じる">×</a>
     <button class="umi-lab-flask" id="umi-lab-flask" type="button" aria-label="ECOSYSTEM GENESISの紹介を開く"></button>
     <div class="umi-lab-welcome" aria-live="polite"><span>めいめい、いらっしゃい♡<br>今日は何を研究しようか？</span></div>
