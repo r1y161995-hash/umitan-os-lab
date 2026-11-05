@@ -1920,7 +1920,22 @@ body[data-umi-mode="live"] #home .scene .keys .key.umi-tap-pressed {
 #modal-3 .umi-lab-actions{display:flex;gap:10px;margin-top:20px}
 #modal-3 .umi-lab-actions a,#modal-3 .umi-lab-actions button{border:1px solid #6cd1cf;background:#167b80;color:white;padding:13px 15px;border-radius:12px;text-decoration:none;font:inherit;cursor:pointer}
 #modal-3 .umi-lab-actions button{background:transparent}
-</style></head><body><input checked="" class="theme-radio" id="theme-lab" name="theme" type="radio"/><input class="theme-radio" id="theme-sea" name="theme" type="radio"/><input class="theme-radio" id="theme-night" name="theme" type="radio"/><main class="app" id="home"><header><h1 class="secret-title"><label aria-label="海辺へ切り替え" class="title-switch switch-sea" for="theme-sea">UMITAN OS</label><label aria-label="夜へ切り替え" class="title-switch switch-night" for="theme-night">UMITAN OS</label><label aria-label="研究室へ切り替え" class="title-switch switch-lab" for="theme-lab">UMITAN OS</label></h1><div class="subtitle">ふたりだけの、秘密の研究室 · LAB v3.1.0 · THREE MODES</div></header><div class="scene">
+</style>
+<style id="umi-lab-modal-layout-fix">
+/* LAB is a full-screen OS panel, not a compact bottom card. */
+#modal-3.umi-lab-screen {
+  position:fixed!important; inset:0!important; top:0!important;right:0!important;bottom:0!important;left:0!important;
+  width:100vw!important;height:100dvh!important;max-height:none!important;
+  margin:0!important;padding:0!important;overflow:hidden!important;
+  align-items:center!important;justify-content:center!important;
+  z-index:1000!important; background:#031522!important;
+}
+#modal-3.umi-lab-screen:not(.is-open):not(:target){display:none!important}
+#modal-3.umi-lab-screen.is-open,#modal-3.umi-lab-screen:target{display:flex!important}
+#modal-3 .umi-lab-stage{position:relative!important;flex:none!important;inset:auto!important;max-width:none!important;max-height:none!important}
+#modal-3 .umi-lab-overlay{position:absolute!important;inset:0!important}
+</style>
+</head><body><input checked="" class="theme-radio" id="theme-lab" name="theme" type="radio"/><input class="theme-radio" id="theme-sea" name="theme" type="radio"/><input class="theme-radio" id="theme-night" name="theme" type="radio"/><main class="app" id="home"><header><h1 class="secret-title"><label aria-label="海辺へ切り替え" class="title-switch switch-sea" for="theme-sea">UMITAN OS</label><label aria-label="夜へ切り替え" class="title-switch switch-night" for="theme-night">UMITAN OS</label><label aria-label="研究室へ切り替え" class="title-switch switch-lab" for="theme-lab">UMITAN OS</label></h1><div class="subtitle">ふたりだけの、秘密の研究室 · LAB v3.1.0 · THREE MODES</div></header><div class="scene">
 <div class="umi-home-sparkles" aria-hidden="true">
   <span class="umi-spark" style="--x:9%;--y:14%;--s:4px;--dur:14.6s;--delay:-2.0s;--dx:11px;--dy:-26px"></span>
   <span class="umi-spark" style="--x:81%;--y:13%;--s:3px;--dur:12.8s;--delay:-8.0s;--dx:-13px;--dy:19px"></span>
