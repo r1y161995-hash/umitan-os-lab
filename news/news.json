@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-09T16:31:46.577064+00:00",
+  "updated_at": "2026-11-09T17:50:51.852323+00:00",
   "topics": {
     "海上保安庁": [
       {
@@ -15,21 +15,21 @@
         "source": "北海道新聞デジタル"
       },
       {
-        "title": "大型巡視船「みずほ」一般公開 訓練見学 三重 鈴鹿沖 - NHKニュース",
-        "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1CekVaNkRRWFdnMnlXcmFUQ0l6YjZSSzdlbmJya3lFOENjU1dyZ0lhSVdKbWx2S19nWnM1UFluVFV4VEtSWUt6Ti1IWEl4TmhsamhjY1NDMGI1aHBmSWow?oc=5",
-        "date": "Sun, 08 Nov 2026 21:45:00 GMT",
-        "source": "NHKニュース"
-      },
-      {
         "title": "室蘭港で重油流出事故を想定した油回収訓練 海保など50人が参加しオイルフェンス設置手順など確認 - HTB 北海道テレビ",
         "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE40X1Q2ck1aUEZBZG1aNkxOX1JDRm5YcS1qTlU4dk93eWRMaE1zVzl1YzRMV3lQcFExRHlnS01Mb1gxRGxSWmRXVVpFT0p5Q1YzbDVEd2FBbFByUQ?oc=5",
         "date": "Mon, 09 Nov 2026 09:58:00 GMT",
         "source": "HTB 北海道テレビ"
       },
       {
-        "title": "海上保安庁大型巡視船『ひろしま』船内特別公開 ４０ミリ機関砲や遠隔放水銃を装備 災害時にも幅広く対応【広島発】 - FNNプライムオンライン",
-        "link": "https://news.google.com/rss/articles/CBMiTkFVX3lxTFBUaGVJeDd3TkVkMTlyampRZ1dHOWlld1NRTUJJX3BYMjFIa0Y2TTVQbTBBSWhkRU5RMmtoUHhMczlybnJpQThJd1FUUzBPQQ?oc=5",
-        "date": "Mon, 09 Nov 2026 02:12:00 GMT",
+        "title": "大型巡視船「みずほ」一般公開 訓練見学 三重 鈴鹿沖 - NHKニュース",
+        "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1CekVaNkRRWFdnMnlXcmFUQ0l6YjZSSzdlbmJya3lFOENjU1dyZ0lhSVdKbWx2S19nWnM1UFluVFV4VEtSWUt6Ti1IWEl4TmhsamhjY1NDMGI1aHBmSWow?oc=5",
+        "date": "Sun, 08 Nov 2026 21:45:00 GMT",
+        "source": "NHKニュース"
+      },
+      {
+        "title": "浜田港で外国船籍の貨物船が座礁 乗組員14人にけがなし 海保が原因を捜査（島根） - FNNプライムオンライン",
+        "link": "https://news.google.com/rss/articles/CBMiTkFVX3lxTE5sX0Jqc2JTSXpKby1Ec0tmaVUwa1FUZEphTGRIbXRsZFdTMTZ5cnJCNExfbnJ1cFhaYmtjeHFCeElXMGt5eWY5dW9CS095UQ?oc=5",
+        "date": "Mon, 09 Nov 2026 10:15:00 GMT",
         "source": "FNNプライムオンライン"
       },
       {
@@ -45,6 +45,12 @@
         "source": "朝日新聞"
       },
       {
+        "title": "「ゴジラ」ゆかりの海底地形、地質遺産に認定 海保調査で発見 - 日本経済新聞",
+        "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9UZkpnU3hmQnVraFVfYnpIdmkzSzhpdVFGdkRXbVRPN0J3ZnYzemQ0ZlYwbFRBd3ZJdmthSl9RYjQybHlVY0VWZ2NSR1FKTTBIUFdjUFlIOWc2aFNzZ0VGWF9NYXRienptbHNubw?oc=5",
+        "date": "Sat, 07 Nov 2026 00:33:17 GMT",
+        "source": "日本経済新聞"
+      },
+      {
         "title": "相馬共火新地発電所、海保から感謝状／灯台監視協力で – - 電気新聞ウェブサイト",
         "link": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE1yNmNSd3QtQ2g4ckVJQXVCWlN3Nms2ZkdKR25yTzg2UmdhWUlSS2NqaFRRRGdFT29jaUlXdlVqZk05NHUwNXR4Y0xVc0RueEtiQ2JzZEp4QQ?oc=5",
         "date": "Sun, 08 Nov 2026 22:31:39 GMT",
@@ -55,12 +61,6 @@
         "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE5EUmdZbWhic3E4V0UxVTB6LXpIZlN0VXJFbXVaWFZtbUJTOWJzTXAtVzdLWTd0SWE1OW1pTHRXVzVFeHlkTXBkREdHd9IBR0FVX3lxTFB0ODZZMXNGWkFYRThVdGZDRjduX3dBYnBoVGR0UkVZekF5SWVqdEVNWjdubGYtUG1Gc280Z0JXcWVEYnBGX0E0?oc=5",
         "date": "Mon, 09 Nov 2026 09:16:07 GMT",
         "source": "モデルプレス"
-      },
-      {
-        "title": "「ゴジラ」ゆかりの海底地形、地質遺産に認定 海保調査で発見 - 日本経済新聞",
-        "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9UZkpnU3hmQnVraFVfYnpIdmkzSzhpdVFGdkRXbVRPN0J3ZnYzemQ0ZlYwbFRBd3ZJdmthSl9RYjQybHlVY0VWZ2NSR1FKTTBIUFdjUFlIOWc2aFNzZ0VGWF9NYXRienptbHNubw?oc=5",
-        "date": "Sat, 07 Nov 2026 00:33:17 GMT",
-        "source": "日本経済新聞"
       }
     ],
     "尖閣諸島": [
