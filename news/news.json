@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-14T23:03:54.659113+00:00",
+  "updated_at": "2026-11-14T23:59:56.750225+00:00",
   "topics": {
     "海上保安庁": [
       {
@@ -21,16 +21,16 @@
         "source": "中国新聞デジタル"
       },
       {
-        "title": "原子力災害に備え中部電力や海保など5機関が連携訓練 要支援者の避難手順などを確認＝静岡・御前崎市 - TBS NEWS DIG",
-        "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBQdHdQMjFkVWxZZW94MzBCVGRvVXA0UFFDdWtZTG5XVHZiZkFta19UZjBYOFhIdmRtTElHU1dyYks1Rmh5VTJfQkhjRVlNMVo2cnpwWFFxMjk3QQ?oc=5",
-        "date": "Sat, 14 Nov 2026 03:34:00 GMT",
-        "source": "TBS NEWS DIG"
-      },
-      {
         "title": "小豆島沖に錨泊中の「飛鳥Ⅱ」の女性船員(39)が腹痛訴える 巡視艇で救急搬送 高松海上保安部（KSB瀬戸内海放送） - Yahoo!ニュース",
         "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBaYjkyQ0xiVUp0ZDVhSFc0a3lWQTJqRTlJZms5TW93Q2RJSjVwaHBfZ21qWS1rT0xZYWppZ3BHTVgzcEFjWHg3U3lGV3Nfd1lSMGQxZ2J6eFQ0TU1DZnBMQlB2RFh5NmFyQ3JEYlZwZENXVFAzTlE4MFhVaktRNDg?oc=5",
         "date": "Sat, 14 Nov 2026 12:11:00 GMT",
         "source": "Yahoo!ニュース"
+      },
+      {
+        "title": "原子力災害に備え中部電力や海保など5機関が連携訓練 要支援者の避難手順などを確認＝静岡・御前崎市 - TBS NEWS DIG",
+        "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBQdHdQMjFkVWxZZW94MzBCVGRvVXA0UFFDdWtZTG5XVHZiZkFta19UZjBYOFhIdmRtTElHU1dyYks1Rmh5VTJfQkhjRVlNMVo2cnpwWFFxMjk3QQ?oc=5",
+        "date": "Sat, 14 Nov 2026 03:34:00 GMT",
+        "source": "TBS NEWS DIG"
       },
       {
         "title": "尖閣周辺の接続水域に中国船、機関砲を搭載 21日連続 海保巡視船が警告 - 産経ニュース",
@@ -65,15 +65,9 @@
     ],
     "尖閣諸島": [
       {
-        "title": "尖閣周辺に中国船2隻 - 沖縄タイムス社",
-        "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE80ejFFX3BFRjZWTW1ENFFncnJLNmpPLXRBbEtwVHRPanB2cmNaTmRZc2Q5ZXN2YlFleDQxVDRhcFdqNmxoMVVkU0czZnJDb2ZCQ25VZ2xIdkVydUs0S0E?oc=5",
-        "date": "Sat, 14 Nov 2026 18:57:00 GMT",
-        "source": "沖縄タイムス社"
-      },
-      {
-        "title": "尖閣諸島沖には｢ブイ｣､南シナ海には｢滑走路付きの人工島｣…海が欲しい中国が繰り返す呆れた手法（プレジデントオンライン） - Yahoo!ニュース",
-        "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE55RThYSzFpOFluTDNvSzBEMU9GVjJ4TlVPSF9VNjIzTFBIbWF5WVQ2aFZaeU9zcVZBVXRnem1leE9uMHJ0SUZ4eHRSZ0ZuWUtJR1c5Y0oteWpfZzNkUER6eEgwMDVBOHNQWFllcjl1cjE0V0FaZmN6VmZvbk1Ea28?oc=5",
-        "date": "Fri, 13 Nov 2026 01:15:39 GMT",
+        "title": "尖閣周辺に中国船2隻 21日連続航行（沖縄八重山日報） - Yahoo!ニュース",
+        "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9lSXZtbXdrX3pSNzdQSmxfNmhfME9nbW9zbHZhQklEX3RBWngyYUM5NXNJS1dmeWNfMUtJYkVoWWZXMkJLTnBLblVaNkc0ZEdVVk02aEtYenNQQmVmMk1ZWE9samhpSUFlODFwM1I3Uk5mdHJFQk9pa011SnFVRG8?oc=5",
+        "date": "Sat, 14 Nov 2026 04:49:27 GMT",
         "source": "Yahoo!ニュース"
       },
       {
@@ -83,16 +77,22 @@
         "source": "産経ニュース"
       },
       {
-        "title": "尖閣諸島沖には｢ブイ｣､南シナ海には｢滑走路付きの人工島｣…海が欲しい中国が繰り返す呆れた手法 (3ページ目) - PRESIDENT Online（プレジデントオンライン）",
-        "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE0tVS1SZWxEZ3F1VEJQRXNrcXoyTVRSanZ1dVkwa2pzenZUMFpZZlZIQnVnc0Y4MW5VNk5RbHRfR0dteU0wYU90dkZWYkNhc3U0ZUZtZlVUSGs?oc=5",
-        "date": "Fri, 13 Nov 2026 01:00:00 GMT",
-        "source": "PRESIDENT Online（プレジデントオンライン）"
+        "title": "尖閣周辺に中国船2隻 - 沖縄タイムス社",
+        "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE80ejFFX3BFRjZWTW1ENFFncnJLNmpPLXRBbEtwVHRPanB2cmNaTmRZc2Q5ZXN2YlFleDQxVDRhcFdqNmxoMVVkU0czZnJDb2ZCQ25VZ2xIdkVydUs0S0E?oc=5",
+        "date": "Sat, 14 Nov 2026 18:57:00 GMT",
+        "source": "沖縄タイムス社"
       },
       {
-        "title": "尖閣周辺に中国船2隻 21日連続航行（沖縄八重山日報） - Yahoo!ニュース",
-        "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9lSXZtbXdrX3pSNzdQSmxfNmhfME9nbW9zbHZhQklEX3RBWngyYUM5NXNJS1dmeWNfMUtJYkVoWWZXMkJLTnBLblVaNkc0ZEdVVk02aEtYenNQQmVmMk1ZWE9samhpSUFlODFwM1I3Uk5mdHJFQk9pa011SnFVRG8?oc=5",
-        "date": "Sat, 14 Nov 2026 04:49:27 GMT",
+        "title": "尖閣諸島沖には｢ブイ｣､南シナ海には｢滑走路付きの人工島｣…海が欲しい中国が繰り返す呆れた手法（プレジデントオンライン） - Yahoo!ニュース",
+        "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOck5ZTkZoTGQwWjFOQ2FBZjczTmVpY2RGVjNEY2xTYVhPRDNOcXMxNFMtSmtRaTk1YUdJMHNlZHctX1g3dnNYdnljMHc4Mm40LUZ5anE2R2ZlS0hVMEh6VVNTMTlFVnowSUlEbmJ0SG1QdHh5WTNOdGFQdDA1eUp5cWRVYW9PWTQx?oc=5",
+        "date": "Fri, 13 Nov 2026 01:15:39 GMT",
         "source": "Yahoo!ニュース"
+      },
+      {
+        "title": "尖閣諸島沖には｢ブイ｣､南シナ海には｢滑走路付きの人工島｣…海が欲しい中国が繰り返す呆れた手法 (2ページ目) - PRESIDENT Online（プレジデントオンライン）",
+        "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1EOW01RlFoczhWUnptRjF5VmJQWWJWZ0lVcjVtMmtTRjFNT05MSzBqWkUxYVhVS25JeS1WTkpxV3owNDNyN0ZQSW5aRVR5UWZ1cUg3R3dEX24?oc=5",
+        "date": "Fri, 13 Nov 2026 01:00:00 GMT",
+        "source": "PRESIDENT Online（プレジデントオンライン）"
       },
       {
         "title": "尖閣周辺に中国船 海警局の船4隻 19日連続 いずれも機関砲搭載 - 産経ニュース",
@@ -107,12 +107,6 @@
         "source": "読売新聞"
       },
       {
-        "title": "尖閣諸島沖には｢ブイ｣､南シナ海には｢滑走路付きの人工島｣…海が欲しい中国が繰り返す呆れた手法 (2ページ目) - PRESIDENT Online（プレジデントオンライン）",
-        "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1EOW01RlFoczhWUnptRjF5VmJQWWJWZ0lVcjVtMmtTRjFNT05MSzBqWkUxYVhVS25JeS1WTkpxV3owNDNyN0ZQSW5aRVR5UWZ1cUg3R3dEX24?oc=5",
-        "date": "Fri, 13 Nov 2026 01:00:00 GMT",
-        "source": "PRESIDENT Online（プレジデントオンライン）"
-      },
-      {
         "title": "沖縄 中国海警局の船4隻が尖閣諸島沖で日本の領海に一時侵入 - NHKニュース",
         "link": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBPamhjX0lyT3FtQzMxS3NkT21LQ294MENrenlUckhEYnVZYnpqQ1A3c3F0eDhpQmZTYkt1c0QyUHpSazJMT1ZGVGh6SUVOVUdRWS1WdGNFRDVpWXdJY3o0?oc=5",
         "date": "Mon, 09 Nov 2026 04:03:11 GMT",
@@ -123,6 +117,12 @@
         "link": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE5oQmtZOWl6aHBrOXhZUFd5YW13Z1plYjVUcWx2dUtReW44WERwRDN4a2RINHFvTU5wS2RnTDlJNjU5WXdubEt2QU95TQ?oc=5",
         "date": "Mon, 09 Nov 2026 05:11:16 GMT",
         "source": "47NEWS"
+      },
+      {
+        "title": "画像 | 尖閣諸島沖には｢ブイ｣､南シナ海には｢滑走路付きの人工島｣…海が欲しい中国が繰り返す呆れた手法 - PRESIDENT Online（プレジデントオンライン）",
+        "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5tbElmNXFJQ1Z2cGxOdnNaT2VyX1NDMFBVdDVGVm5MbkRrQ19rcnlDSEFCOTFIT1R0ZDZ0RTRkWXZ4SHZzUXhIZmdnVmZRek4tcUNaVw?oc=5",
+        "date": "Fri, 13 Nov 2026 06:23:07 GMT",
+        "source": "PRESIDENT Online（プレジデントオンライン）"
       }
     ]
   }
