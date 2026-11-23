@@ -1,18 +1,18 @@
 {
-  "updated_at": "2026-11-22T21:41:18.973591+00:00",
+  "updated_at": "2026-11-23T02:19:04.655820+00:00",
   "topics": {
     "海上保安庁": [
-      {
-        "title": "硫黄島の南岸沖で噴火、新たな陸地を確認 海上保安庁 - 日本経済新聞",
-        "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE0tWlluemxyWWs4aVoxYWtrNF9EZW9VQlhQN2pnMm5sYjRSS3VSUjd6czBZbFZjU2VSSGJobnk3QlhOU3lKZlBpTjFQM1p6WFFyeEFoSk1Ma3FjRmY2enNsa3pQeXlOdFdDZmFYSw?oc=5",
-        "date": "Sun, 22 Nov 2026 20:00:00 GMT",
-        "source": "日本経済新聞"
-      },
       {
         "title": "海保の巡視艇「ゆふぎり」が浸水…修理断念 当直を配置せず、機関室の「弁の閉鎖指示」怠る 職員2人を懲戒処分 - Yahoo!ニュース",
         "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE50MS1BM3VFRmctVkE4VGxWNXJ3VGpCSmwzaTdPN1prMVNHTHpaY3I2UXJPZ0VoNnBIU203ZWZ2OUZPODQySGlIeW1wRW1JS0ZReUExX1VkSENwQkU2ZlJRZTh1eEtPU0pVQWtOT3FUUkxGdmlqX2Z5NGM4ZVc1S2c?oc=5",
         "date": "Fri, 20 Nov 2026 09:42:16 GMT",
         "source": "Yahoo!ニュース"
+      },
+      {
+        "title": "硫黄島の南岸沖で噴火、新たな陸地を確認 海上保安庁 - 日本経済新聞",
+        "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE0tWlluemxyWWs4aVoxYWtrNF9EZW9VQlhQN2pnMm5sYjRSS3VSUjd6czBZbFZjU2VSSGJobnk3QlhOU3lKZlBpTjFQM1p6WFFyeEFoSk1Ma3FjRmY2enNsa3pQeXlOdFdDZmFYSw?oc=5",
+        "date": "Sun, 22 Nov 2026 20:00:00 GMT",
+        "source": "日本経済新聞"
       },
       {
         "title": "海難救助３１年、お疲れさま 伏木海保の巡視艇「たちかぜ」解役式 乗組員、ＯＢら感謝 - 北國新聞",
@@ -25,12 +25,6 @@
         "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE0xbVozZGVzQW1KY0pWd2tHZDdLM2Q5eU42Vll5SUpwUVZfXzVqWVo0RXh1ZGU2dG5vTkxsVmxCQ184UzhwLVZnSnZWRzZhMndqUVllYjFndUFEZDZDblZISVlZS1VDM3Zj?oc=5",
         "date": "Sun, 22 Nov 2026 11:04:28 GMT",
         "source": "Funeco"
-      },
-      {
-        "title": "佐渡長手岬灯台を20年間毎日見守り…島内の漁業者が海上保安庁長官から感謝状 - 新潟日報",
-        "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9Kb180OXlCNmJSLXJHY2E4ZUVsdzJGR3BFd3I4S3BCVE1ReUJwcW1iU3FENzdRY29ybU00SlBGczN6VlFIOU1MaHhnZkp4VzFGR29zVUMwRkI0aTluOXc?oc=5",
-        "date": "Sun, 22 Nov 2026 01:00:00 GMT",
-        "source": "新潟日報"
       },
       {
         "title": "海保の巡視艇「ゆふぎり」が浸水…修理断念 当直を配置せず、機関室の「弁の閉鎖指示」怠る 職員2人を懲戒処分 - TBS NEWS DIG",
@@ -57,24 +51,36 @@
         "source": "FNNプライムオンライン"
       },
       {
-        "title": "だから中国船が92時間も尖閣の領海に居座れる…海保の弱腰でも自衛隊の怠慢でもない｢日本の海｣の弱点 - Yahoo!ニュース",
-        "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE10VEtaUW9TdFJZUFZPR3dXQnI4Rmw4anFTVFp0UjR6NmR1TFNpQUtrOU5jQktOTlJSd25iQ3hPUy1SZ2ZYQ1JZTEI1dTJCWE1CRm1hT2xPb0o4bHdqYWIyRDdJUEhfZTdVUmRDMHZlbE5xQjF1SC1IcGJZLUJJNUU?oc=5",
-        "date": "Sun, 22 Nov 2026 02:15:38 GMT",
+        "title": "巡視艇「ゆふぎり」海水流入で運用終了、職員２人を戒告処分…弁閉鎖指示の怠りと当直の未配置で（読売新聞オンライン） - Yahoo!ニュース",
+        "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBwd05vSkdXZnVyaW1wNVhFWTZPVlFuWENLSHBnS3FieE1hVlNtckh0VjZ0WG51UjV5YXlnYUVYV1Ztb2dsaEdjVWdDMjhYWTJiRmwyZHQ5eUhnS3NtV0FwRUFaMkJ5UzlHN1J5aHJlbnc0dkdRRmhHRFdMNE9Hek0?oc=5",
+        "date": "Sat, 21 Nov 2026 03:16:28 GMT",
         "source": "Yahoo!ニュース"
+      },
+      {
+        "title": "高知海上保安部が養殖業者６人を摘発 浦ノ内湾に不要パイプを不法投棄か - TBS NEWS DIG",
+        "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1vbVBZS0RCdWFIZGlHSVVsUkRJNWc3ZDJYQTZfWlptS3ZsUF9FczVKR2Yyc1BDVmdXRHhvOEF4WEVIbW9BUHUxQkh4a2ZfV1ZaR1hEVnlkd2tsSlZEXzJGTGFoY1QyYmpo?oc=5",
+        "date": "Fri, 20 Nov 2026 02:59:00 GMT",
+        "source": "TBS NEWS DIG"
       }
     ],
     "尖閣諸島": [
       {
-        "title": "尖閣周辺に中国船 海警局の船2隻 29日連続 いずれも機関砲搭載 - 産経ニュース",
-        "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE8zT2xIMWZvbll0dC1xMkJxSWplNGIySFRfZkFrWnRmalNNUklELXpOeV9Ha3dZM0hueEJaVVBhT1NpM2FZUDJ3X0VIZVNXTTBoblFBRU5YQUpIZExfbzNZZDZuUUxBMkRqdHJPeFpScGFtUzcyemc?oc=5",
-        "date": "Sun, 22 Nov 2026 02:37:12 GMT",
-        "source": "産経ニュース"
+        "title": "だから中国船が92時間も尖閣の領海に居座れる…海保の弱腰でも自衛隊の怠慢でもない｢日本の海｣の弱点 - Yahoo!ニュース",
+        "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE10VEtaUW9TdFJZUFZPR3dXQnI4Rmw4anFTVFp0UjR6NmR1TFNpQUtrOU5jQktOTlJSd25iQ3hPUy1SZ2ZYQ1JZTEI1dTJCWE1CRm1hT2xPb0o4bHdqYWIyRDdJUEhfZTdVUmRDMHZlbE5xQjF1SC1IcGJZLUJJNUU?oc=5",
+        "date": "Sun, 22 Nov 2026 02:15:38 GMT",
+        "source": "Yahoo!ニュース"
       },
       {
         "title": "画像 | だから中国船が92時間も尖閣の領海に居座れる…海保の弱腰でも自衛隊の怠慢でもない｢日本の海｣の弱点 - PRESIDENT Online（プレジデントオンライン）",
         "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOVkRNcDJwOHl0cHpDOUxrbmU1eDZKYXI0V045YUpyeEZVWkRmYnJrQXpXLU95Zk5MZjlVUFVrWlA3bk8wOWVCVEpxM25uSmI5ZG5VdlpNVk8tZU9VVEZYME5ybzFNZWk2NGQ1YXZhQ3h2NHJ5UnhxWmFIZnlTZzAzVG1JakdhNEF6SEwtbHpyc2ROMUNjYUxNcGQ2UFFyTkV6X1lZY01tc3lxbjA?oc=5",
         "date": "Sun, 22 Nov 2026 02:00:00 GMT",
         "source": "PRESIDENT Online（プレジデントオンライン）"
+      },
+      {
+        "title": "重要鉱物の政府備蓄、放出額が尖閣危機の4倍超 中国規制で取り崩し - 日本経済新聞",
+        "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTFB4T0M1QmxWVUJTNzlBXzBLOUdrYk1KcHBaR1AxbWdmQ0I1d1c5TUtNV2piQXpqdU1tekdkUXRpdzJDQkFTbk1iaWN3VHRfTzRMNUhrckNxbmlXUmVmbzFtRHlBNndLaGFIakdiYg?oc=5",
+        "date": "Sun, 22 Nov 2026 17:00:00 GMT",
+        "source": "日本経済新聞"
       },
       {
         "title": "尖閣周辺に中国船４隻 ２７日連続航行、海保が警戒監視 - miyakoshinpo.com",
@@ -104,12 +110,6 @@
         "title": "尖閣諸島沖には｢ブイ｣､南シナ海には｢滑走路付きの人工島｣…海が欲しい中国が繰り返す呆れた手法（プレジデントオンライン） - Yahoo!ニュース",
         "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE55RThYSzFpOFluTDNvSzBEMU9GVjJ4TlVPSF9VNjIzTFBIbWF5WVQ2aFZaeU9zcVZBVXRnem1leE9uMHJ0SUZ4eHRSZ0ZuWUtJR1c5Y0oteWpfZzNkUER6eEgwMDVBOHNQWFllcjl1cjE0V0FaZmN6VmZvbk1Ea28?oc=5",
         "date": "Fri, 13 Nov 2026 08:00:00 GMT",
-        "source": "Yahoo!ニュース"
-      },
-      {
-        "title": "だから中国船が92時間も尖閣の領海に居座れる…海保の弱腰でも自衛隊の怠慢でもない｢日本の海｣の弱点 - Yahoo!ニュース",
-        "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPeXhqSjZMSDFKczNLRE9vYW1VWWZHU0haOGFLdjZONUdxSVlNN2FRUmpmQjNxWl9KMHZPVEU0NGNtZlo3dmNxRmpZS21uY01VMXZUVVhKUDlhUGVBbjhqV0ZJd3BCcWY5SGZyTXlhNkNhT0tRU1pyNFBuMGxSYkM1SFZhX05Dd2t2T0h2VEh3?oc=5",
-        "date": "Sun, 22 Nov 2026 02:15:38 GMT",
         "source": "Yahoo!ニュース"
       },
       {
